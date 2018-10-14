@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'congenial-black';
+    src: url('../font/congenial_black-webfont.woff2') format('woff2'),
+         url('../font/congenial_black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-bold';
+    src: url('../font/congenial_bold-webfont.woff2') format('woff2'),
+         url('../font/congenial_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-extrali';
+    src: url('../font/congenial_extra_light-webfont.woff2') format('woff2'),
+         url('../font/congenial_extra_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-hairlin';
+    src: url('../font/congenial_hairline-webfont.woff2') format('woff2'),
+         url('../font/congenial_hairline-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-heavy';
+    src: url('../font/congenial_heavy-webfont.woff2') format('woff2'),
+         url('../font/congenial_heavy-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-light';
+    src: url('../font/congenial_light-webfont.woff2') format('woff2'),
+         url('../font/congenial_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-medium';
+    src: url('../font/congenial_medium-webfont.woff2') format('woff2'),
+         url('../font/congenial_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-thin';
+    src: url('../font/congenial_thin-webfont.woff2') format('woff2'),
+         url('../font/congenial_thin-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial-ultrali';
+    src: url('../font/congenial_ultra_light-webfont.woff2') format('woff2'),
+         url('../font/congenial_ultra_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'congenial';
+    src: url('../font/congenial-webfont.woff2') format('woff2'),
+         url('../font/congenial-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

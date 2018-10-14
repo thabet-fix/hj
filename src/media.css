@@ -1,0 +1,337 @@
+/************************* RESPONSIVE *****************************/
+@media (max-width:768px) {
+    .navbar-toggle {
+        background-color: #eee;
+        border: 1px solid #aaa;
+    }
+    .navbar-toggle .icon-bar {
+        background: #aaa;
+    }
+    #logo {
+        width: auto;
+        height: auto;
+        top: 46px;
+        cursor: pointer;
+    }
+    .navbar-brand {
+        margin-top: 0px;
+        width: 50%;
+        margin-bottom: 20px;
+    }
+    nav.navbar-findcond{
+        height: auto;
+    }
+    .navbar-toggle{
+        margin-top: 18px; 
+    }
+    nav.navbar-findcond ul.navbar-nav a {
+        margin-top: 37.2px;
+        margin-left: 0;
+    }
+    #content .show .overlay .jobtext .first{
+        font-size: 31px;     
+    }
+    #content .show .overlay .jobtext .third {
+        font-size: 23px;
+    }
+    #content .show .overlay .form{
+        margin-top: 0;
+    }
+    #content .show .overlay .jobtext{
+        margin-top: 30px;
+    }
+    #content .slidesilk .item-slide{
+        height: 206px;
+    }
+    #content .slidesilk .item-slide .secteur{
+        margin-top: 35px;
+    }
+    #content .slidesilk .item-slide .offre-count{
+        margin-top: 40px;
+    }
+    #content .note .hello-txt {
+        margin-left: 0;
+    }
+    #content .note{
+        margin-top: 350px;
+        padding: 15px 0;
+    }
+    #content .note .hello-txt {
+        font-size: 31px;
+        margin-top: 26px;
+    }
+    #content .note .add-cv{
+        width: auto;
+        margin-top: 20px;
+    }
+    .img-mobile {
+        display: none;
+    }
+    #content #app-box .left-side .part1, #content #app-box .left-side .part2{
+        padding-left: 20px;
+    }
+    #content #app-box .right-side{
+        height: auto;
+        padding: 15px;
+    }
+    .titre-inscription {
+        font-size: 40px;
+    }
+    .titre-job-home {
+        font-size: 22px;
+        background: url(assets/images/bg-titre-job.jpg) 0px repeat-x;
+        padding-left: 20px;
+    }
+    #content #newslettre .right-side .newslettre-box{
+        padding: 21px 27px 0;
+        width: auto;
+    }
+    #content #newslettre .right-side .newslettre-box .normal {
+        font-size: 33px;
+    }
+    #content #newslettre .right-side .newslettre-box .hello-text {
+        font-size: 28px;
+    }
+    #content #newslettre .right-side .newslettre-box .capitalize {
+        font-size: 32px;
+    }
+    .partner-title h3 {
+        font-size: 23px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .question {
+        float: none;
+        padding-bottom: 20px;
+        font-size: 18px;
+        height: 100px;
+    }
+    .question .text {
+        margin-right: 0;
+        position: relative;
+        top: -170px;
+        right: -16px;
+    }
+    .question .bulle {
+        padding: 59px 43px 58px 58px;
+        margin-top: -10px;
+        z-index: 2;
+        position: relative;
+    }
+    .question .bulle, .text {
+        float: none;
+        color: #ec0928;
+        text-transform: uppercase;
+        font-size: 18px;
+        margin-right: 15px;
+    }
+    footer .footerlink p {
+        padding: 0 10px;
+    }
+    .titre-page2 {
+        font-size: 21px;
+        background-position: 0 -14px;
+        padding-left: 10px;
+    }
+    .infos-mdp {
+        padding: 0;
+    }
+    .btn-lg {
+        font-size: 14px;
+    }
+    footer .footerlink {
+        padding: 5px!important;
+        margin-bottom: 15px;
+    }
+    .nav {
+        text-align: center;
+    }
+    .nav>li {
+        display: block;
+        float: none;
+    }
+    .col-form-label {
+        margin-top: 17px;
+    }
+    .compte button {
+        font-size: 16px;
+    }
+    .compte button .fa {
+        font-size: 23px;
+    }
+    .compte .container-cnx-social  button {
+        font-size: 13px;
+    }
+    .menu-profil a {
+        margin: 8px 35px;
+        display: inline-block;
+    }
+    .nav .avatar {
+        margin-top: 34px;
+        margin-left: 0;
+        display: block;
+        float: none;
+    }
+    .container-btn-header {
+        display: inline-block;
+        float: none;
+    }
+    .container-case .pull-right a {
+        margin-top: 15px;
+    }
+    .bloc-connexion .btn-lg {
+        margin-right: 10px;
+        font-size: 10px;
+    }
+    .bloc-connexion .btn-lg .fa {
+        margin-right: 5px;
+        font-size: 16px;
+    }
+    .bloc-option-profil .btn {
+        font-size: 14px;
+    }
+    .titre-option-profil {
+        font-size: 19px;
+        margin-top: 20px;
+    }
+    .bloc-option-profil .btn.btn-experience{
+        margin-top: 20px !important;
+    }
+    .filter-liste a, .filter-liste button{
+        margin-top: 20px;
+    }
+    .une-offre , .bloc-secteur{
+        padding: 15px;
+    }
+    .barre-annonce span{
+        display: none;
+    }
+    .barre-annonce button, .barre-annonce a{
+        margin-bottom: 15px;
+    }
+    .titre-interne {
+        font-size: 18px;
+        padding-left: 10px;
+    }
+    .sous-titre-interne {
+        padding-left: 10px;
+    }
+    .titre-recherche {
+        font-size: 18px;
+    }
+    .logo-footer {
+        margin-top: 100px;
+    }
+}
+@media (min-width: 768px) and (max-width:992px) {
+    .barre-annonce button, .barre-annonce a{
+        margin-bottom: 15px;
+    }
+    .barre-annonce span{
+        display: none;
+    }
+    .une-offre {
+        padding: 15px 15px;
+    }
+    .titre-recherche {
+        font-size: 20px;
+    }
+    .titre-option-profil {
+        font-size: 19px;
+    }
+    .bloc-connexion .btn-lg {
+        margin-right: 10px;
+        font-size: 15px;
+    }
+    .bloc-connexion .btn-lg .fa {
+        margin-right: 5px;
+        font-size: 20px;
+    }
+    .nav .avatar {
+        margin-left: 0;
+    }
+    .menu-profil a {
+        margin: 0 25px;
+    }
+    .btn-lg {
+        font-size: 15px;
+    }
+    .compte button {
+        font-size: 14px;
+    }
+    .compte button .fa {
+        font-size: 23px;
+    }
+    .compte .container-cnx-social  button {
+        font-size: 13px;
+    }
+    .ou {
+        font-size: 27px;
+    }
+    nav.navbar-findcond ul.navbar-nav a {
+        font-size: 14px;
+        margin-left: 18px;
+        min-width: 110px;
+    }
+    #content .slidesilk .item-slide {
+        height: 142px;
+    }
+    #content .slidesilk .item-slide .secteur {
+        font-size: 15px;
+        margin-top: 17px;
+    }
+    #content .slidesilk .item-slide .offre-count {
+        font-size: 13px;
+        margin-top: 21px;
+    }
+    #content .note .add-cv{
+        margin-top: 30px;
+    }
+    #content .note .hello-txt{
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+    #content #newslettre .right-side .newslettre-box {
+        margin: 0 auto;
+    }
+}
+@media (min-width: 992px) and (max-width:1200px) {
+    .bloc-option-profil .btn.btn-experience{
+        font-size: 10px;
+    }
+    .bloc-option-profil .btn {
+        font-size: 15px;
+    }
+    #content .slidesilk .item-slide{
+        height: 206px;
+    }
+    #content .slidesilk .item-slide .secteur{
+        margin-top: 35px;
+    }
+    #content .slidesilk .item-slide .offre-count{
+        margin-top: 40px;
+    }
+    #content .note .hello-txt {
+        margin-left: -8px;
+    }
+    #content #app-box .right-side {
+        padding: 80px 67px 25px;
+    }
+    .titre-job-home {
+        font-size: 38px;
+    }
+    .jobdetail {
+        width: 357px;
+    }
+    .item-job {
+        margin-top: 31px;
+    }
+    #content .partner-title {
+        margin-top: 45px;
+    }
+}
+@media (min-width: 1200px) {
+    .jobdetail {
+        min-width: 357px;
+    }
+}

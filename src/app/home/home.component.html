@@ -1,0 +1,255 @@
+<div id="content">
+  <div class="show">
+    <div class="container">
+      <div class="overlay">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="jobtext">
+              <p class="first">Votre Carriére en une simple recherche</p>
+              <p class="secand">Trouvez votre job en une minute</p>
+              <p class="third">{{ nbr_emploi }} jobs disponibles</p>
+            </div>
+          </div>
+        </div>
+        <div class="row form">
+          <div class="col-md-5">
+            <div class="">
+              <input type="text" placeholder="Mots-clé ..." class="validate white">
+            </div>
+
+          </div>
+          
+          <div class="col-md-3">
+            <mat-form-field>
+              <mat-select [(value)]="selected">
+                <mat-option>Secteur ..</mat-option>
+                <mat-option value="option1">Art</mat-option>
+                <mat-option value="option2">Design</mat-option>
+                <mat-option value="option3">Informatique</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field>
+              <mat-select>
+                <mat-option>Pays ..</mat-option>
+                <mat-option value="option1">Tunisie</mat-option>
+                <mat-option value="option2">France</mat-option>
+                <mat-option value="option3">Italie</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <button mat-button>
+                Chercher <i class="fa fa-search"></i>
+            </button>
+            <a routerLink="/emploi" class="recherche-avancee">Recherche avancée</a>
+          </div>
+        </div>
+      </div>
+      <div id="Carousel" class="carousel slide">
+                 
+        <ol class="carousel-indicators">
+            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#Carousel" data-slide-to="1"></li>
+        </ol>
+          
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <!-- TODO gestion Item ! -->
+          <div class="item active">
+            <div class="row">
+              <div class="col-md-3" *ngFor="let emploiGrouped of emploisGrouped; let i = index">
+                <div class="slidesilk">
+                  <div class="item-slide">
+                    <p class="link-item">
+                      <i class="fa fa-ellipsis-h"></i>
+                    </p>
+                    <p class="secteur">{{ emploiGrouped[0].secteur }}</p>
+                    <p class="offre-count">{{ emploiGrouped.length }} Offre</p>
+                  </div>
+                </div>
+                <!-- slidesilk -->
+              </div>
+              <!-- col-md-3 -->
+            </div>
+          </div>
+          
+          
+        </div><!--.carousel-inner-->
+        <!--<a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+        <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>-->
+      </div><!--.Carousel-->
+    </div>
+    <!-- /.container -->
+
+  </div>
+  <div class="container">
+    <div class="note">
+      <div class="row">
+        <div class="col-md-8">
+          <p>Vous cherchez un job?
+            <span class="recherche">Dites</span>
+            <span class="hello">HELLO </span>
+            <span class="recherche">! On s'occupe du reste !</span>
+          </p>
+          <span class="download-txt">Téléchargez votre CV pour postuler facilement aux offres d'emploi</span>
+        </div>
+        <div class="col-md-2 col-xs-6">
+          <button class="add-cv waves-effect waves-light">Ajouter votre CV</button>
+        </div>
+        <div class="col-md-2 col-xs-6">
+          <span class="hello-txt">hello</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container -->
+  <div class="row">
+    <div class="col-md-12 col-xs-12" id="app-box">
+      <div class="col-md-6 col-xs-12 left-side">
+        <div class="img-mobile">
+          <img src="assets/images/mobile-app.png" alt="Version Mobile">
+        </div>
+        <!-- /.img-mobile -->
+        <div class="part1">hello
+          <span class="job-txt">job</span>
+        </div>
+        <div class="part2">
+
+
+          <div class="mobileapp">
+            <p>Disponible sur iOS et Android</p>
+            <img src="assets/images/playstore.svg" class="playstore">
+            <img src="assets/images/appstore.svg" class="appstore">
+          </div>
+        </div>
+        <div class="part3"></div>
+
+      </div>
+      <div class="col-md-6 col-xs-12 right-side pull-right">
+        <div class="titre-inscription" *ngIf="!isAuthenticated">
+          une simple inscription
+        </div>
+        <!-- /.titre-inscription -->
+        <div class="titre-inscription" *ngIf="isAuthenticated">
+          Accéder à votre compte
+        </div>
+        <!-- /.titre-inscription -->
+        <div class="text-inscription" *ngIf="!isAuthenticated">
+          Avec la vision d’un expert et une approche dédiée métier qui fait la différence, nous abordons les défis en ressources humaines
+          avec confiance, car notre équipe est expérimentée dans chaque secteur et chaque discipline que nous proposons.
+        </div>
+        <!-- /.text-inscription -->
+        <div class="text-inscription" *ngIf="isAuthenticated">
+          En complétant votre compte vous aurez plus de chance d'être consulté
+        </div>
+        <!-- /.text-inscription -->
+        
+        <div class="btn-container">
+          <button mat-button class="btn-inscription" (click)="openDialog()" *ngIf="!isAuthenticated">
+              Inscription
+          </button>
+          <button mat-button class="btn-inscription" *ngIf="isAuthenticated">
+              Mon compte
+          </button>
+        </div>
+
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="col-md-12 col-xs-12" id="newslettre">
+      <div class="col-md-5 col-xs-12 col-md-offset-1 left-side">
+        <div class="bloc-job-recent">
+          <h2 class="titre-job-home">JOBS récement ajoutés</h2>
+          <div class="jobs" *ngIf="emplois; let emplois; else loading">
+          
+            <div class="item-job" *ngFor="let emploi of emplois">
+              <div class="container-img-offre">
+                <img class="img-offre" alt="nom de la société" src="assets/images/jobicon.png" />
+              </div>
+              <div class="jobdetail">
+                <h3 class="titre-offre">{{ emploi.titre}}</h3>
+                <span class="contrat-offre">{{ emploi.type_contrat}}</span>
+                <span class="type-offre">{{ emploi.type_temp}}</span>
+                <div class="clearfix"></div>
+                <p class="societe-offre">{{ emploi.lieu}} -
+                  <span>{{ emploi.secteur}}</span>
+                </p>
+                <!--<p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>-->
+              </div>
+              <div class="clearfix"></div>
+              <a href="#" class="detail-offre">+ Détails</a>
+            </div>
+          </div>
+          <ng-template #loading>Chargement Jobs&hellip;</ng-template>
+        </div>
+        <!-- /.bloc-job-recent -->
+
+      </div>
+      <div class="col-md-6 col-xs-12 right-side">
+        <div class="newslettre-box">
+          <p class="capitalize">Inscrivez vous</p>
+          <p class="capitalize">gratuitement</p>
+          <span class="normal">à</span>
+          <span class="hello-text">hello </span>
+          <span class="normal">news</span>
+          <input type="text" placeholder="Newslettre" class="white">
+          <button class="waves-effect waves-light">inscription</button>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+
+
+  </div>
+  <!-- row -->
+ 
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-xs-12 partner-title">
+        <h3>Nos partenaires</h3>
+      </div>
+      <div class="col-md-12 col-xs-12  slidecompany">
+
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/company.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/wcompany.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/company.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/wcompany.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/company.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/wcompany.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/company.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/wcompany.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/company.png" />
+        </div>
+        <div class="col-md-2 slidecompany-item">
+          <img src="assets/images/wcompany.png" />
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <!-- /.clearfix -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- content -->
