@@ -11,41 +11,40 @@
             </div>
           </div>
         </div>
-        <div class="row form">
-          <div class="col-md-5">
-            <div class="">
-              <input type="text" placeholder="Mots-clé ..." class="validate white">
+        <form #formEmploi="ngForm" (ngSubmit)="onClickChercher(formEmploi)">
+          <div class="row form">
+            <div class="col-md-5">
+              <div class="">
+                <mat-form-field class="validate white">
+                  <input matInput placeholder="Mots-clé ..." ngModel name="tmpMotCleInput">
+                </mat-form-field>
+              </div>
+            </div>            
+            <div class="col-md-3">
+              <mat-form-field>
+                <mat-select ngModel name="tmpSecteurInput">
+                  <mat-option>Secteur ..</mat-option>
+                  <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs">{{ secteur[0].secteur }}</mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-
+            <div class="col-md-2">
+              <mat-form-field>
+                <mat-select ngModel name="tmpPaysInput">
+                  <mat-option>Pays ..</mat-option>
+                  <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-2">
+              <button mat-button>
+                  Chercher <i class="fa fa-search"></i>
+              </button>
+              <a routerLink="/emploi" class="recherche-avancee">Recherche avancée</a>
+            </div>
           </div>
-          
-          <div class="col-md-3">
-            <mat-form-field>
-              <mat-select [(value)]="selected">
-                <mat-option>Secteur ..</mat-option>
-                <mat-option value="option1">Art</mat-option>
-                <mat-option value="option2">Design</mat-option>
-                <mat-option value="option3">Informatique</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2">
-            <mat-form-field>
-              <mat-select>
-                <mat-option>Pays ..</mat-option>
-                <mat-option value="option1">Tunisie</mat-option>
-                <mat-option value="option2">France</mat-option>
-                <mat-option value="option3">Italie</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <div class="col-md-2">
-            <button mat-button>
-                Chercher <i class="fa fa-search"></i>
-            </button>
-            <a routerLink="/emploi" class="recherche-avancee">Recherche avancée</a>
-          </div>
-        </div>
+        </form>
+        
       </div>
       <div id="Carousel" class="carousel slide">
                  
@@ -59,7 +58,7 @@
           <!-- TODO gestion Item ! -->
           <div class="item active">
             <div class="row">
-              <div class="col-md-3" *ngFor="let emploiGrouped of emploisGrouped; let i = index">
+              <div class="col-md-3" *ngFor="let emploiGrouped of emploisGroupedBySecteur; let i = index">
                 <div class="slidesilk">
                   <div class="item-slide">
                     <p class="link-item">

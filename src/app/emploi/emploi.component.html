@@ -1,3 +1,33 @@
-<p>
-  emploi works!
-</p>
+<div class="row">
+  <div class="container">
+    <div class="col-md-5 col-xs-12 col-md-offset-1 left-side">
+      <div class="bloc-job-recent">
+        <h2 class="titre-job-home">JOBS récement ajoutés</h2>
+        <div class="jobs" *ngIf="emplois; let emplois; else loading">
+        
+          <div class="item-job" *ngFor="let emploi of emplois">
+            <div class="container-img-offre">
+              <img class="img-offre" alt="nom de la société" src="assets/images/jobicon.png" />
+            </div>
+            <div class="jobdetail">
+              <h3 class="titre-offre">{{ emploi.titre}}</h3>
+              <span class="contrat-offre">{{ emploi.type_contrat}}</span>
+              <span class="type-offre">{{ emploi.type_temp}}</span>
+              <div class="clearfix"></div>
+              <p class="societe-offre">{{ emploi.lieu}} -
+                <span>{{ emploi.secteur}}</span>
+              </p>
+              <!--<p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>-->
+            </div>
+            <div class="clearfix"></div>
+            <a href="#" class="detail-offre">+ Détails</a>
+          </div>
+        </div>
+        <ng-template #loading>Chargement Jobs&hellip;</ng-template>
+      </div>
+      <!-- /.bloc-job-recent -->
+    
+    </div>
+  </div>
+  <!-- /.container -->
+</div>

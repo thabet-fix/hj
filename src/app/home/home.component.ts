@@ -15,7 +15,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
 
-
+import { Router, ActivatedRoute } from '@angular/router';
 
 export interface DialogData {
   animal: string;
@@ -33,13 +33,23 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   emploiSubscription: Subscription;
   emplois: Emploi[];
-  emploisGrouped: Emploi[];
+  secteurs: Emploi[];
+  lieux: Emploi[];
+  emploisGroupedBySecteur: Emploi[];
   nbr_emploi = null;
+  
 
   isAuthenticated = false;
   authSubscription: Subscription;
   
-  constructor(private emploiService: EmploiService, private inscriptionService: InscriptionService, public dialog: MatDialog) {
+  constructor(
+    private emploiService: EmploiService, 
+    private inscriptionService: InscriptionService, 
+    public dialog: MatDialog,
+    private router:Router,
+    private route: ActivatedRoute
+  ) {
+
   }
   
   ngOnInit() {
@@ -48,8 +58,10 @@ export class HomeComponent implements OnInit, OnDestroy {
          this.emplois = emplois; 
          this.nbr_emploi = emplois.length;
          console.log(this.emplois);
-         this.emploisGrouped = Object.values(this.groupBy(this.emplois, 'secteur'));
-         console.log(this.emploisGrouped);
+         this.emploisGroupedBySecteur = Object.values(this.groupBy(this.emplois, 'secteur'));
+         this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
+         this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+         
         });
     this.emploiService.getEmplois();
 
@@ -91,6 +103,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     }, {});
   };
   selected = 'option2';
+
+  onClickChercher(form: NgForm) {
+    this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
+    this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
+    this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
+    this.router.navigate(['emploi'], {relativeTo: this.route});
+  }
+
 }
 
 
@@ -102,6 +122,7 @@ import { InscriptionService } from '../inscription/inscription.service';
 import { MatSnackBar } from '@angular/material';
 import { NotificationComponent } from '../notification/notification.component';
 
+
 @Component({
   selector: 'pop-up-inscription',
   templateUrl: 'pop-up-inscription.html',
@@ -112,7 +133,8 @@ export class PopUpInscription {
   authSubscription: Subscription;
   constructor(
     public dialogRef: MatDialogRef<PopUpInscription>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData, private inscriptionService: InscriptionService,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, 
+    private inscriptionService: InscriptionService,
     public snackBar: MatSnackBar
   ) {}
 
@@ -137,6 +159,7 @@ export class PopUpInscription {
       password: form.value.password
     });
   }
+
 
 }
 

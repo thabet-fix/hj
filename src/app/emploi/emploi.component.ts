@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { EmploiService } from './emploi.service';
+import { Emploi } from './emploi.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-emploi',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmploiComponent implements OnInit {
 
-  constructor() { }
+  constructor(private emploiService: EmploiService) { }
+
+  tmpMotCle: String;
+  tmpSecteur: String;
+  tmpPays: String;
+  emplois: Emploi[];
+  emploiSubscription: Subscription;
 
   ngOnInit() {
+    this.emploiSubscription = this.emploiService.emploisChanged
+      .subscribe(emplois => {
+         this.emplois = emplois; 
+         console.log(this.emplois);
+        });
+    this.tmpMotCle = this.emploiService.getTmpMotCle();
+    this.tmpSecteur = this.emploiService.getTmpSecteur();
+    this.tmpPays = this.emploiService.getTmpPays();
+    this.emploiService.getEmploisParCritere(this.tmpMotCle,this.tmpSecteur,this.tmpPays);
   }
 
 }
