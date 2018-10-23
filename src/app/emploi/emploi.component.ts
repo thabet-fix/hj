@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { EmploiService } from './emploi.service';
 import { Emploi } from './emploi.model';
 import { Subscription } from 'rxjs';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-emploi',
   templateUrl: './emploi.component.html',
-  styleUrls: ['./emploi.component.css']
+  styleUrls: ['./emploi.component.scss']
 })
 export class EmploiComponent implements OnInit {
 
@@ -18,16 +20,43 @@ export class EmploiComponent implements OnInit {
   emplois: Emploi[];
   emploiSubscription: Subscription;
 
+  secteurs: Emploi[];
+  lieux: Emploi[];
+
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
          this.emplois = emplois; 
-         console.log(this.emplois);
+         
         });
     this.tmpMotCle = this.emploiService.getTmpMotCle();
     this.tmpSecteur = this.emploiService.getTmpSecteur();
     this.tmpPays = this.emploiService.getTmpPays();
-    this.emploiService.getEmploisParCritere(this.tmpMotCle,this.tmpSecteur,this.tmpPays);
+    if(this.tmpMotCle==null && this.tmpSecteur==null && this.tmpPays==null){
+      this.emploiService.getEmplois();
+    } else {
+      this.emploiService.getEmploisParCritere(this.tmpMotCle,this.tmpSecteur,this.tmpPays);
+    }
+    this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
+    this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
   }
+
+  onClickChercher(form: NgForm) {
+    // this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
+    // this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
+    // this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
+    this.emploiService.getEmploisParCritere(
+      form.value.tmpMotCleInput?form.value.tmpMotCleInput:"",
+      form.value.tmpSecteurInput?form.value.tmpSecteurInput:"",
+      form.value.tmpPaysInput?form.value.tmpPaysInput:""
+    );
+  }
+
+  groupBy (xs, key) {
+    return xs.reduce(function(rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+      return rv;
+    }, {});
+  };
 
 }

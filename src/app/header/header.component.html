@@ -7,13 +7,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" [routerLink]="['/']">
         <img id="logo" class="img-responsive" src="assets/images/helloJOB-principal.png">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="nav navbar-nav navbar-right">
-
+        <li>
+          <a [routerLink]="['/emploi']" class="animation">No offres
+          </a>
+        </li>
         <li class="active" *ngIf="!isAuthenticated">
           <a [routerLink]="" class="animation" (click)="openDialog()">Inscription
             <span class="sr-only">(current)</span>

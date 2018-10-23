@@ -11,33 +11,29 @@
             </div>
           </div>
         </div>
-        <form #formEmploi="ngForm" (ngSubmit)="onClickChercher(formEmploi)">
+        <form #formEmploi="ngForm" class="recherche-home" (ngSubmit)="onClickChercher(formEmploi)">
           <div class="row form">
             <div class="col-md-5">
-              <div class="">
-                <mat-form-field class="validate white">
-                  <input matInput placeholder="Mots-clé ..." ngModel name="tmpMotCleInput">
-                </mat-form-field>
-              </div>
+              <mat-form-field class="validate white">
+                <input matInput placeholder="Mots-clé ..." ngModel name="tmpMotCleInput">
+              </mat-form-field>
             </div>            
             <div class="col-md-3">
               <mat-form-field>
-                <mat-select ngModel name="tmpSecteurInput">
-                  <mat-option>Secteur ..</mat-option>
+                <mat-select ngModel name="tmpSecteurInput" placeholder="Secteur ..">
                   <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs">{{ secteur[0].secteur }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col-md-2">
               <mat-form-field>
-                <mat-select ngModel name="tmpPaysInput">
-                  <mat-option>Pays ..</mat-option>
+                <mat-select ngModel name="tmpPaysInput" placeholder="Pays ..">
                   <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div class="col-md-2">
-              <button mat-button>
+              <button mat-button class="btn-recherche-home">
                   Chercher <i class="fa fa-search"></i>
               </button>
               <a routerLink="/emploi" class="recherche-avancee">Recherche avancée</a>

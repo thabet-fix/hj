@@ -1,33 +1,147 @@
 <div class="row">
-  <div class="container">
-    <div class="col-md-5 col-xs-12 col-md-offset-1 left-side">
-      <div class="bloc-job-recent">
-        <h2 class="titre-job-home">JOBS récement ajoutés</h2>
-        <div class="jobs" *ngIf="emplois; let emplois; else loading">
-        
-          <div class="item-job" *ngFor="let emploi of emplois">
-            <div class="container-img-offre">
-              <img class="img-offre" alt="nom de la société" src="assets/images/jobicon.png" />
-            </div>
-            <div class="jobdetail">
-              <h3 class="titre-offre">{{ emploi.titre}}</h3>
-              <span class="contrat-offre">{{ emploi.type_contrat}}</span>
-              <span class="type-offre">{{ emploi.type_temp}}</span>
-              <div class="clearfix"></div>
-              <p class="societe-offre">{{ emploi.lieu}} -
-                <span>{{ emploi.secteur}}</span>
-              </p>
-              <!--<p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>-->
-            </div>
-            <div class="clearfix"></div>
-            <a href="#" class="detail-offre">+ Détails</a>
-          </div>
+    <div class="container">
+        <div class="img-header">
+            <img src="assets/images/header-liste.jpg" class="img-responsive" alt="">
         </div>
-        <ng-template #loading>Chargement Jobs&hellip;</ng-template>
-      </div>
-      <!-- /.bloc-job-recent -->
-    
+        <!-- /.img-header -->
+        <h1 class="titre-page">Nous avons trouvé 3 offres d'emploi pour vous</h1>
+        <div class="row">
+            <div class="col-sm-4 filtre-recherche">
+                <form #formFiltreEmploi="ngForm" (ngSubmit)="onClickChercher(formFiltreEmploi)">
+                  <div class="titre-recherche">
+                      Recherche d'emploi
+                  </div>
+                  <!-- /.titre-recherche -->
+                  <mat-form-field class="validate white">
+                    <input matInput placeholder="Mots-clé ..." ngModel name="tmpMotCleInput">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select ngModel name="tmpSecteurInput" placeholder="Secteur ..">
+                      <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs">{{ secteur[0].secteur }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select ngModel name="tmpTypeEmploiInput" placeholder="Type d'emploi ..">
+                      <mat-option [value]="typeEmploi[0].typeEmploi" *ngFor="let typeEmploi of typeEmplois">{{ typeEmploi[0].typeEmploi }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select ngModel name="tmpPaysInput" placeholder="Emplacement ..">
+                        <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select ngModel name="tmpRenumerationInput" placeholder="Rémunération ..">
+                      <mat-option [value]="renumeration[0].renumeration" *ngFor="let renumeration of renumerations">{{ renumeration[0].renumeration }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-select ngModel name="tmpExperienceInput" placeholder="Niveau d'expérience ..">
+                      <mat-option [value]="experience[0].experience" *ngFor="let experience of experiences">{{ experience[0].experience }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <div class="input-group">
+                      <div class="row">
+                          <div class="col-xs-6">
+                              <!-- <button class="waves-effect waves-light btn large">Rechercher</button> -->
+                              <button type="submit" mat-button color="warn" mat-raised-button>
+                                  Rechercher <i class="fa fa-search"></i>
+                              </button>
+                          </div>
+                          <!-- /.col-xs-6 -->
+                          <div class="col-xs-6">
+                              <button class="waves-effect waves-light btn large"><i class="fa fa-refresh"></i> Réinitialiser</button>
+                          </div>
+                          <!-- /.col-xs-6 -->
+                      </div>
+                      <!-- /.row -->
+                  </div>
+                  <!-- /.input-group -->
+                </form>  
+                <div class="titre-recherche">
+                    Emplois par secteur
+                </div>
+                <!-- /.titre-recherche -->
+                <div class="bloc-secteur">
+                    <div class="un-secteur">
+                        <a href="">
+                            <label>Comptabilité</label>
+                            <span class="nbr-secteur">(12)</span>
+                            <span class="clearfix"></span>
+                        </a>                        
+                    </div>
+                    <!-- /.un-secteur -->
+                </div>
+                <!-- /.bloc-secteur -->
+                <div class="voir-tous">
+                    <a href="#">Voir tout</a>
+                </div>
+                <!-- /.voir-tous -->
+                <div class="inscription-mobile">
+                    <a href=""><img src="assets/images/inscription-mobile.jpg" class="img-responsive" alt=""></a>
+                </div>
+                <!-- /.inscription-mobile -->
+            </div>
+            <!-- /.col-sm-4 -->
+            <div class="col-sm-8">
+                <div class="filter-liste">
+                    <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">list</i></a>
+                    <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">view_module</i></a>
+                    <button class="waves-effect waves-light btn"><i class="fa fa-bell" aria-hidden="true"></i> M'envoyer des offres pareils</button>
+                </div>
+                <!-- /.filter-liste -->
+                <div class="job-liste" *ngIf="emplois; let emplois; else loading">
+                    <div class="une-offre" *ngFor="let emploi of emplois">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-8">
+                                <h2 class="titre-liste">
+                                    {{ emploi.titre }}
+                                </h2>
+                                <!-- /.titre-liste -->
+                                <div class="desc-liste">
+                                    {{ emploi.description }}
+                                </div>
+                                <!-- /.desc-liste -->
+                                <div class="type-liste">
+                                    {{ emploi.lieu }} - <span>{{ emploi.secteur }}</span>
+                                </div>
+                                <!-- /.type-liste -->
+                                <!--<div class="adresse-liste">
+                                    16 rue tarek ibn zied، menzeh 5 - 2091
+                                </div>-->
+                                <!-- /.adresse-liste -->
+                                <div class="partage-offre">
+                                    <a href="#"><i class="material-icons left">email</i> Envoyer à un ami</a>
+                                    <a href="#"><i class="material-icons left">favorite</i> Enregistrer</a>
+                                    <a href="#"><i class="material-icons left">share</i> Partager</a>
+                                </div>
+                                <!-- /.partage-offre -->
+                            </div>
+                            <!-- /.col-md-9 col-sm-8 -->
+                            <div class="col-md-3 col-sm-4">
+                                <button class="waves-effect waves-light btn large">Afficher plus</button>
+                            </div>
+                            <!-- /.col-md-3 col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.une-offre -->
+                    <ng-template #loading>Chargement des emplois&hellip;</ng-template>
+                    
+                </div>
+                <!-- /.job-liste -->
+                <ul class="pagination pagination-liste">
+                    <li class="disabled"><a href="#!"><i class="material-icons">arrow_back</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">arrow_forward</i></a></li>
+                </ul>
+                
+            </div>
+            <!-- /.col-sm-8 -->
+        </div>
+        <!-- /.row -->
     </div>
-  </div>
-  <!-- /.container -->
+    <!-- /.container -->
 </div>

@@ -1,4 +1,4 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+/*@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";*/
 
 @font-face{font-family:congenial-black;src:url(assets/fonts/congenial_black-webfont.woff2) format('woff2'),url(assets/fonts/congenial_black-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-bold;src:url(assets/fonts/congenial_bold-webfont.woff2) format('woff2'),url(assets/fonts/congenial_bold-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-extrali;src:url(assets/fonts/congenial_extra_light-webfont.woff2) format('woff2'),url(assets/fonts/congenial_extra_light-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-hairlin;src:url(assets/fonts/congenial_hairline-webfont.woff2) format('woff2'),url(assets/fonts/congenial_hairline-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-heavy;src:url(assets/fonts/congenial_heavy-webfont.woff2) format('woff2'),url(assets/fonts/congenial_heavy-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-light;src:url(assets/fonts/congenial_light-webfont.woff2) format('woff2'),url(assets/fonts/congenial_light-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-medium;src:url(assets/fonts/congenial_medium-webfont.woff2) format('woff2'),url(assets/fonts/congenial_medium-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-thin;src:url(assets/fonts/congenial_thin-webfont.woff2) format('woff2'),url(assets/fonts/congenial_thin-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial-ultrali;src:url(assets/fonts/congenial_ultra_light-webfont.woff2) format('woff2'),url(assets/fonts/congenial_ultra_light-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:congenial;src:url(assets/fonts/congenial-webfont.woff2) format('woff2'),url(assets/fonts/congenial-webfont.woff) format('woff');font-weight:400;font-style:normal}
 @font-face{font-family:ramsregular;src:url(assets/fonts/rams-webfont.woff2) format('woff2'),url(assets/fonts/rams-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramsblack;src:url(assets/fonts/ramsblack-webfont.woff2) format('woff2'),url(assets/fonts/ramsblack-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramsblack_italic;src:url(assets/fonts/ramsblack-italic-webfont.woff2) format('woff2'),url(assets/fonts/ramsblack-italic-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramsbold;src:url(assets/fonts/rams-bold-webfont.woff2) format('woff2'),url(assets/fonts/rams-bold-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramsbold_italic;src:url(assets/fonts/rams-bolditalic-webfont.woff2) format('woff2'),url(assets/fonts/rams-bolditalic-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramsitalic;src:url(assets/fonts/rams-italic-webfont.woff2) format('woff2'),url(assets/fonts/rams-italic-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramslight;src:url(assets/fonts/ramslt-webfont.woff2) format('woff2'),url(assets/fonts/ramslt-webfont.woff) format('woff');font-weight:400;font-style:normal}@font-face{font-family:ramslight_italic;src:url(assets/fonts/ramslt-italic-webfont.woff2) format('woff2'),url(assets/fonts/ramslt-italic-webfont.woff) format('woff');font-weight:400;font-style:normal}
@@ -106,14 +106,14 @@ nav.navbar-findcond ul.navbar-nav a:hover {
 #content .show .overlay .form {
     margin-top: 50px;
 }
-#content .show .overlay .form button, #content .show .overlay .form input, #content .show .overlay .form select {
+/*#content .show .overlay .form button, #content .show .overlay .form input, #content .show .overlay .form select {
     height: 50px;
     border: none;
     font-size: 18px;
     margin-top: 15px;
     margin-bottom: 15px;
     -webkit-box-shadow: 0 1px 1px 1px rgba(100, 100, 100, .5);
-}
+}*/
 #content .show .overlay .form input {
     margin-left: 0;
 }
@@ -136,7 +136,7 @@ nav.navbar-findcond ul.navbar-nav a:hover {
     border-radius: 50%;
     background: #ec0928;
     text-align: center;
-    border: 6px solid rgba(255, 255, 255);
+    border: 6px solid rgba(255, 255, 255, 1);
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -266,7 +266,7 @@ nav.navbar-findcond ul.navbar-nav a:hover {
 #content #newslettre .right-side .newslettre-box {
     width: 300px;
     height: 446px;
-    background-color: rgb(255, 255, 255, .75);
+    background-color: rgba(255, 255, 255, .75);
     padding: 60px 27px 0;
     font-family: ramslight;
     text-align: center;
@@ -1480,33 +1480,34 @@ a.red-link:hover, a.red-link:focus{
 .label-experience{
     margin-bottom: 10px;
 }
-.mat-select{
-    padding-left: 10px;
-    padding-right: 10px;
-    box-sizing: border-box;
-    width: 100%;
-    color: #b0b0b2;
-    height: 51px;
-    border: none;
-    font-size: 17px;
-    line-height: 51px;
-    margin-top: 9px;
-    margin-bottom: 15px;
-    -webkit-box-shadow: 0 1px 1px 1px rgba(100, 100, 100, .5);
-    background: #fff;
-    font-weight: normal;
+.recherche-home{
+    .mat-form-field{
+        width: 100%;
+    }
+    .mat-select-value{
+        color: #fff;
+    }
+    .mat-form-field-label{
+        color: #fff !important;
+    }
+    .mat-form-field-underline {
+        background-color: #fff !important;
+    }
+    .mat-select-arrow{
+        color: #fff;
+    }
+    .mat-form-field-autofill-control{
+        background: none !important;
+    }
+} 
+.filtre-recherche{
+    .mat-form-field{
+        width: 100%;
+    }
 }
-.mat-select-value-text{
-    color: #b0b0b2;
-}
-.mat-form-field {
-    width: 100%;
-}
-.mat-form-field-infix{
-    border-top: none;
-}
-.mat-form-field-appearance-legacy .mat-form-field-underline{
-    
+.btn-recherche-home{
+    margin-top: 9px !important;
+    margin-bottom: 13px !important;
 }
 /* The controlsy */
 .carousel-control {
