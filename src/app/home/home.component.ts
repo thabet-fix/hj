@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(PopUpInscription, {
-      width: '50%'
+      width: '51%'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -13,7 +13,7 @@
                   </div>
                   <!-- /.titre-recherche -->
                   <mat-form-field class="validate white">
-                    <input matInput placeholder="Mots-clé ..." ngModel name="tmpMotCleInput">
+                    <input matInput placeholder="Mots-clé ..." name="tmpMotCleInput" [(ngModel)]="reactifMotCle">
                   </mat-form-field>
                   <mat-form-field>
                     <mat-select ngModel name="tmpSecteurInput" placeholder="Secteur ..">
@@ -91,7 +91,7 @@
                 </div>
                 <!-- /.filter-liste -->
                 <div class="job-liste" *ngIf="emplois; let emplois; else loading">
-                    <div class="une-offre" *ngFor="let emploi of emplois">
+                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
                                 <h2 class="titre-liste">

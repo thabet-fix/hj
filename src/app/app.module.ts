@@ -36,6 +36,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
+import { FiltrePipe } from './emploi/filtre.pipe';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -65,7 +66,8 @@ export const firebaseConfig = {
     NotificationComponent,
     UtilisateurComponent,
     ConnexionComponent,
-    InscriptionComponent
+    InscriptionComponent,
+    FiltrePipe
   ],
   imports: [
     BrowserModule,
