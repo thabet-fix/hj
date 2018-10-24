@@ -27,7 +27,8 @@ export class EmploiComponent implements OnInit {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
          this.emplois = emplois; 
-         
+            this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
+            this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
         });
     this.tmpMotCle = this.emploiService.getTmpMotCle();
     this.tmpSecteur = this.emploiService.getTmpSecteur();
@@ -37,14 +38,10 @@ export class EmploiComponent implements OnInit {
     } else {
       this.emploiService.getEmploisParCritere(this.tmpMotCle,this.tmpSecteur,this.tmpPays);
     }
-    this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
-    this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+    
   }
 
   onClickChercher(form: NgForm) {
-    // this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
-    // this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
-    // this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
     this.emploiService.getEmploisParCritere(
       form.value.tmpMotCleInput?form.value.tmpMotCleInput:"",
       form.value.tmpSecteurInput?form.value.tmpSecteurInput:"",
