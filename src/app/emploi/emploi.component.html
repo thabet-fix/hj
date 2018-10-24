@@ -4,7 +4,15 @@
             <img src="assets/images/header-liste.jpg" class="img-responsive" alt="">
         </div>
         <!-- /.img-header -->
-        <h1 class="titre-page">Nous avons trouvé 3 offres d'emploi pour vous</h1>
+        <h1 class="titre-page">
+            <span>
+                Nous avons trouvé {{ (emplois | filtre:reactifMotCle:reactifSecteur)?.length }}
+                <span *ngIf="(emplois | filtre:reactifMotCle:reactifSecteur)?.length < 2, else plusieur;">offre</span> 
+                <ng-template #plusieur>offres</ng-template> 
+                d'emploi pour vous
+            </span>
+            
+        </h1>
         <div class="row">
             <div class="col-sm-4 filtre-recherche">
                 <form #formFiltreEmploi="ngForm" (ngSubmit)="onClickChercher(formFiltreEmploi)">

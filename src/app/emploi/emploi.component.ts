@@ -19,16 +19,17 @@ export class EmploiComponent implements OnInit {
   tmpPays: String;
   emplois: Emploi[];
   emploiSubscription: Subscription;
-
+  nbr_emploi = null;
   secteurs: Emploi[];
   lieux: Emploi[];
 
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
-         this.emplois = emplois; 
-            this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
-            this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+          this.emplois = emplois; 
+          this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
+          this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+          this.nbr_emploi = emplois.length;
         });
     this.tmpMotCle = this.emploiService.getTmpMotCle();
     this.tmpSecteur = this.emploiService.getTmpSecteur();
