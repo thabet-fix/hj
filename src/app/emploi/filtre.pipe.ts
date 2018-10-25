@@ -11,30 +11,23 @@ export class FiltrePipe implements PipeTransform {
     }
     else{
       return emplois.filter(item =>{
-        
-          if(reactifMotCle && item.titre.toLowerCase().indexOf(reactifMotCle.toLowerCase()) === -1)
+
+          if((item.titre===undefined && reactifMotCle)||(reactifMotCle && item.titre.toLowerCase().indexOf(reactifMotCle.toLowerCase()) === -1))
           {
-            //console.log("reactifPays false : "+item.lieu+" pour selection : "+reactifPays+" indexOf : ")
             return false;
           }
-          //console.log("reactifPays true : "+item.lieu+" pour selection : "+reactifPays+" indexOf : ")
-
-          else if(reactifSecteur && item.secteur.indexOf(reactifSecteur) === -1)
+          
+          else if((item.secteur===undefined && reactifSecteur)||(reactifSecteur && item.secteur.indexOf(reactifSecteur) === -1))
           {
-            //console.log("reactifPays false : "+item.lieu+" pour selection : "+reactifPays+" indexOf : ")
             return false;
           }
-          //console.log("reactifPays true : "+item.lieu+" pour selection : "+reactifPays+" indexOf : ")
 
-          else if((reactifPays && item.lieu.indexOf(reactifPays) === -1)|| item.lieu===undefined){
+          else if((item.lieu===undefined && reactifPays)||(reactifPays && item.lieu.indexOf(reactifPays) === -1))
+          {
             return false;
           }
           
           else return true;
-          
-          
-          
-        
         
     })
      

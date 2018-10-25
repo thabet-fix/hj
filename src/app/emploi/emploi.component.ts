@@ -53,6 +53,11 @@ export class EmploiComponent implements OnInit {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
+    /* .filter( function(val){
+      console.log(val)
+      return val !== undefined
+    }, {})
+    */
   };
 
 }
