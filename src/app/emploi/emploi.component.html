@@ -6,8 +6,8 @@
         <!-- /.img-header -->
         <h1 class="titre-page">
             <span>
-                Nous avons trouvé {{ (emplois | filtre:reactifMotCle:reactifSecteur)?.length }}
-                <span *ngIf="(emplois | filtre:reactifMotCle:reactifSecteur)?.length < 2, else plusieur;">offre</span> 
+                Nous avons trouvé {{ (emplois | filtre:reactifMotCle:reactifSecteur:reactifPays)?.length }}
+                <span *ngIf="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays)?.length < 2, else plusieur;">offre</span> 
                 <ng-template #plusieur>offres</ng-template> 
                 d'emploi pour vous
             </span>
@@ -35,7 +35,8 @@
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select ngModel name="tmpPaysInput" placeholder="Emplacement ..">
+                    <mat-select name="tmpPaysInput" placeholder="Emplacement .."  [(ngModel)]="reactifPays">
+                        <mat-option [value]="undefined" selected>-- Aucun --</mat-option>
                         <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -100,7 +101,7 @@
                 </div>
                 <!-- /.filter-liste -->
                 <div class="job-liste" *ngIf="emplois; let emplois; else loading">
-                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur">
+                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
                                 <h2 class="titre-liste">
