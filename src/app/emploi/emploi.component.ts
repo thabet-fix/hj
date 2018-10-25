@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmploiService } from './emploi.service';
 import { Emploi } from './emploi.model';
 import { Subscription } from 'rxjs';
@@ -24,6 +24,12 @@ export class EmploiComponent implements OnInit {
   typeEmplois: Emploi[];
   renumerations: Emploi[];
   experiences: Emploi[];
+  
+  reactifMotCle  = this.emploiService.getTmpMotCle();
+  reactifSecteur = this.emploiService.getTmpSecteur();
+  reactifPays    = this.emploiService.getTmpPays();
+  
+  @ViewChild(NgForm) formFiltreEmploi: NgForm;
 
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
@@ -45,14 +51,9 @@ export class EmploiComponent implements OnInit {
             return data.experience !== undefined
           }), 'experience'));
         });
-    this.tmpMotCle = this.emploiService.getTmpMotCle();
-    this.tmpSecteur = this.emploiService.getTmpSecteur();
-    this.tmpPays = this.emploiService.getTmpPays();
-    if(this.tmpMotCle==null && this.tmpSecteur==null && this.tmpPays==null){
-      this.emploiService.getEmplois();
-    } else {
-      this.emploiService.getEmploisParCritere(this.tmpMotCle,this.tmpSecteur,this.tmpPays);
-    }
+    
+
+    this.emploiService.getEmplois();
     
   }
   

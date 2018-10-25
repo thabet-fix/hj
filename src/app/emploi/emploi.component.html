@@ -24,9 +24,10 @@
                     <input matInput placeholder="Mots-clé ..." name="tmpMotCleInput" [(ngModel)]="reactifMotCle">
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select name="tmpSecteurInput" placeholder="Secteur .." [(ngModel)]="reactifSecteur">
+                    <mat-select name="tmpSecteurInput" placeholder="Secteur .." [(ngModel)]="reactifSecteur" >
                       <mat-option [value]="undefined" selected>-- Tous les secteurs --</mat-option>
-                      <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs">{{ secteur[0].secteur }}</mat-option>
+                      <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs"
+                      >{{ secteur[0].secteur }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>

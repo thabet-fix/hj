@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FiltrePipe implements PipeTransform {
 
   transform(emplois: any, reactifMotCle: any, reactifSecteur: any, reactifPays: any, reactifContrat: any, reactifRenumeration: any, reactifExperience): any {
-    if( reactifSecteur===undefined && reactifMotCle===undefined && reactifPays===undefined && reactifContrat===undefined && reactifExperience===undefined){
+    if( reactifSecteur===undefined && reactifMotCle===undefined && reactifPays===undefined && reactifContrat===undefined && reactifRenumeration===undefined && reactifExperience===undefined){
       return emplois;
     }
     else{
