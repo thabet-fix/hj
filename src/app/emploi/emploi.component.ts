@@ -21,13 +21,29 @@ export class EmploiComponent implements OnInit {
   emploiSubscription: Subscription;
   secteurs: Emploi[];
   lieux: Emploi[];
+  typeEmplois: Emploi[];
+  renumerations: Emploi[];
+  experiences: Emploi[];
 
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
           this.emplois = emplois; 
-          this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
-          this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+          this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.secteur !== undefined
+          }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy
+          this.lieux = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.lieu !== undefined
+          }), 'lieu'));
+          this.typeEmplois = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.type_contrat !== undefined
+          }), 'type_contrat'));
+          this.renumerations = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.renumeration !== undefined
+          }), 'renumeration'));
+          this.experiences = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.experience !== undefined
+          }), 'experience'));
         });
     this.tmpMotCle = this.emploiService.getTmpMotCle();
     this.tmpSecteur = this.emploiService.getTmpSecteur();
@@ -39,25 +55,21 @@ export class EmploiComponent implements OnInit {
     }
     
   }
-
+  
+  /*
   onClickChercher(form: NgForm) {
     this.emploiService.getEmploisParCritere(
       form.value.tmpMotCleInput?form.value.tmpMotCleInput:"",
       form.value.tmpSecteurInput?form.value.tmpSecteurInput:"",
       form.value.tmpPaysInput?form.value.tmpPaysInput:""
     );
-  }
+  }*/
 
   groupBy (xs, key) {
     return xs.reduce(function(rv, x) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
-    /* .filter( function(val){
-      console.log(val)
-      return val !== undefined
-    }, {})
-    */
   };
 
 }

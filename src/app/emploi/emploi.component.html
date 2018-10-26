@@ -6,8 +6,8 @@
         <!-- /.img-header -->
         <h1 class="titre-page">
             <span>
-                Nous avons trouvé {{ (emplois | filtre:reactifMotCle:reactifSecteur:reactifPays)?.length }}
-                <span *ngIf="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays)?.length < 2, else plusieur;">offre</span> 
+                Nous avons trouvé {{ (emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience)?.length }}
+                <span *ngIf="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience)?.length < 2, else plusieur;">offre</span> 
                 <ng-template #plusieur>offres</ng-template> 
                 d'emploi pour vous
             </span>
@@ -25,28 +25,31 @@
                   </mat-form-field>
                   <mat-form-field>
                     <mat-select name="tmpSecteurInput" placeholder="Secteur .." [(ngModel)]="reactifSecteur">
-                      <mat-option [value]="undefined" selected>-- Aucun --</mat-option>
+                      <mat-option [value]="undefined" selected>-- Tous les secteurs --</mat-option>
                       <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs">{{ secteur[0].secteur }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select ngModel name="tmpTypeEmploiInput" placeholder="Type d'emploi ..">
-                      <mat-option [value]="typeEmploi[0].typeEmploi" *ngFor="let typeEmploi of typeEmplois">{{ typeEmploi[0].typeEmploi }}</mat-option>
+                    <mat-select name="tmpTypeEmploiInput" placeholder="Contrat de type .." [(ngModel)]="reactifContrat">
+                      <mat-option [value]="undefined" selected>-- Tous les types --</mat-option>
+                      <mat-option [value]="typeEmploi[0].type_contrat" *ngFor="let typeEmploi of typeEmplois">{{ typeEmploi[0].type_contrat }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select name="tmpPaysInput" placeholder="Emplacement .."  [(ngModel)]="reactifPays">
-                        <mat-option [value]="undefined" selected>-- Aucun --</mat-option>
+                    <mat-select name="tmpPaysInput" placeholder="Emplacement .." [(ngModel)]="reactifPays">
+                        <mat-option [value]="undefined" selected>-- Tous les pays --</mat-option>
                         <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select ngModel name="tmpRenumerationInput" placeholder="Rémunération ..">
+                    <mat-select name="tmpRenumerationInput" placeholder="Rémunération .." [(ngModel)]="reactifRenumeration">
+                      <mat-option [value]="undefined" selected>-- Toutes les rénumérations --</mat-option>
                       <mat-option [value]="renumeration[0].renumeration" *ngFor="let renumeration of renumerations">{{ renumeration[0].renumeration }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select ngModel name="tmpExperienceInput" placeholder="Niveau d'expérience ..">
+                    <mat-select name="tmpExperienceInput" placeholder="Niveau d'expérience .." [(ngModel)]="reactifExperience">
+                      <mat-option [value]="undefined" selected>-- Tous les expériences --</mat-option>
                       <mat-option [value]="experience[0].experience" *ngFor="let experience of experiences">{{ experience[0].experience }}</mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -101,7 +104,7 @@
                 </div>
                 <!-- /.filter-liste -->
                 <div class="job-liste" *ngIf="emplois; let emplois; else loading">
-                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays">
+                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience">
                         <div class="row">
                             <div class="col-md-9 col-sm-8">
                                 <h2 class="titre-liste">
