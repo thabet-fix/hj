@@ -36,7 +36,13 @@ export class EmploiComponent implements OnInit {
       .subscribe(emplois => {
           this.emplois = emplois; 
           this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
-            return data.secteur !== undefined
+            if (data.secteur !== undefined) {
+              /*if (this.emplois.indexOf(data.secteur)){
+                return false
+              }*/
+              /*else*/ return true
+            }
+            else return false
           }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy
           this.lieux = Object.values(this.groupBy(this.emplois.filter(data => {
             return data.lieu !== undefined

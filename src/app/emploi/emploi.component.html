@@ -78,7 +78,7 @@
                 <!-- /.titre-recherche -->
                 <div class="bloc-secteur">
                     <div class="un-secteur" *ngFor="let secteur of secteurs">
-                        <a href="">
+                        <a [routerLink]="" [className]="reactifSecteur === secteur[0].secteur ? 'strong' : ''" (click)="reactifSecteur = secteur[0].secteur">
                             <label>{{ secteur[0].secteur }}</label>
                             <span class="nbr-secteur">({{ secteur.length }})</span>
                             <span class="clearfix"></span>
@@ -88,7 +88,7 @@
                 </div>
                 <!-- /.bloc-secteur -->
                 <div class="voir-tous">
-                    <a href="#">Voir tout</a>
+                    <a [routerLink]="" (click)="reactifSecteur = undefined">Voir tout</a>
                 </div>
                 <!-- /.voir-tous -->
                 <div class="inscription-mobile">
