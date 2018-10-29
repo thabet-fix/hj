@@ -77,10 +77,10 @@
                 </div>
                 <!-- /.titre-recherche -->
                 <div class="bloc-secteur">
-                    <div class="un-secteur">
+                    <div class="un-secteur" *ngFor="let secteur of secteurs">
                         <a href="">
-                            <label>Développement Web</label>
-                            <span class="nbr-secteur">(3)</span>
+                            <label>{{ secteur[0].secteur }}</label>
+                            <span class="nbr-secteur">({{ secteur.length }})</span>
                             <span class="clearfix"></span>
                         </a>                        
                     </div>
