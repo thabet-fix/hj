@@ -20,6 +20,7 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, Er
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -77,6 +78,7 @@ export const firebaseConfig = {
     MatSelectModule,
     MatDialogModule,
     MatInputModule,
+    MatPaginatorModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,

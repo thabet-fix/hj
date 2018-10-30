@@ -57,14 +57,13 @@
                   <div class="input-group">
                       <div class="row">
                           <div class="col-xs-6">
-                              <!-- <button class="waves-effect waves-light btn large">Rechercher</button> -->
-                              <button type="submit" mat-button color="warn" mat-raised-button>
-                                  Rechercher <i class="fa fa-search"></i>
-                              </button>
+                              
                           </div>
                           <!-- /.col-xs-6 -->
                           <div class="col-xs-6">
-                              <button class="waves-effect waves-light btn large"><i class="fa fa-refresh"></i> Réinitialiser</button>
+                            <button type="submit" mat-button color="warn" mat-raised-button (click)="onClickReset()">
+                                Réinitialiser <i class="fa fa-search"></i>
+                            </button>
                           </div>
                           <!-- /.col-xs-6 -->
                       </div>
@@ -104,6 +103,10 @@
                     <button class="waves-effect waves-light btn"><i class="fa fa-bell" aria-hidden="true"></i> M'envoyer des offres pareils</button>
                 </div>
                 <!-- /.filter-liste -->
+                <mat-paginator [length]="100"
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 25, 100]">
+                </mat-paginator>
                 <div class="job-liste" *ngIf="emplois; let emplois; else loading">
                     <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience">
                         <div class="row">

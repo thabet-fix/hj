@@ -40,7 +40,7 @@ export class EmploiComponent implements OnInit {
               /*if (this.emplois.indexOf(data.secteur)){
                 return false
               }*/
-              /*else*/ return true
+              /*else*/ return true 
             }
             else return false
           }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy
@@ -71,6 +71,10 @@ export class EmploiComponent implements OnInit {
       form.value.tmpPaysInput?form.value.tmpPaysInput:""
     );
   }*/
+
+  onClickReset() {
+    this.formFiltreEmploi.reset();
+  }
 
   groupBy (xs, key) {
     return xs.reduce(function(rv, x) {
