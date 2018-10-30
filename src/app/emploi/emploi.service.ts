@@ -18,6 +18,9 @@ export class EmploiService{
     tmpMotCle: String;
     tmpSecteur: String;
     tmpPays: String;
+    tmpContrat: String;
+    tmpRenumeration: String;
+    tmpExperience: String;
 
     constructor(private afs: AngularFirestore) {
     }
@@ -86,6 +89,15 @@ export class EmploiService{
     getTmpPays(){
         return this.tmpPays;
     }
+    getTmpContrat(){
+        return this.tmpContrat;
+    }
+    getTmpRenumeration(){
+        return this.tmpRenumeration;
+    }
+    getTmpExperience(){
+        return this.tmpExperience;
+    }
 
     setTmpMotCle(tmpMotCle: String){
         this.tmpMotCle = tmpMotCle;
@@ -95,6 +107,15 @@ export class EmploiService{
     }
     setTmpPays(tmpPays: String){
         this.tmpPays = tmpPays;
+    }
+    setTmpContrat(tmpContrat: String){
+        this.tmpContrat = tmpContrat;
+    }
+    setTmpRenumeration(tmpRenumeration: String){
+        this.tmpRenumeration = tmpRenumeration;
+    }
+    setTmpExperience(tmpExperience: String){
+        this.tmpExperience = tmpExperience;
     }
 
     

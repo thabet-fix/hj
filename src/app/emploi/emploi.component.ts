@@ -28,6 +28,9 @@ export class EmploiComponent implements OnInit {
   reactifMotCle  = this.emploiService.getTmpMotCle();
   reactifSecteur = this.emploiService.getTmpSecteur();
   reactifPays    = this.emploiService.getTmpPays();
+  reactifContrat  = this.emploiService.getTmpContrat();
+  reactifRenumeration = this.emploiService.getTmpRenumeration();
+  reactifExperience    = this.emploiService.getTmpExperience();
   
   @ViewChild(NgForm) formFiltreEmploi: NgForm;
 
@@ -36,13 +39,7 @@ export class EmploiComponent implements OnInit {
       .subscribe(emplois => {
           this.emplois = emplois; 
           this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
-            if (data.secteur !== undefined) {
-              /*if (this.emplois.indexOf(data.secteur)){
-                return false
-              }*/
-              /*else*/ return true 
-            }
-            else return false
+            return data.secteur !== undefined 
           }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy
           this.lieux = Object.values(this.groupBy(this.emplois.filter(data => {
             return data.lieu !== undefined

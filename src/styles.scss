@@ -1545,3 +1545,10 @@ background: #428bca;
 .strong, a.strong label{
     font-weight: bold;
 }
+.well {
+    background: none;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 0;
+}

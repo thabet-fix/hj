@@ -35,6 +35,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   emplois: Emploi[];
   secteurs: Emploi[];
   lieux: Emploi[];
+  typeEmplois: Emploi[];
+  renumerations: Emploi[];
+  experiences: Emploi[];
   emploisGroupedBySecteur: Emploi[];
   nbr_emploi = null;
   
@@ -59,8 +62,21 @@ export class HomeComponent implements OnInit, OnDestroy {
          this.nbr_emploi = emplois.length;
          console.log(this.emplois);
          this.emploisGroupedBySecteur = Object.values(this.groupBy(this.emplois, 'secteur'));
-         this.secteurs = Object.values(this.groupBy(this.emplois, 'secteur'));
-         this.lieux = Object.values(this.groupBy(this.emplois, 'lieu'));
+         this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.secteur !== undefined 
+          }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy
+          this.lieux = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.lieu !== undefined
+          }), 'lieu'));
+          this.typeEmplois = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.type_contrat !== undefined
+          }), 'type_contrat'));
+          this.renumerations = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.renumeration !== undefined
+          }), 'renumeration'));
+          this.experiences = Object.values(this.groupBy(this.emplois.filter(data => {
+            return data.experience !== undefined
+          }), 'experience'));
          
         });
     this.emploiService.getEmplois();
@@ -108,6 +124,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
     this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
     this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
+    this.emploiService.setTmpContrat(form.value.tmpContratInput?form.value.tmpContratInput:"");
+    this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:"");
+    this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:"");
     this.router.navigate(['emploi'], {relativeTo: this.route});
   }
 
