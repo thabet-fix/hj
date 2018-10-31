@@ -37,7 +37,9 @@ export class EmploiService{
             );
     }
 
-    getEmploisParSecteur(){
+    
+
+    /*getEmploisParSecteur(){
         return this.afs.collection<any>('emplois', ref => ref.where('secteur', '==', 'Développement Mobile'))
         .snapshotChanges()
             .map(actions => {
@@ -75,7 +77,7 @@ export class EmploiService{
             );
 
             
-    }
+    }*/
 
     getTmpMotCle(){
         return this.tmpMotCle;

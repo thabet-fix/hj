@@ -97,63 +97,75 @@
             </div>
             <!-- /.col-sm-4 -->
             <div class="col-sm-8">
-                <div class="filter-liste">
-                    <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">list</i></a>
-                    <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">view_module</i></a>
-                    <button class="waves-effect waves-light btn"><i class="fa fa-bell" aria-hidden="true"></i> M'envoyer des offres pareils</button>
-                </div>
-                <!-- /.filter-liste -->
-                <mat-paginator [length]="100"
-                               [pageSize]="10"
-                               [pageSizeOptions]="[5, 10, 25, 100]">
+            
+                
+                
+                
+                
+
+                <mat-paginator [length]="length"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="pageEvent = getPaginationData($event)">
                 </mat-paginator>
-                <div class="job-liste" *ngIf="emplois; let emplois; else loading">
-                    <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience">
-                        <div class="row">
-                            <div class="col-md-9 col-sm-8">
-                                <h2 class="titre-liste">
-                                    {{ emploi.titre }}
-                                </h2>
-                                <!-- /.titre-liste -->
-                                <div class="desc-liste">
-                                    {{ emploi.description }}
-                                </div>
-                                <!-- /.desc-liste -->
-                                <div class="type-liste">
-                                    {{ emploi.lieu }} - <span>{{ emploi.secteur }}</span>
-                                </div>
-                                <!-- /.type-liste -->
-                                <!--<div class="adresse-liste">
-                                    16 rue tarek ibn zied، menzeh 5 - 2091
-                                </div>-->
-                                <!-- /.adresse-liste -->
-                                <div class="partage-offre">
-                                    <a href="#"><i class="material-icons left">email</i> Envoyer à un ami</a>
-                                    <a href="#"><i class="material-icons left">favorite</i> Enregistrer</a>
-                                    <a href="#"><i class="material-icons left">share</i> Partager</a>
-                                </div>
-                                <!-- /.partage-offre -->
-                            </div>
-                            <!-- /.col-md-9 col-sm-8 -->
-                            <div class="col-md-3 col-sm-4">
-                                <button class="waves-effect waves-light btn large">Afficher plus</button>
-                            </div>
-                            <!-- /.col-md-3 col-sm-4 -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.une-offre -->
-                    <ng-template #loading>Chargement des emplois&hellip;</ng-template>
-                    
+
+                <div *ngIf="pageEvent">
+                <h5>Page Change Event Properties</h5>
+                <div>List length: {{pageEvent.length}}</div>
+                <div>Page size: {{pageEvent.pageSize}}</div>
+                <div>Page index: {{pageEvent.pageIndex}}</div>
                 </div>
-                <!-- /.job-liste -->
-                <ul class="pagination pagination-liste">
-                    <li class="disabled"><a href="#!"><i class="material-icons">arrow_back</i></a></li>
-                    <li class="active"><a href="#!">1</a></li>
-                    <li class="waves-effect"><a href="#!">2</a></li>
-                    <li class="waves-effect"><a href="#!">3</a></li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">arrow_forward</i></a></li>
-                </ul>
+                <div class="container-result" *ngIf="pageEvent">
+                    <div class="filter-liste">
+                        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">list</i></a>
+                        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">view_module</i></a>
+                        <button class="waves-effect waves-light btn"><i class="fa fa-bell" aria-hidden="true"></i> M'envoyer des offres pareils</button>
+                    </div>
+                    <!-- /.filter-liste -->
+                    
+                    <div class="job-liste" *ngIf="emplois; let emplois; else loading">
+                        <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience | slice:0:pageSize">
+                            <div class="row">
+                                <div class="col-md-9 col-sm-8">
+                                    <h2 class="titre-liste">
+                                        {{ emploi.titre }}
+                                    </h2>
+                                    <!-- /.titre-liste -->
+                                    <div class="desc-liste">
+                                        {{ emploi.description }}
+                                    </div>
+                                    <!-- /.desc-liste -->
+                                    <div class="type-liste">
+                                        {{ emploi.lieu }} - <span>{{ emploi.secteur }}</span>
+                                    </div>
+                                    <!-- /.type-liste -->
+                                    <!--<div class="adresse-liste">
+                                        16 rue tarek ibn zied، menzeh 5 - 2091
+                                    </div>-->
+                                    <!-- /.adresse-liste -->
+                                    <div class="partage-offre">
+                                        <a href="#"><i class="material-icons left">email</i> Envoyer à un ami</a>
+                                        <a href="#"><i class="material-icons left">favorite</i> Enregistrer</a>
+                                        <a href="#"><i class="material-icons left">share</i> Partager</a>
+                                    </div>
+                                    <!-- /.partage-offre -->
+                                </div>
+                                <!-- /.col-md-9 col-sm-8 -->
+                                <div class="col-md-3 col-sm-4">
+                                    <button class="waves-effect waves-light btn large">Afficher plus</button>
+                                </div>
+                                <!-- /.col-md-3 col-sm-4 -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.une-offre -->
+                        <ng-template #loading>Chargement des emplois&hellip;</ng-template>
+                        
+                    </div>
+                    <!-- /.job-liste -->
+                </div>
+                <!-- /.container-result -->
+                
                 
             </div>
             <!-- /.col-sm-8 -->

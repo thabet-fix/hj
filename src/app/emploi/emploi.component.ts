@@ -3,7 +3,7 @@ import { EmploiService } from './emploi.service';
 import { Emploi } from './emploi.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-emploi',
@@ -28,7 +28,26 @@ export class EmploiComponent implements OnInit {
   reactifMotCle  = this.emploiService.getTmpMotCle();
   reactifSecteur = this.emploiService.getTmpSecteur();
   reactifPays    = this.emploiService.getTmpPays();
-  
+
+  length = 100;
+  pageSize = 3;
+  pageSizeOptions: number[] = [3, 10, 25, 100];
+
+  // MatPaginator Output
+  pageEvent: PageEvent;
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+    this.pageSize = this.pageEvent.pageSize;
+    console.log(this.pageSize)
+  }
+ 
+  public getPaginationData(event?:PageEvent){
+    
+          this.pageSize = event.pageSize;
+          //this.length = event.length;
+          return event;
+        
+  }
   @ViewChild(NgForm) formFiltreEmploi: NgForm;
 
   ngOnInit() {
@@ -57,9 +76,10 @@ export class EmploiComponent implements OnInit {
             return data.experience !== undefined
           }), 'experience'));
         });
-    
+    //console.log(this.pageEvent.length)
 
     this.emploiService.getEmplois();
+    //this.emploiService.getEmploisParPortion();
     
   }
   

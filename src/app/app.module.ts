@@ -16,7 +16,7 @@ import { EmploiComponent } from './emploi/emploi.component';
 import { NotificationComponent } from './notification/notification.component'; 
 
 /************** Import de Material ***************/
-import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
+import { PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
