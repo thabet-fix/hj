@@ -124,7 +124,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
     this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
     this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
-    this.emploiService.setTmpContrat(form.value.tmpContratInput?form.value.tmpContratInput:"");
+    this.emploiService.setTmpContrat(form.value.tmpTypeEmploiInput?form.value.tmpTypeEmploiInput:"");
     this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:"");
     this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:"");
     this.router.navigate(['emploi'], {relativeTo: this.route});

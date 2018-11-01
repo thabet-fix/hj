@@ -97,25 +97,13 @@
             </div>
             <!-- /.col-sm-4 -->
             <div class="col-sm-8">
-            
-                
-                
-                
-                
-
-                <mat-paginator [length]="length"
+                <mat-paginator [length]="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience)?.length"
                             [pageSize]="pageSize"
                             [pageSizeOptions]="pageSizeOptions"
                             (page)="pageEvent = getPaginationData($event)">
                 </mat-paginator>
 
-                <div *ngIf="pageEvent">
-                <h5>Page Change Event Properties</h5>
-                <div>List length: {{pageEvent.length}}</div>
-                <div>Page size: {{pageEvent.pageSize}}</div>
-                <div>Page index: {{pageEvent.pageIndex}}</div>
-                </div>
-                <div class="container-result" *ngIf="pageEvent">
+                <div class="container-result">
                     <div class="filter-liste">
                         <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">list</i></a>
                         <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">view_module</i></a>
@@ -124,7 +112,7 @@
                     <!-- /.filter-liste -->
                     
                     <div class="job-liste" *ngIf="emplois; let emplois; else loading">
-                        <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience | slice:0:pageSize">
+                        <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience | slice:pageIndex*pageSize:pageIndex*pageSize+pageSize">
                             <div class="row">
                                 <div class="col-md-9 col-sm-8">
                                     <h2 class="titre-liste">

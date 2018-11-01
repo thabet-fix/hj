@@ -28,11 +28,14 @@ export class EmploiComponent implements OnInit {
   reactifMotCle  = this.emploiService.getTmpMotCle();
   reactifSecteur = this.emploiService.getTmpSecteur();
   reactifPays    = this.emploiService.getTmpPays();
-
+  reactifContrat  = this.emploiService.getTmpContrat();
+  reactifRenumeration = this.emploiService.getTmpRenumeration();
+  reactifExperience    = this.emploiService.getTmpExperience();
 
   length = 100;
-  pageSize = 3;
-  pageSizeOptions: number[] = [3, 10, 25, 100];
+  pageIndex = 0;
+  pageSize = 5;
+  pageSizeOptions: number[] = [5, 10, 25, 100];
 
   // MatPaginator Output
   pageEvent: PageEvent;
@@ -46,12 +49,11 @@ export class EmploiComponent implements OnInit {
     
           this.pageSize = event.pageSize;
           //this.length = event.length;
+          this.pageIndex = event.pageIndex;
           return event;
         
   }
-  reactifContrat  = this.emploiService.getTmpContrat();
-  reactifRenumeration = this.emploiService.getTmpRenumeration();
-  reactifExperience    = this.emploiService.getTmpExperience();
+  
   
 
   @ViewChild(NgForm) formFiltreEmploi: NgForm;
