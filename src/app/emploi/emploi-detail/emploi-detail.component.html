@@ -1,0 +1,199 @@
+<div class="container">
+    <div class="img-header">
+        <img src="assets/images/header-compte.jpg" class="img-responsive" alt="">
+    </div>
+    <!-- /.img-header -->
+
+    <div class="fils-ariane">
+        <a href="">Accueil</a> > <a href="">Emploi</a> > <a href="">{{ (item | async)?.lieu }}</a> > <a href="">{{ (item | async)?.secteur }}</a> > {{ (item | async)?.titre }}
+    </div>
+    <!-- /.fils-ariane -->
+
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="titre-interne" *ngIf="(item | async)?.titre!==undefined">
+                {{ (item | async)?.titre }}
+            </h1>
+            <!-- /.titre-interne -->
+
+            <h2 class="sous-titre-interne" *ngIf="(item | async)?.description_generale!==undefined">
+                À propos de cette offre :
+            </h2>
+            <!-- /.sous-titre-interne -->
+
+            <div class="desc-interne" *ngIf="(item | async)?.description_generale!==undefined">
+                {{ (item | async)?.description_generale }}
+            </div>
+            <!-- /.desc-interne -->
+            
+            <h2 class="sous-titre-interne" *ngIf="(item | async)?.description!==undefined">
+                Descriptif du poste :
+            </h2>
+            <!-- /.sous-titre-interne -->
+
+            <div class="desc-interne" *ngIf="(item | async)?.description!==undefined">
+                {{ (item | async)?.description }}
+            </div>
+            <!-- /.desc-interne -->
+            
+            <h2 class="sous-titre-interne" *ngIf="(item | async)?.description_profile!==undefined">
+                Profil recherché :
+            </h2>
+            <!-- /.sous-titre-interne -->
+
+            <div class="desc-interne" *ngIf="(item | async)?.description_profile!==undefined">
+                {{ (item | async)?.description_profile }}
+            </div>
+            <!-- /.desc-interne -->
+
+            <div class="offre-similaire">
+                <div class="titre-recherche">
+                    Ces offres peuvent également vous intéresser
+                </div>
+                <!-- /.titre-recherche -->
+                <div class="item-job">
+                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
+                    <div class="jobdetail">
+                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
+                        <span class="contrat-offre">CDI</span>
+                        <span class="type-offre">plein temps</span>
+                        <div class="clearfix"></div>
+                        <p class="societe-offre">NOM SOCIETE</p>
+                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a href="#" class="detail-offre">+ Détails</a>
+                </div>
+                <!-- /.item-job -->
+
+                <div class="item-job">
+                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
+                    <div class="jobdetail">
+                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
+                        <span class="contrat-offre">CDI</span>
+                        <span class="type-offre">plein temps</span>
+                        <div class="clearfix"></div>
+                        <p class="societe-offre">NOM SOCIETE</p>
+                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a href="#" class="detail-offre">+ Détails</a>
+                </div>
+                <!-- /.item-job -->
+
+                <div class="item-job">
+                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
+                    <div class="jobdetail">
+                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
+                        <span class="contrat-offre">CDI</span>
+                        <span class="type-offre">plein temps</span>
+                        <div class="clearfix"></div>
+                        <p class="societe-offre">NOM SOCIETE</p>
+                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a href="#" class="detail-offre">+ Détails</a>
+                </div>
+                <!-- /.item-job -->
+
+                <div class="item-job">
+                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
+                    <div class="jobdetail">
+                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
+                        <span class="contrat-offre">CDI</span>
+                        <span class="type-offre">plein temps</span>
+                        <div class="clearfix"></div>
+                        <p class="societe-offre">NOM SOCIETE</p>
+                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
+                    </div>
+                    <div class="clearfix"></div>
+                    <a href="#" class="detail-offre">+ Détails</a>
+                </div>
+                <!-- /.item-job -->
+            </div>
+            <!-- /.offre-similaire -->
+
+        </div>
+        <!-- /.col-sm-8 -->
+
+        <div class="col-sm-4">
+            
+            <div class="job-infos-cles">
+                <div class="titre-infos">
+                    INFOS CL&Eacute;S
+                </div>
+                <!-- /.titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.lieu!==undefined">
+                    <span>Lieu de poste</span>
+                    {{ (item | async)?.lieu }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.type_contrat!==undefined">
+                    <span>Type de contrat</span>
+                    {{ (item | async)?.type_contrat }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.renumeration!==undefined">
+                    <span>Salaire</span>
+                    {{ (item | async)?.renumeration }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.secteur!==undefined">
+                    <span>Secteur d'activité</span>
+                    {{ (item | async)?.secteur }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.niveau_etude!==undefined">
+                    <span>Niveau d'études</span>
+                    {{ (item | async)?.niveau_etude }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="sous-titre-infos" *ngIf="(item | async)?.experience!==undefined">
+                    <span>Niveau de poste</span>
+                    {{ (item | async)?.experience }}
+                </div>
+                <!-- /.sous-titre-infos -->
+                <div class="btn-infos">
+                    <button class="waves-effect waves-light btn">Postuler</button>
+                </div>
+                <!-- /.btn-infos -->
+                
+            </div>
+            <!-- /.job-infos-cles -->
+            <div class="partage-annonce">
+                Partagez cette offre
+                <div class="footer-follow">
+                    <a href="#"><i class="fa fa-envelope"></i></a>
+                    <a href="#"><i class="fa fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+            </div>
+            <!-- /.partage-annonce -->
+            <div class="inscription-mobile">
+                <a href=""><img src="img/newsletter-mobile.jpg" class="img-responsive" alt=""></a>
+            </div>
+            <!-- /.inscription-mobile -->
+            <div class="inscription-mobile">
+                <a href=""><img src="img/inscription-mobile.jpg" class="img-responsive" alt=""></a>
+            </div>
+            <!-- /.inscription-mobile -->
+            
+        </div>
+        <!-- /.col-sm-4 -->
+
+    </div>
+    <!-- /.row -->
+    
+    
+</div>
+<!-- /.container -->
+
+<div class="barre-annonce">
+        <button class="waves-effect waves-light btn btn-gris">Retour à la recherche</button>
+        <button class="waves-effect waves-light btn btn-gris">Offres Similaires</button>
+        <button class="waves-effect waves-light btn">Postuler à cette offre</button>
+        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">favorite</i></a> <span>Sauvegarder</span>
+        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">local_printshop</i></a> <span>Imprimer</span>
+</div>
+<!-- /.barre-annonce -->

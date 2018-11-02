@@ -3,16 +3,21 @@ import { EmploiService } from './emploi.service';
 import { Emploi } from './emploi.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatPaginatorIntl } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-emploi',
   templateUrl: './emploi.component.html',
   styleUrls: ['./emploi.component.scss']
 })
-export class EmploiComponent implements OnInit {
+export class EmploiComponent extends MatPaginatorIntl implements OnInit {
 
-  constructor(private emploiService: EmploiService) { }
+  constructor(private emploiService: EmploiService, private router:Router, private route: ActivatedRoute) {
+    super();
+  }
+
+  @ViewChild(NgForm) formFiltreEmploi: NgForm;
 
   tmpMotCle: String;
   tmpSecteur: String;
@@ -32,32 +37,21 @@ export class EmploiComponent implements OnInit {
   reactifRenumeration = this.emploiService.getTmpRenumeration();
   reactifExperience    = this.emploiService.getTmpExperience();
 
+  pageEvent: PageEvent;
   length = 100;
   pageIndex = 0;
   pageSize = 5;
   pageSizeOptions: number[] = [5, 10, 25, 100];
-
-  // MatPaginator Output
-  pageEvent: PageEvent;
-  setPageSizeOptions(setPageSizeOptionsInput: string) {
-    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
-    this.pageSize = this.pageEvent.pageSize;
-    console.log(this.pageSize)
-  }
+  itemsPerPageLabel = 'Offres par page';
+  nextPageLabel     = 'Page suivante';
+  previousPageLabel = 'Page précédente';
  
   public getPaginationData(event?:PageEvent){
-    
-          this.pageSize = event.pageSize;
-          //this.length = event.length;
-          this.pageIndex = event.pageIndex;
-          return event;
-        
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    return event;
   }
   
-  
-
-  @ViewChild(NgForm) formFiltreEmploi: NgForm;
-
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
@@ -85,14 +79,10 @@ export class EmploiComponent implements OnInit {
     
   }
   
-  /*
-  onClickChercher(form: NgForm) {
-    this.emploiService.getEmploisParCritere(
-      form.value.tmpMotCleInput?form.value.tmpMotCleInput:"",
-      form.value.tmpSecteurInput?form.value.tmpSecteurInput:"",
-      form.value.tmpPaysInput?form.value.tmpPaysInput:""
-    );
-  }*/
+  onClickAfficherPlus(idEmploi: number, titreEmploi: string){
+    this.emploiService.setIdEmploi(idEmploi)
+    this.router.navigate(['fiche/'+titreEmploi], {relativeTo: this.route});
+  }
 
   onClickReset() {
     this.formFiltreEmploi.reset();
@@ -103,6 +93,20 @@ export class EmploiComponent implements OnInit {
       (rv[x[key]] = rv[x[key]] || []).push(x);
       return rv;
     }, {});
+  };
+
+  truncateText = function(str, length, ending) {
+    if (length == null) {
+      length = 100;
+    }
+    if (ending == null) {
+      ending = '...';
+    }
+    if (str.length > length) {
+      return str.substring(0, length - ending.length) + ending;
+    } else {
+      return str;
+    }
   };
 
 }

@@ -56,11 +56,7 @@
                   </mat-form-field>
                   <div class="input-group">
                       <div class="row">
-                          <div class="col-xs-6">
-                              
-                          </div>
-                          <!-- /.col-xs-6 -->
-                          <div class="col-xs-6">
+                          <div class="col-xs-12 right">
                             <button type="submit" mat-button color="warn" mat-raised-button (click)="onClickReset()">
                                 Réinitialiser <i class="fa fa-search"></i>
                             </button>
@@ -97,20 +93,18 @@
             </div>
             <!-- /.col-sm-4 -->
             <div class="col-sm-8">
-                <mat-paginator [length]="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience)?.length"
-                            [pageSize]="pageSize"
-                            [pageSizeOptions]="pageSizeOptions"
-                            (page)="pageEvent = getPaginationData($event)">
-                </mat-paginator>
+                
 
                 <div class="container-result">
                     <div class="filter-liste">
-                        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">list</i></a>
-                        <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">view_module</i></a>
                         <button class="waves-effect waves-light btn"><i class="fa fa-bell" aria-hidden="true"></i> M'envoyer des offres pareils</button>
                     </div>
                     <!-- /.filter-liste -->
-                    
+                    <mat-paginator [length]="(emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience)?.length"
+                            [pageSize]="pageSize"
+                            [pageSizeOptions]="pageSizeOptions"
+                            (page)="pageEvent = getPaginationData($event)">
+                    </mat-paginator>
                     <div class="job-liste" *ngIf="emplois; let emplois; else loading">
                         <div class="une-offre" *ngFor="let emploi of emplois | filtre:reactifMotCle:reactifSecteur:reactifPays:reactifContrat:reactifRenumeration:reactifExperience | slice:pageIndex*pageSize:pageIndex*pageSize+pageSize">
                             <div class="row">
@@ -140,7 +134,7 @@
                                 </div>
                                 <!-- /.col-md-9 col-sm-8 -->
                                 <div class="col-md-3 col-sm-4">
-                                    <button class="waves-effect waves-light btn large">Afficher plus</button>
+                                    <button class="waves-effect waves-light btn large" (click)="onClickAfficherPlus(emploi.$key, emploi.titre)">Afficher plus</button>
                                 </div>
                                 <!-- /.col-md-3 col-sm-4 -->
                             </div>
@@ -151,6 +145,7 @@
                         
                     </div>
                     <!-- /.job-liste -->
+                    
                 </div>
                 <!-- /.container-result -->
                 

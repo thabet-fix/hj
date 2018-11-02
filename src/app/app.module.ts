@@ -16,7 +16,7 @@ import { EmploiComponent } from './emploi/emploi.component';
 import { NotificationComponent } from './notification/notification.component'; 
 
 /************** Import de Material ***************/
-import { PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
+import { MatPaginatorIntl, PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -38,11 +38,13 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { FiltrePipe } from './emploi/filtre.pipe';
+import { EmploiDetailComponent } from './emploi/emploi-detail/emploi-detail.component';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: HomeComponent },
-  { path: 'emploi', component: EmploiComponent }
+  { path: 'emploi', component: EmploiComponent },
+  { path: 'emploi/fiche/:id', component: EmploiDetailComponent }
 ];
 
 export const firebaseConfig = {
@@ -68,7 +70,8 @@ export const firebaseConfig = {
     UtilisateurComponent,
     ConnexionComponent,
     InscriptionComponent,
-    FiltrePipe
+    FiltrePipe,
+    EmploiDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ export const firebaseConfig = {
     DataExchangeService, 
     EmploiService,
     InscriptionService,
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],
   entryComponents: [
     PopUpInscription,

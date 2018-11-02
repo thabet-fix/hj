@@ -11,7 +11,9 @@ import { Subject, BehaviorSubject } from 'rxjs';
 @Injectable()
 export class EmploiService{
     emploisLocalTmp : Emploi[];
+    emploiLocalStorage : Emploi[];
     emploisChanged = new Subject<Emploi[]>();
+    emploiChanged = new Subject<Emploi[]>();
     nbrEmploisChanged = new Subject<Emploi[]>();
     secteur$: BehaviorSubject<string|null>;
 
@@ -21,6 +23,7 @@ export class EmploiService{
     tmpContrat: String;
     tmpRenumeration: String;
     tmpExperience: String;
+    tmpIdEmploi: any;
 
     constructor(private afs: AngularFirestore) {
     }
@@ -39,7 +42,16 @@ export class EmploiService{
                 }
             );
     }
+    
+    setIdEmploi(idEmploi:any){
+        this.tmpIdEmploi = idEmploi;
+        console.log(this.tmpIdEmploi)
+    }
 
+    getEmploi(){
+        console.log(this.tmpIdEmploi)
+        return this.afs.doc<any>('emplois/'+this.tmpIdEmploi).valueChanges();
+    }
     
 
     /*getEmploisParSecteur(){
