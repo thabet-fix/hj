@@ -1,46 +1,52 @@
-<div mat-dialog-content>
-    <div class="">
+<form #f="ngForm" (ngSubmit)="onSubmitConnexion(f)">
+    <div mat-dialog-content class="pop-up">
         <div class="">
-            <div class="row form">
-                <div class="col-sm-6 col-sm-push-3">
-                    <div class="titre-recherche cnx">
-                        Connexion
-                    </div>
-                    <!-- /.titre-recherche -->
-                    <form #f="ngForm" (ngSubmit)="onSubmitConnexion(f)">
+            <div class="">
+                <div class="row form">
+                    <div class="col-sm-6 col-sm-push-3">
+                        <div class="titre-recherche cnx">
+                            Connexion
+                        </div>
+                        <!-- /.titre-recherche -->
+
                         <mat-form-field>
-                            <input matInput ngModel placeholder="Email" name="email" email required #emailFormControl="ngModel"
-                            >
+                            <input matInput ngModel placeholder="Email" name="email" email required #emailFormControl="ngModel">
                             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                            Veuillez entrer une adresse email valide !
+                                Veuillez entrer une adresse email valide !
                             </mat-error>
                             <mat-error *ngIf="emailFormControl.hasError('required')">
-                            Email est <strong>Obligatoire</strong>
+                                Email est <strong>Obligatoire</strong>
                             </mat-error>
                         </mat-form-field>
                         <!-- /.input-field -->
                         <mat-form-field>
-                            <input type="password" matInput placeholder="Your password" ngModel name="password" required>
+                            <input type="password" matInput placeholder="Your password" ngModel name="password"
+                                required>
                         </mat-form-field>
                         <!-- /.input-field -->
-                        
-                        <button mat-button class="btn large btn-lg btn-pop-up">
-                            Connexion
-                        </button>
-                    </form>
-                    
-                    
-                    <!-- /.bloc-connexion -->
-                    
+
+                    </div>
+                    <!-- /.col-sm-6 col-sm-push-3 -->
                 </div>
-                <!-- /.col-sm-6 col-sm-push-3 -->
+                <!-- /.row -->
+
             </div>
-            <!-- /.row -->
-            
         </div>
     </div>
-</div>
 
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" class="btn">Fermer</button>
-</div>
+    <div class="row pop-up-footer">
+        <div class="col-sm-6">
+            <button mat-button (click)="onNoClick()" class="btn bg-rouge color-blanc">Fermer</button>
+        </div>
+        <!-- /.col-sm-6 -->
+        <div class="col-sm-6">
+            <button mat-button style="float: right" class="bg-rouge color-blanc">
+                Connexion
+            </button>
+        </div>
+        <!-- /.col-sm-6 -->
+    </div>
+    <!-- /.row -->
+
+
+</form>

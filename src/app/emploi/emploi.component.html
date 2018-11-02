@@ -57,7 +57,7 @@
                   <div class="input-group">
                       <div class="row">
                           <div class="col-xs-12 right">
-                            <button type="submit" mat-button color="warn" mat-raised-button (click)="onClickReset()">
+                            <button type="submit" class="bg-rouge" mat-button color="warn" mat-raised-button (click)="onClickReset()">
                                 Réinitialiser <i class="fa fa-search"></i>
                             </button>
                           </div>
@@ -114,7 +114,7 @@
                                     </h2>
                                     <!-- /.titre-liste -->
                                     <div class="desc-liste">
-                                        {{ emploi.description }}
+                                        {{ emploi.descriptionTronque }}
                                     </div>
                                     <!-- /.desc-liste -->
                                     <div class="type-liste">
@@ -134,7 +134,9 @@
                                 </div>
                                 <!-- /.col-md-9 col-sm-8 -->
                                 <div class="col-md-3 col-sm-4">
-                                    <button class="waves-effect waves-light btn large" (click)="onClickAfficherPlus(emploi.$key, emploi.titre)">Afficher plus</button>
+                                    <button class="bg-rouge color-blanc" mat-button mat-raised-button (click)="onClickAfficherPlus(emploi.$key, emploi.titre)">
+                                        Afficher plus
+                                    </button>
                                 </div>
                                 <!-- /.col-md-3 col-sm-4 -->
                             </div>

@@ -33,7 +33,11 @@ export class EmploiService{
         return this.afs.collection<any>('emplois')
         .snapshotChanges()
             .map(actions => {
-                return actions.map(action => ({ $key: action.payload.doc.id, ...action.payload.doc.data() }));
+                return actions.map(action => ({ 
+                    $key: action.payload.doc.id, 
+                    descriptionTronque: action.payload.doc.data().description?this.truncateText(action.payload.doc.data().description, 100, '..'):'',
+                    ...action.payload.doc.data() 
+                }));
             })
             .subscribe(
                 (response: Emploi[]) => {
@@ -132,5 +136,17 @@ export class EmploiService{
         this.tmpExperience = tmpExperience;
     }
 
-    
+    truncateText (str, length, ending) {
+        if (length == null) {
+          length = 100;
+        }
+        if (ending == null) {
+          ending = '...';
+        }
+        if (str.length > length) {
+          return str.substring(0, length - ending.length) + ending;
+        } else {
+          return str;
+        }
+    };
 }
