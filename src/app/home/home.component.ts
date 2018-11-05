@@ -82,6 +82,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emploiService.getEmplois();
 
     jQuery('#carousel').carousel();
+    jQuery('#Carousel2').carousel({
+        interval: 5000
+    })
 
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
