@@ -5,7 +5,7 @@
     <!-- /.img-header -->
 
     <div class="fils-ariane">
-        <a href="">Accueil</a> > <a href="">Emploi</a> > <a href="">{{ (item | async)?.lieu }}</a> > <a href="">{{ (item | async)?.secteur }}</a> > {{ (item | async)?.titre }}
+        <a [routerLink]="['/']">Accueil</a> > <a [routerLink]="['/emploi']">Emploi</a> <span *ngIf="(item | async)?.lieu!==undefined"> > </span> <a [routerLink]="" (click)="onClickLieu()">{{ (item | async)?.lieu }}</a> <span *ngIf="(item | async)?.secteur!==undefined"> > </span> <a [routerLink]="" (click)="onClickSecteur()">{{ (item | async)?.secteur }}</a> > {{ (item | async)?.titre }}
     </div>
     <!-- /.fils-ariane -->
 
@@ -190,8 +190,8 @@
 <!-- /.container -->
 
 <div class="barre-annonce">
-        <button class="waves-effect waves-light btn btn-gris">Retour à la recherche</button>
-        <button class="waves-effect waves-light btn btn-gris">Offres Similaires</button>
+        <button class="waves-effect waves-light btn btn-gris" (click)="onClickEmploi()">Retour à la recherche</button>
+        <button class="waves-effect waves-light btn btn-gris" (click)="onClickSecteur()">Offres Similaires</button>
         <button class="waves-effect waves-light btn">Postuler à cette offre</button>
         <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">favorite</i></a> <span>Sauvegarder</span>
         <a class="btn-floating btn-medium waves-effect waves-light rouge"><i class="tiny-size material-icons">local_printshop</i></a> <span>Imprimer</span>

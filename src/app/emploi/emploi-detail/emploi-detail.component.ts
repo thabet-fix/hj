@@ -14,11 +14,33 @@ export class EmploiDetailComponent implements OnInit {
   constructor( private router:Router, private route: ActivatedRoute, private emploiService: EmploiService) { }
   item: Observable<Emploi>;
   emploi: Emploi[];
+  lieu: string;
+  secteur: string;
   emploiSubscription: Subscription;
   
   ngOnInit() {
     this.item = this.emploiService.getEmploi();
-    this.item.subscribe((datas) => { console.log("datas", datas) },(err)=>{ console.log("probleme : ", err) });
+    this.item.subscribe((datas) => { 
+      console.log("datas", datas) 
+      this.lieu = datas.lieu;
+      this.secteur = datas.secteur;
+      },
+      (err)=>{ console.log("probleme : ", err) }
+    );
+  }
+  
+  onClickLieu(){
+    this.emploiService.setTmpPays(this.lieu);
+    this.router.navigate(['./emploi']);
+  }
+
+  onClickSecteur(){
+    this.emploiService.setTmpSecteur(this.secteur);
+    this.router.navigate(['./emploi']);
+  }
+  
+  onClickEmploi(){
+    this.router.navigate(['./emploi']);
   }
 
 }
