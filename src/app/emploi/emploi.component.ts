@@ -30,7 +30,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   renumerations: Emploi[];
   experiences: Emploi[];
   
-  reactifMotCle  = this.emploiService.getTmpMotCle();
+  reactifMotCle  = this.emploiService.getTmpMotCle();  
   reactifSecteur = this.emploiService.getTmpSecteur();
   reactifPays    = this.emploiService.getTmpPays();
   reactifContrat  = this.emploiService.getTmpContrat();
@@ -72,11 +72,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
             return data.experience !== undefined
           }), 'experience'));
         });
-    //console.log(this.pageEvent.length)
-
     this.emploiService.getEmplois();
-    //this.emploiService.getEmploisParPortion();
-    
   }
   
   onClickAfficherPlus(idEmploi: number, titreEmploi: string){

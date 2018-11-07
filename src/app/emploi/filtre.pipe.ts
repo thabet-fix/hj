@@ -5,13 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltrePipe implements PipeTransform {
 
-  transform(emplois: any, reactifMotCle: any, reactifSecteur: any, reactifPays: any, reactifContrat: any, reactifRenumeration: any, reactifExperience): any {
-    if( reactifSecteur===undefined && reactifMotCle===undefined && reactifPays===undefined && reactifContrat===undefined && reactifRenumeration===undefined && reactifExperience===undefined){
+  transform(emplois: any, reactifMotCle: any, reactifSecteur: any, reactifPays: any, reactifContrat: any, reactifRenumeration: any, reactifExperience: any) {
+    
+    if( emplois=== undefined || (reactifMotCle===undefined && reactifSecteur===undefined && reactifPays===undefined && reactifContrat===undefined && reactifRenumeration===undefined && reactifExperience===undefined)){
       return emplois;
     }
     else{
       return emplois.filter(item =>{
-
+        
           if((item.titre===undefined && reactifMotCle)||(reactifMotCle && item.titre.toLowerCase().indexOf(reactifMotCle.toLowerCase()) === -1))
           {
             return false;
@@ -41,8 +42,8 @@ export class FiltrePipe implements PipeTransform {
           {
             return false;
           }
-          
-          else return true;
+         
+          else  {return true;}
         
     })
      

@@ -51,65 +51,24 @@
                     Ces offres peuvent également vous intéresser
                 </div>
                 <!-- /.titre-recherche -->
-                <div class="item-job">
+                
+
+                <div class="item-job" *ngFor="let emploi of emplois | filtre:reactifMotCle:secteur:reactifPays:reactifContrat:reactifRenumeration | slice:0:4">
                     <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
                     <div class="jobdetail">
-                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
-                        <span class="contrat-offre">CDI</span>
-                        <span class="type-offre">plein temps</span>
+                        <h3 class="titre-offre">{{emploi.titre}}</h3>
+                        <span class="contrat-offre">{{emploi.type_contrat}}</span>
+                        <span class="type-offre">{{emploi.type_temp}}</span>
                         <div class="clearfix"></div>
-                        <p class="societe-offre">NOM SOCIETE</p>
-                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
+                        <p class="societe-offre">{{emploi.partenaire}}</p>
+                        <p class="adresse-offre">{{emploi.lieu}}</p>
                     </div>
                     <div class="clearfix"></div>
                     <a href="#" class="detail-offre">+ Détails</a>
                 </div>
                 <!-- /.item-job -->
 
-                <div class="item-job">
-                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
-                    <div class="jobdetail">
-                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
-                        <span class="contrat-offre">CDI</span>
-                        <span class="type-offre">plein temps</span>
-                        <div class="clearfix"></div>
-                        <p class="societe-offre">NOM SOCIETE</p>
-                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <a href="#" class="detail-offre">+ Détails</a>
-                </div>
-                <!-- /.item-job -->
-
-                <div class="item-job">
-                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
-                    <div class="jobdetail">
-                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
-                        <span class="contrat-offre">CDI</span>
-                        <span class="type-offre">plein temps</span>
-                        <div class="clearfix"></div>
-                        <p class="societe-offre">NOM SOCIETE</p>
-                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <a href="#" class="detail-offre">+ Détails</a>
-                </div>
-                <!-- /.item-job -->
-
-                <div class="item-job">
-                    <div class="container-img-offre"><img class="img-offre" alt="nom de la société" src="img/jobicon.png"/></div>
-                    <div class="jobdetail">
-                        <h3 class="titre-offre">Responsable Ressources Humaines</h3>
-                        <span class="contrat-offre">CDI</span>
-                        <span class="type-offre">plein temps</span>
-                        <div class="clearfix"></div>
-                        <p class="societe-offre">NOM SOCIETE</p>
-                        <p class="adresse-offre">16 rue tarek ibn zied menzah 5-2091</p>
-                    </div>
-                    <div class="clearfix"></div>
-                    <a href="#" class="detail-offre">+ Détails</a>
-                </div>
-                <!-- /.item-job -->
+                
             </div>
             <!-- /.offre-similaire -->
 

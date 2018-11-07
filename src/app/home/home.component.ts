@@ -121,12 +121,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   selected = '';
 
   onClickChercher(form: NgForm) {
-    this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:"");
-    this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:"");
-    this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:"");
-    this.emploiService.setTmpContrat(form.value.tmpTypeEmploiInput?form.value.tmpTypeEmploiInput:"");
-    this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:"");
-    this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:"");
+    this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:undefined);
+    this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:undefined);
+    this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:undefined);
+    this.emploiService.setTmpContrat(form.value.tmpTypeEmploiInput?form.value.tmpTypeEmploiInput:undefined);
+    this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:undefined);
+    this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:undefined);
     this.router.navigate(['emploi'], {relativeTo: this.route});
   }
 
