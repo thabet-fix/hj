@@ -20,6 +20,14 @@
                       Recherche d'emploi
                   </div>
                   <!-- /.titre-recherche -->
+                  <mat-chip-list #chipList>
+                    <mat-chip *ngFor="let filter of filters; let i = index"  
+                    [removable]="removable"
+                     (removed)="remove(i)">
+                        {{filter}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                  </mat-chip-list>
                   <mat-form-field class="validate white">
                     <input matInput placeholder="Mots-clé ..." name="tmpMotCleInput" [(ngModel)]="reactifMotCle">
                   </mat-form-field>

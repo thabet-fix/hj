@@ -3,7 +3,7 @@ import { EmploiService } from './emploi.service';
 import { Emploi } from './emploi.model';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { PageEvent, MatPaginatorIntl } from '@angular/material';
+import { PageEvent, MatPaginatorIntl, MatChipInputEvent, MatIconModule } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,7 +31,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   experiences: Emploi[];
   
   reactifMotCle  = this.emploiService.getTmpMotCle();  
-  reactifSecteur = this.emploiService.getTmpSecteur();
+  reactifSecteur = this.emploiService.getTmpSecteur();  
   reactifPays    = this.emploiService.getTmpPays();
   reactifContrat  = this.emploiService.getTmpContrat();
   reactifRenumeration = this.emploiService.getTmpRenumeration();
@@ -45,7 +45,17 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   itemsPerPageLabel = 'Offres par page';
   nextPageLabel     = 'Page suivante';
   previousPageLabel = 'Page précédente';
+
+  visible = true;
+  selectable = true;
+  removable = true;
  
+  filters = [];
+   
+   remove(item){
+     this.filters.splice(item, 1);
+   }
+
   public getPaginationData(event?:PageEvent){
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
@@ -73,6 +83,8 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
           }), 'experience'));
         });
     this.emploiService.getEmplois();
+    //this.chipElement = this.reactifSecteur
+    this.filters.push(this.reactifSecteur, this.reactifPays)
   }
   
   onClickAfficherPlus(idEmploi: number, titreEmploi: string){
@@ -82,6 +94,11 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
 
   onClickReset() {
     this.formFiltreEmploi.reset();
+  }
+
+  onClickRemove(){
+    console.log("essai")
+    this.visible = false;
   }
 
   groupBy (xs, key) {

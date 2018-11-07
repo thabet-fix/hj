@@ -16,7 +16,7 @@ import { EmploiComponent } from './emploi/emploi.component';
 import { NotificationComponent } from './notification/notification.component'; 
 
 /************** Import de Material ***************/
-import { MatPaginatorIntl, PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
+import { MatIconModule, MatChipsModule, MatPaginatorIntl, PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -82,6 +82,8 @@ export const firebaseConfig = {
     MatDialogModule,
     MatInputModule,
     MatPaginatorModule,
+    MatIconModule,
+    MatChipsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
