@@ -82,6 +82,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emploiService.getEmplois();
 
     jQuery('#carousel').carousel();
+    jQuery('#Carousel2').carousel({
+        interval: 5000
+    })
 
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
@@ -128,6 +131,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:undefined);
     this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:undefined);
     this.router.navigate(['emploi'], {relativeTo: this.route});
+  }
+
+  onClickPrev(){
+    jQuery('#Carousel2').carousel('prev');
+  }
+
+  onClickNext(){
+    jQuery('#Carousel2').carousel('next');
   }
 
 }
