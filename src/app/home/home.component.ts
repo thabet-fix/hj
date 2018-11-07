@@ -133,6 +133,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['emploi'], {relativeTo: this.route});
   }
 
+  onClickPrev(){
+    jQuery('#Carousel2').carousel('prev');
+  }
+
+  onClickNext(){
+    jQuery('#Carousel2').carousel('next');
+  }
+
 }
 
 
