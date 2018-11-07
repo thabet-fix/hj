@@ -16,6 +16,7 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { NgForm } from '@angular/forms';
 
 import { Router, ActivatedRoute } from '@angular/router';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface DialogData {
   animal: string;
@@ -41,16 +42,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   emploisGroupedBySecteur: Emploi[];
   nbr_emploi = null;
   
-
   isAuthenticated = false;
   authSubscription: Subscription;
   
+  meta: Observable<any>;
+  profileUrl: Observable<string | null>;
+
   constructor(
     private emploiService: EmploiService, 
     private inscriptionService: InscriptionService, 
     public dialog: MatDialog,
     private router:Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: AngularFireStorage
   ) {
 
   }
@@ -89,6 +93,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
     });
+
+    const ref = this.storage.ref('utilisateurs/foulen.png');
+    this.profileUrl = ref.getDownloadURL();
 
   }
 

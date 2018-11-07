@@ -88,6 +88,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,    
+    AngularFireStorageModule,
     FormsModule,
     MatSnackBarModule
   ],
