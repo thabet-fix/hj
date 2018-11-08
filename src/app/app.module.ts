@@ -32,6 +32,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { DataExchangeService } from './shared/data-exchange.service';
 import { EmploiService } from './emploi/emploi.service';
 import { InscriptionService } from './inscription/inscription.service';
+import { UtilisateurService } from './utilisateur/utilisateur.service';
 
 import { Routes, RouterModule } from "@angular/router";
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
@@ -44,7 +45,8 @@ const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: '', component: HomeComponent },
   { path: 'emploi', component: EmploiComponent },
-  { path: 'emploi/fiche/:id', component: EmploiDetailComponent }
+  { path: 'emploi/fiche/:id', component: EmploiDetailComponent },
+  { path: 'compte', component: UtilisateurComponent }
 ];
 
 export const firebaseConfig = {
@@ -96,6 +98,7 @@ export const firebaseConfig = {
     DataExchangeService, 
     EmploiService,
     InscriptionService,
+    UtilisateurService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],

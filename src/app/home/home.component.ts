@@ -94,8 +94,12 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isAuthenticated = authStatus;
     });
 
-    const ref = this.storage.ref('utilisateurs/foulen.png');
+    const nomImage = "foulen2.png";
+    const ref = this.storage.ref('utilisateurs/'+nomImage);
     this.profileUrl = ref.getDownloadURL();
+    ref.getMetadata().subscribe(data =>{
+      console.log(data)
+    });
 
   }
 
