@@ -180,7 +180,7 @@
           <button mat-button class="btn-inscription bg-blanc" (click)="openDialog()" *ngIf="!isAuthenticated">
               Inscription
           </button>
-          <button mat-button class="btn-inscription bg-blanc" *ngIf="isAuthenticated">
+          <button mat-button class="btn-inscription bg-blanc" (click)="onClickCompte()" *ngIf="isAuthenticated">
               Mon compte
           </button>
         </div>

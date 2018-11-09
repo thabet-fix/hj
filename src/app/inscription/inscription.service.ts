@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Utilisateur } from '../shared/utilisateur.model';
+import { UtilisateurService } from '../utilisateur/utilisateur.service'
 
 
 /*interface Post {
@@ -18,17 +19,18 @@ export class InscriptionService{
     isAuthenticated = false;
     authChange = new Subject<boolean>();
 
-    constructor(private afAuth: AngularFireAuth) {
+    constructor(private afAuth: AngularFireAuth, private utilisateurService:UtilisateurService) {
     }
 
     
-    inscriptionUtilisateur(utilisateur: Utilisateur){
-        this.afAuth.auth.createUserWithEmailAndPassword(utilisateur.email, utilisateur.password)
+    inscriptionUtilisateur(email: any, password: any){
+        this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(
             result =>{
-                console.log(result);
+                console.log(result.user.uid);
                 this.isAuthenticated = true;
                 this.authChange.next(true);
+                this.utilisateurService.creerUtilisateur(email, result.user.uid)
             }
         )
         .catch(
@@ -38,11 +40,11 @@ export class InscriptionService{
         );
     }
 
-    connexionUtilisateur(utilisateur: Utilisateur){
-        this.afAuth.auth.signInWithEmailAndPassword(utilisateur.email, utilisateur.password)
+    connexionUtilisateur(email: any, password: any){
+        this.afAuth.auth.signInWithEmailAndPassword(email, password)
         .then(
             result => {
-                console.log(result);
+                console.log(result.user.uid);
                 this.isAuthenticated = true;
                 this.authChange.next(true);
             }
@@ -57,6 +59,8 @@ export class InscriptionService{
     isAuth() {
         return this.isAuthenticated;
     }
+
+    
 
     
 }

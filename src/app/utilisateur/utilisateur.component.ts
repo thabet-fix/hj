@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from './utilisateur.service';
-import { UtilisateurCompte } from './utilisateurCompte.model';
+import { Utilisateur } from '../shared/utilisateur.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,17 +14,14 @@ export class UtilisateurComponent implements OnInit {
 
   nom: string;
   prenom: string;
-  item: Observable<UtilisateurCompte>;
+  utilisateur: Utilisateur[];
 
   ngOnInit() {
-    this.item = this.utilisateurService.getUtilisateur();
-    this.item.subscribe((datas) => { 
-      console.log("datas", datas) 
-      this.nom = datas.nom;//ajouter SUbject
-      this.prenom = datas.prenom;
-      },
-      (err)=>{ console.log("probleme : ", err) }
-    );
+    this.utilisateurService.utilisateurChanged.subscribe(datas => {
+      console.log(datas)
+      this.utilisateur = datas;
+    });
+    this.utilisateurService.getUtilisateur();
   }
 
 }

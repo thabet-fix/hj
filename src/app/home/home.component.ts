@@ -152,6 +152,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     jQuery('#Carousel2').carousel('next');
   }
 
+  onClickCompte(){
+    this.router.navigate(['compte'], {relativeTo: this.route});
+  }
+
 }
 
 
@@ -195,10 +199,10 @@ export class PopUpInscription {
   }
 
   onSubmitInscription(form: NgForm) {
-    this.inscriptionService.inscriptionUtilisateur({
-      email: form.value.email,
-      password: form.value.password
-    });
+    this.inscriptionService.inscriptionUtilisateur(
+      form.value.email,
+      form.value.password
+    );
   }
 
 
@@ -234,10 +238,10 @@ export class PopUpConnexion {
   }
 
   onSubmitConnexion(form: NgForm) {
-    this.inscriptionService.connexionUtilisateur({
-      email: form.value.email,
-      password: form.value.password
-    });
+    this.inscriptionService.connexionUtilisateur(
+      form.value.email,
+      form.value.password
+    );
   }
 
 }
