@@ -49,11 +49,9 @@ export class EmploiService{
     
     setIdEmploi(idEmploi:any){
         this.tmpIdEmploi = idEmploi;
-        console.log(this.tmpIdEmploi)
     }
 
     getEmploi(){
-        console.log(this.tmpIdEmploi)
         return this.afs.doc<any>('emplois/'+this.tmpIdEmploi).valueChanges();
     }
     

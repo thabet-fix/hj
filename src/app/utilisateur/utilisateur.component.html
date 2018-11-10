@@ -1,4 +1,591 @@
-<p>
-  utilisateur works!
-  je suis {{utilisateur?.nom}} {{utilisateur?.prenom}}
-</p>
+<div class="container"><div class="separation"></div></div>
+  <!-- /.container -->
+
+  <div class="bloc-profil">
+      <div class="container">
+          <div class="avatar">
+              <img src="img/avatar.jpg" class="img-circle shadow" alt="" width="80">
+          </div>
+          <!-- /.avatar -->
+          <div class="desc-profil">
+              <div class="nom-membre">
+                  {{utilisateur?.nom}}
+              </div>
+              <!-- /.nom-membre -->
+              <div class="nom-profil">
+                  Nom profil
+              </div>
+              <!-- /.nom-membre -->
+              <div class="clearfix"></div>
+          </div>
+          <!-- /.desc-profil -->
+      </div>
+      <!-- /.container -->
+  </div>
+  <!-- /.bloc-profil -->
+
+  <div class="menu-profil">
+      <a href="" class="active">
+          <i class="material-icons">error</i>
+          <span>Profil</span>
+      </a>
+      <a href="">
+          <i class="material-icons">error</i>
+          <span>Candidature</span>
+      </a>
+      <a href="">
+          <i class="material-icons">notifications_active</i>
+          <span>Alerte Job</span>
+      </a>
+      <a href="">
+          <i class="material-icons">favorite</i>
+          <span>Sauvegargdés</span>
+      </a>
+  </div>
+  <!-- /.menu-profil -->
+  
+  <div class="container">
+      <div class="info-etape">
+          Compléter votre profil : 4 étapes restantes
+      </div>
+      <!-- /.info-etape -->
+      <div class="bloc-option-profil">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="titre-option-profil">
+                      Quel type de job vous recherchez?
+                  </div>
+                  <!-- /.titre-option-profil -->
+                  <div class="row">
+                      <div class="col-xs-4">
+                          <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">plein temps</button>
+                      </div>
+                      <!-- /.col-xs-6 -->
+                      <div class="col-xs-4">
+                          <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">temps partiel</button>
+                      </div>
+                      <!-- /.col-xs-6 -->
+                  </div>
+                  <!-- /.row -->
+              </div>
+              <!-- /.col-sm-6 -->
+              <div class="col-sm-6">
+                  <div class="titre-option-profil">
+                      Résumé
+                  </div>
+                  <!-- /.titre-option-profil -->
+                  <div class="input-group container-editable">
+                      <span class="edit-champ"><i class="material-icons">create</i></span>
+                      <textarea id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences."></textarea>
+                      <div class="row">
+                          <div class="col-sm-4">
+                              <button class="waves-effect waves-light btn large">enregistrer</button>
+                          </div>
+                          <!-- /.col-sm-2 -->
+                      </div>
+                      <!-- /.row -->
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              &Eacute;ducation <span class="txt-rouge">(Champs obligatoires)</span>
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Ajoutez vos qualifications acquises, y compris les certificats ou les diplômes que vous pourriez avoir.
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Titre</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Nom de l’école</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-2">
+                  <div class="input-group">
+                      <label class="label-input">Date début</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-2 -->
+              <div class="col-sm-2">
+                  <div class="input-group">
+                      <label class="label-input">Date fin</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-2 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="input-group">
+                      <label class="label-input">Description</label>
+                      <textarea class="champ-input materialize-textarea"></textarea>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-12 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large">ajouter</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      Expériences <span class="txt-rouge">(Champs obligatoires)</span>
+                  </div>
+                  <!-- /.col-sm-4 -->
+                  <div class="col-sm-2">
+                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas d'expérience</button>
+                  </div>
+                  <!-- /.col-sm-2 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Listez tous vos postes précédents ici. Montrez aux employeurs votre expérience.
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Titre</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Nom de la société</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-2">
+                  <div class="input-group">
+                      <label class="label-input">Date début</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-2 -->
+              <div class="col-sm-2">
+                  <div class="input-group">
+                      <label class="label-input">Date fin</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-2 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="input-group">
+                      <label class="label-input">Description</label>
+                      <textarea class="champ-input materialize-textarea"></textarea>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-12 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large">ajouter</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      Compétences <span class="txt-rouge">(Champs obligatoires)</span>
+                  </div>
+                  <!-- /.col-sm-4 -->
+                  <div class="col-sm-2">
+                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas de compétences</button>
+                  </div>
+                  <!-- /.col-sm-2 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Ajoutez vos compétences en terme de pourcentage, un atout pour vos candidatures, ...
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Titre</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-8">
+                  <div class="input-group">
+                      <label class="label-input">Pourcentage</label>
+                      <div class="range-field">
+                          <label class="espacement"></label>
+                          <input type="range" id="test5" min="0" max="100" />
+                          <div class="pull-left pourcentage">
+                              10
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="pull-right pourcentage">
+                              100
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="clearfix"></div>
+                          <!-- /.clearfix -->
+                        </div>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-8 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large">ajouter</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      Langues <span class="txt-rouge">(Champs obligatoires)</span>
+                  </div>
+                  <!-- /.col-sm-4 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Ajoutez toutes les langues que vous connaissez
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <select>
+                          <option value="" disabled selected>Choisissez une langue</option>
+                          <option>choix 1</option>
+                          <option>choix 2</option>
+                          <option>choix 3</option>
+                      </select>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-xs-12 col-sm-2">
+                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+      
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      Compétences <span class="txt-rouge">(Champs obligatoires)</span>
+                  </div>
+                  <!-- /.col-sm-4 -->
+                  <div class="col-sm-2">
+                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas de compétences</button>
+                  </div>
+                  <!-- /.col-sm-2 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Ajoutez vos compétences en terme de pourcentage, un atout pour vos candidatures, ...
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Titre</label>
+                      <input type="text" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-8">
+                  <div class="input-group">
+                      <label class="label-input">Pourcentage</label>
+                      <div class="range-field">
+                          <label class="espacement"></label>
+                          <input type="range" id="test5" min="10" max="100" />
+                          <div class="pull-left pourcentage">
+                              10
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="pull-right pourcentage">
+                              100
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="clearfix"></div>
+                          <!-- /.clearfix -->
+                        </div>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-8 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large">ajouter</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+              <div class="col-xs-6 col-sm-2">
+                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
+              </div>
+              <!-- /.col-xs-6 col-sm-2 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      Motivations <span class="txt-rouge">(Champs obligatoires)</span>
+                  </div>
+                  <!-- /.col-sm-4 -->
+                  <div class="col-sm-2">
+                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas de compétences</button>
+                  </div>
+                  <!-- /.col-sm-2 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="txt-infos-profil">
+                      Raffiner votre rénumération annuelle souhaitée et les axes de motivation, ...
+                  </div>
+                  <!-- /.txt-infos-profil -->
+              </div>
+              <!-- /.col-sm-6 -->
+          </div>
+          <!-- /.row -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <select>
+                          <option value="" disabled selected>Palier rémunération</option>
+                          <option>choix 1</option>
+                          <option>choix 2</option>
+                          <option>choix 3</option>
+                      </select><br>
+                      <label class="label-input">Axe de motivation</label>
+                      <textarea class="champ-input materialize-textarea"></textarea>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-6 col-sm-push-2">
+                  <div class="input-group input-sivp">
+                      <div class="row">
+                          <div class="col-sm-4">
+                              <span class="txt-gris">Eligible au SIVP</span>
+                          </div>
+                          <!-- /.col-sm-3 -->
+                          <div class="col-sm-5">
+                              <div class="switch">
+                                  <label>
+                                      Non
+                                      <input type="checkbox">
+                                      <span class="lever"></span>
+                                      Oui
+                                  </label>
+                              </div>
+                          </div>
+                          <!-- /.col-sm-3 -->
+                      </div>
+                      <!-- /.row -->
+                      <label class="label-input txt-sivp">Durée SIVP restante ( mois )</label>
+                      <div class="range-field">
+                          <label class="espacement"></label>
+                          <input type="range" id="test5" min="1" max="24" />
+                          <div class="pull-left pourcentage">
+                              1
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="pull-right pourcentage">
+                              24
+                          </div>
+                          <!-- /.pull-left pourcentage -->
+                          <div class="clearfix"></div>
+                          <!-- /.clearfix -->
+                        </div>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-8 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+      
+      <div class="bloc-option-profil">
+          <div class="row">
+              <div class="col-sm-4">
+                  <button class="waves-effect waves-light btn large">mettre à jour le profil</button>
+              </div>
+              <!-- /.col-sm-4 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="titre-option-profil souligne">
+              <div class="row">
+                  <div class="col-sm-4">
+                      CHANGER LE MOT DE PASSE
+                  </div>
+                  <!-- /.col-sm-4 -->
+              </div>
+              <!-- /.row --> 
+          </div>
+          <!-- /.titre-option-profil -->
+          <div class="row">
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Mot de passe actuel</label>
+                      <input type="password" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-4">
+                  <div class="input-group">
+                      <label class="label-input">Nouveau mot de passe</label>
+                      <input type="password" class="champ-input" placeholder="">
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+              <div class="col-sm-4">
+                  <div class="input-group input-mp">
+                      <button class="waves-effect waves-light btn large">CHANGER LE MOT DE PASSE</button>
+                  </div>
+                  <!-- /.input-group -->
+              </div>
+              <!-- /.col-sm-4 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+
+      <div class="bloc-option-profil">
+          <div class="row">
+              <div class="col-sm-4">
+                  <button class="waves-effect waves-light btn btn-type-contrat large">supprimer mon compte</button>
+              </div>
+              <!-- /.col-sm-4 -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.bloc-option-profil -->
+      
+  </div>
+  <!-- /.container -->

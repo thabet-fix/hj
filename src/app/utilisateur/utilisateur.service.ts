@@ -55,4 +55,9 @@ export class UtilisateurService{
         this.tmpIdUtilisateur = id;
     }
 
+    connecterUtilisateur(id: any){
+        this.tmpIdUtilisateur = id;
+    }
+
+
 }

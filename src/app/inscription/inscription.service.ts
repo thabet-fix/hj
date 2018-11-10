@@ -47,6 +47,7 @@ export class InscriptionService{
                 console.log(result.user.uid);
                 this.isAuthenticated = true;
                 this.authChange.next(true);
+                this.utilisateurService.connecterUtilisateur(result.user.uid)
             }
         )
         .catch(

@@ -14,12 +14,14 @@ export class UtilisateurComponent implements OnInit {
 
   nom: string;
   prenom: string;
-  utilisateur: Utilisateur[];
+  utilisateurs: Utilisateur[];
+  utilisateur: Utilisateur;
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
       console.log(datas)
-      this.utilisateur = datas;
+      this.utilisateurs = datas;
+      this.utilisateur = this.utilisateurs[0];
     });
     this.utilisateurService.getUtilisateur();
   }
