@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilisateurService } from './utilisateur.service';
 import { Utilisateur } from '../shared/utilisateur.model';
 import { Observable } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-utilisateur',
@@ -24,6 +25,15 @@ export class UtilisateurComponent implements OnInit {
       this.utilisateur = this.utilisateurs[0];
     });
     this.utilisateurService.getUtilisateur();
+  }
+
+  onClickEnregistrerResume(form: NgForm){
+    console.log(form.value.resume)
+    this.utilisateurService.modifierUtilisateur(form.value.resume)
+  }
+
+  onClickMettreAJour(){
+
   }
 
 }

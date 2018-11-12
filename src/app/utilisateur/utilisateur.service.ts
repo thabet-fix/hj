@@ -49,9 +49,9 @@ export class UtilisateurService{
             );
     }
 
-    creerUtilisateur(email: any, id: any){
+    creerUtilisateur(nom_utilisateur:any, email: any, id: any){
         const listeUtilisateurs = this.afs.collection<any>('utilisateurs');
-        listeUtilisateurs.add({ email: email, id: id });
+        listeUtilisateurs.add({nom_utilisateur: nom_utilisateur, email: email, id: id });
         this.tmpIdUtilisateur = id;
     }
 
@@ -59,5 +59,14 @@ export class UtilisateurService{
         this.tmpIdUtilisateur = id;
     }
 
+    modifierUtilisateur(resume: string){
+        const notreUtilisateur = this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur));
+        notreUtilisateur.snapshotChanges().map(changes => {
+            changes.map(a => {
+             const id = a.payload.doc.id; 
+             this.afs.collection('utilisateurs').doc(id).update({resume: resume})
+           })
+         }).subscribe();
+    }
 
 }

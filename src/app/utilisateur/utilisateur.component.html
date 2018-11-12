@@ -9,11 +9,11 @@
           <!-- /.avatar -->
           <div class="desc-profil">
               <div class="nom-membre">
-                  {{utilisateur?.nom}}
+                {{utilisateur?.nom_utilisateur}}
               </div>
               <!-- /.nom-membre -->
               <div class="nom-profil">
-                  Nom profil
+                {{utilisateur?.nom}}
               </div>
               <!-- /.nom-membre -->
               <div class="clearfix"></div>
@@ -45,6 +45,7 @@
   <!-- /.menu-profil -->
   
   <div class="container">
+    <form #formProfil="ngForm" (ngSubmit)="onClickMettreAJour(formProfil)">
       <div class="info-etape">
           Compléter votre profil : 4 étapes restantes
       </div>
@@ -76,10 +77,12 @@
                   <!-- /.titre-option-profil -->
                   <div class="input-group container-editable">
                       <span class="edit-champ"><i class="material-icons">create</i></span>
-                      <textarea id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences."></textarea>
+                      <textarea ngModel name="resume" id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences."></textarea>
                       <div class="row">
                           <div class="col-sm-4">
-                              <button class="waves-effect waves-light btn large">enregistrer</button>
+                            <button type="submit" class="bg-rouge" mat-button color="warn" mat-raised-button (click)="onClickEnregistrerResume(formProfil)">
+                                Enregistrer <i class="fa fa-search"></i>
+                            </button>
                           </div>
                           <!-- /.col-sm-2 -->
                       </div>
@@ -586,6 +589,6 @@
           <!-- /.row -->
       </div>
       <!-- /.bloc-option-profil -->
-      
+    </form>  
   </div>
   <!-- /.container -->

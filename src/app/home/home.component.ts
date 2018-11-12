@@ -159,7 +159,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 }
 
 
-
+/***************** INSCRIPTION POP-UP *********************/
 
 
 
@@ -200,6 +200,7 @@ export class PopUpInscription {
 
   onSubmitInscription(form: NgForm) {
     this.inscriptionService.inscriptionUtilisateur(
+      form.value.nom_utilisateur,
       form.value.email,
       form.value.password
     );
@@ -207,6 +208,10 @@ export class PopUpInscription {
 
 
 }
+
+
+/***************** CONNEXION POP-UP *********************/
+
 
 @Component({
   selector: 'pop-up-connexion',

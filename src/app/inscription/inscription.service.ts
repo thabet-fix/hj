@@ -23,14 +23,14 @@ export class InscriptionService{
     }
 
     
-    inscriptionUtilisateur(email: any, password: any){
+    inscriptionUtilisateur(nom_utilisateur: any, email: any, password: any){
         this.afAuth.auth.createUserWithEmailAndPassword(email, password)
         .then(
             result =>{
                 console.log(result.user.uid);
                 this.isAuthenticated = true;
                 this.authChange.next(true);
-                this.utilisateurService.creerUtilisateur(email, result.user.uid)
+                this.utilisateurService.creerUtilisateur(nom_utilisateur, email, result.user.uid)
             }
         )
         .catch(

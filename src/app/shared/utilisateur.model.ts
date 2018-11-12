@@ -1,4 +1,5 @@
 export class Utilisateur {
+  public nom_utilisateur: string;
   public email: string;
   public password: string;
   public id: number;
@@ -23,12 +24,13 @@ export class Utilisateur {
   public cv : string;
 
   constructor(
-    id: number, password: string, type: string, nom: string, prenom: string, image: string, 
+    nom_utilisateur: string, id: number, password: string, type: string, nom: string, prenom: string, image: string, 
     sexe: string, date_naissance: Date, telephone: string, email: string,
     nationalite: string, pays: string, ville: string,
     poste: string, secteur: string, type_contrat: string, resume: string, 
     axe_motivation: string, sivp: boolean, duree_sivp: number, cv: string
     ) {
+  this.nom_utilisateur = nom_utilisateur;
   this.id = id;
   this.password = password;
   this.type = type;
