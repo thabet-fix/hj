@@ -59,11 +59,14 @@
                   <!-- /.titre-option-profil -->
                   <div class="row">
                       <div class="col-xs-4">
-                          <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">plein temps</button>
+                          <!-- <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">plein temps</button> -->
+                          <button mat-flat-button [ngClass]="{'bg-rouge': typeContrat === 'plein temps'}" (click)="onClickTypeContrat('plein temps')" class="bg-blanc large btn-type-contrat">plein temps</button>
+                          
                       </div>
                       <!-- /.col-xs-6 -->
                       <div class="col-xs-4">
-                          <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">temps partiel</button>
+                          <!-- <button class="waves-effect waves-light btn btn-type-contrat large (class.active disponible)">temps partiel</button> -->
+                          <button mat-flat-button [ngClass]="{'bg-rouge': typeContrat === 'temps partiel'}" (click)="onClickTypeContrat('temps partiel')" class="bg-blanc large btn-type-contrat">temps partiel</button>
                       </div>
                       <!-- /.col-xs-6 -->
                   </div>
@@ -77,10 +80,10 @@
                   <!-- /.titre-option-profil -->
                   <div class="input-group container-editable">
                       <span class="edit-champ"><i class="material-icons">create</i></span>
-                      <textarea ngModel name="resume" id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences."></textarea>
+                      <textarea ngModel name="resume" id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences." value="{{utilisateur?.resume}}"></textarea>
                       <div class="row">
                           <div class="col-sm-4">
-                            <button type="submit" class="bg-rouge" mat-button color="warn" mat-raised-button (click)="onClickEnregistrerResume(formProfil)">
+                            <button type="submit" class="bg-rouge" mat-button color="warn" mat-flat-button (click)="onClickEnregistrerResume(formProfil)">
                                 Enregistrer <i class="fa fa-search"></i>
                             </button>
                           </div>
@@ -479,7 +482,7 @@
                           <option>choix 3</option>
                       </select><br>
                       <label class="label-input">Axe de motivation</label>
-                      <textarea class="champ-input materialize-textarea"></textarea>
+                      <textarea class="champ-input materialize-textarea" ngModel name="axeMotivation" value="{{utilisateur?.axe_motivation}}"></textarea>
                   </div>
                   <!-- /.input-group -->
               </div>
