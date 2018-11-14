@@ -241,7 +241,7 @@
     <div class="row">
       <div class="col-md-12 col-xs-12 partner-title">
         <h3>Nos partenaires</h3>
-        <img [attr.src]="profileUrl | async" />
+        
       </div>
       <div class="col-md-12">
         <div id="Carousel2" class="carousel slide">
@@ -257,13 +257,16 @@
   
             <div class="item active">
               <div class="row">
-                <div class="col-md-3"><a href="#" class="thumbnail"><img src="assets/images/wcompany.png" /></a></div>
+                <div class="col-md-3">
+                  <a href="#" class="thumbnail"><img [attr.src]="profileUrl | async" /></a>
+                </div>
                 <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image"
                       style="max-width:100%;"></a></div>
                 <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image"
                       style="max-width:100%;"></a></div>
                 <div class="col-md-3"><a href="#" class="thumbnail"><img src="http://placehold.it/250x250" alt="Image"
                       style="max-width:100%;"></a></div>
+                
               </div>
               <!--.row-->
             </div>

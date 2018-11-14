@@ -39,7 +39,10 @@ export class UtilisateurService{
         return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur))
         .snapshotChanges()
             .map(actions => {
-                return actions.map(action => ({ $key: action.payload.doc.id, ...action.payload.doc.data() }));
+                return actions.map(action => ({ 
+                    $key: action.payload.doc.id, 
+                    ...action.payload.doc.data() 
+                }));
             })
             .subscribe(
                 (response: Utilisateur[]) => {

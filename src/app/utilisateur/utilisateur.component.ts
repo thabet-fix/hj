@@ -17,6 +17,7 @@ export class UtilisateurComponent implements OnInit {
   prenom: string;
   utilisateurs: Utilisateur[];
   utilisateur: Utilisateur;
+  inputResume: string;
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
@@ -25,6 +26,7 @@ export class UtilisateurComponent implements OnInit {
       this.utilisateur = this.utilisateurs[0];
     });
     this.utilisateurService.getUtilisateur();
+    this.inputResume = this.utilisateur.resume;
   }
 
   onClickEnregistrerResume(form: NgForm){

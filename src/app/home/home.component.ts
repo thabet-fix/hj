@@ -4,11 +4,13 @@ import * as $ from 'jquery';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { EmploiService } from '../emploi/emploi.service';
+import { UtilisateurService } from '../utilisateur/utilisateur.service';
 
 import { Observable, Subscription } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import { Emploi } from '../emploi/emploi.model';
+import { Utilisateur } from '../shared/utilisateur.model';
 import { switchMap } from 'rxjs/operators';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -41,16 +43,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   experiences: Emploi[];
   emploisGroupedBySecteur: Emploi[];
   nbr_emploi = null;
+  utilisateurs: Utilisateur[];
   
   isAuthenticated = false;
   authSubscription: Subscription;
   
   meta: Observable<any>;
   profileUrl: Observable<string | null>;
+  imgPartenaire: Observable<string | null>[];
 
   constructor(
     private emploiService: EmploiService, 
     private inscriptionService: InscriptionService, 
+    private utilisateurService: UtilisateurService, 
     public dialog: MatDialog,
     private router:Router,
     private route: ActivatedRoute,
@@ -94,12 +99,35 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isAuthenticated = authStatus;
     });
 
-    const nomImage = "foulen2.png";
+    this.utilisateurService.utilisateursChanged.subscribe(datas => {
+      console.log(datas)
+      this.imgPartenaire = this.utilisateurs.map(function(value, index, array){
+        const ref = this.storage.ref('utilisateurs/'+value.image);
+        return ref.getDownloadURL();
+      });
+    });
+    this.utilisateurService.getUtilisateurs();
+
+    /*this.utilisateurs.forEach(data=>{
+      const ref = this.storage.ref('utilisateurs/'+data.image);
+      this.profileUrl = ref.getDownloadURL();
+      this.imgPartenaire.push(this.profileUrl);
+    })
+
+    this.imgPartenaire = this.utilisateurs.map(function(value, index, array){
+      const ref = this.storage.ref('utilisateurs/'+value.image);
+      return ref.getDownloadURL();
+    });
+*/
+    console.log("images >> ");
+    console.log(this.imgPartenaire);
+    /*const nomImage = "foulen2.png";
     const ref = this.storage.ref('utilisateurs/'+nomImage);
     this.profileUrl = ref.getDownloadURL();
     ref.getMetadata().subscribe(data =>{
       console.log(data)
     });
+    */
 
   }
 
