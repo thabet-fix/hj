@@ -12,6 +12,7 @@ export class UtilisateurService{
     }
 
     tmpIdUtilisateur: any;
+    docUtilisateurId: string;
     utilisateursLocalTmp : Utilisateur[];
     utilisateursChanged = new Subject<Utilisateur[]>();
     utilisateurLocalTmp : Utilisateur[];
@@ -36,6 +37,7 @@ export class UtilisateurService{
     }
 
     getUtilisateur(){
+        console.log('appel fn')
         return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur))
         .snapshotChanges()
             .map(actions => {
@@ -47,29 +49,32 @@ export class UtilisateurService{
             .subscribe(
                 (response: Utilisateur[]) => {
                     this.utilisateurLocalTmp = response;
-                    this.utilisateurChanged.next([...this.utilisateurLocalTmp]); // spread operator to create a copy
+                    this.utilisateurChanged.next([...this.utilisateurLocalTmp]);
                 }
             );
+            
+    }
+
+    setDocUtilisateurId(id: any){
+        this.docUtilisateurId = id; // On n'utilise plus l'id d'authentification, on utilise le key de document utilisateur
+    }
+
+    getDocUtilisateurId(){
+        return this.docUtilisateurId; // On n'utilise plus l'id d'authentification, on utilise le key de document utilisateur
     }
 
     creerUtilisateur(nom_utilisateur:any, email: any, id: any){
         const listeUtilisateurs = this.afs.collection<any>('utilisateurs');
         listeUtilisateurs.add({nom_utilisateur: nom_utilisateur, email: email, id: id });
-        this.tmpIdUtilisateur = id;
+        this.tmpIdUtilisateur = id; // On retourne l'id utilisée par l'autentification pour l'utiliser après pour getUtilisateur()
     }
 
-    connecterUtilisateur(id: any){
-        this.tmpIdUtilisateur = id;
+    connecterUtilisateur(id: string){
+        this.tmpIdUtilisateur = id; // On retourne l'id utilisée par l'autentification pour l'utiliser après pour getUtilisateur()
     }
 
-    modifierUtilisateur(resume: string){
-        const notreUtilisateur = this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur));
-        notreUtilisateur.snapshotChanges().map(changes => {
-            changes.map(a => {
-             const id = a.payload.doc.id; 
-             this.afs.collection('utilisateurs').doc(id).update({resume: resume})
-           })
-         }).subscribe();
+    modifierUtilisateur(utilisateur: Utilisateur){
+        this.afs.collection('utilisateurs').doc(this.getDocUtilisateurId()).update(utilisateur)
     }
 
 }
