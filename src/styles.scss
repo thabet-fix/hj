@@ -137,8 +137,8 @@ nav.navbar-findcond ul.navbar-nav a:hover {
     background: #ec0928;
     text-align: center;
     border: 6px solid rgba(255, 255, 255, 1);
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #content .slidesilk .item-slide .link-item {
     color: #fff;
@@ -1582,7 +1582,7 @@ background: #428bca;
 
 .carousel {
     margin-bottom: 0;
-    padding: 0 40px 30px 40px;
+    padding: 0 20px 30px 20px;
 }
 /* The controlsy */
 .carousel-control {
@@ -1595,7 +1595,20 @@ background: #428bca;
     margin-top: 90px;
 }
 .carousel-control.right {
-	right: -12px;
+    right: -40px;
+    text-align: center;
+    cursor: pointer;
+}
+.carousel-control.left {
+    left: -40px;
+    text-align: center;
+    cursor: pointer;
+}
+#Carousel .carousel-control.right, #Carousel .carousel-control.left{
+    margin-top: 191px;
+}
+#Carousel2 .carousel-control.right, #Carousel2 .carousel-control.left{
+    margin-top: 40px;
 }
 /* The indicators */
 .carousel-indicators {

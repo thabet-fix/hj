@@ -91,7 +91,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         });
     this.emploiService.getEmplois();
 
-    jQuery('#carousel').carousel();
+    jQuery('#Carousel').carousel();
     jQuery('#Carousel2').carousel({
         interval: 5000
     })
@@ -168,11 +168,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['emploi'], {relativeTo: this.route});
   }
 
-  onClickPrev(){
+  onClickPrevC1(){
+    jQuery('#Carousel').carousel('prev');
+  }
+
+  onClickNextC1(){
+    jQuery('#Carousel').carousel('next');
+  }
+
+  onClickPrevC2(){
     jQuery('#Carousel2').carousel('prev');
   }
 
-  onClickNext(){
+  onClickNextC2(){
     jQuery('#Carousel2').carousel('next');
   }
 

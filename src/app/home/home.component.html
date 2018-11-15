@@ -87,28 +87,33 @@
         <!-- Carousel items -->
         <div class="carousel-inner">
           <!-- TODO gestion Item ! -->
-          <div class="item active">
-            <div class="row">
-              <div class="col-md-3" *ngFor="let emploiGrouped of emploisGroupedBySecteur; let i = index">
-                <div class="slidesilk">
-                  <div class="item-slide">
-                    <p class="link-item">
-                      <i class="fa fa-ellipsis-h"></i>
-                    </p>
-                    <p class="secteur">{{ emploiGrouped[0].secteur }}</p>
-                    <p class="offre-count">{{ emploiGrouped.length }} Offre</p>
+          <ng-container *ngFor="let item of emploisGroupedBySecteur; let i = index">
+            <div class="item" [ngClass]="{'active': i === 0 }" *ngIf="i%4===0">
+              <div class="row">
+                <div class="col-md-3" *ngFor="let emploiGrouped of emploisGroupedBySecteur|slice:i:i + 4; let j = index">
+                  <div class="slidesilk">
+                    <div class="item-slide">
+                      <p class="link-item">
+                        <i class="fa fa-ellipsis-h"></i>
+                      </p>
+                      <p class="secteur">{{ emploiGrouped[0].secteur }}</p>
+                      <p class="offre-count">{{ emploiGrouped.length }} Offre</p>
+                    </div>
                   </div>
+                  <!-- slidesilk -->
                 </div>
-                <!-- slidesilk -->
+                <!-- col-md-3 -->
               </div>
-              <!-- col-md-3 -->
             </div>
-          </div>
+          </ng-container>
+          
           
           
         </div><!--.carousel-inner-->
-        <!--<a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
-        <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>-->
+        <!--.carousel-inner-->
+        <span data-slide="prev" (click)="onClickPrevC1()" class="left carousel-control">‹</span>
+        <span data-slide="next" (click)="onClickNextC1()" class="right carousel-control">›</span>
+      
       </div><!--.Carousel-->
     </div>
     <!-- /.container -->
@@ -269,8 +274,8 @@
   
           </div>
           <!--.carousel-inner-->
-          <a data-slide="prev" [routerLink]="['/']" (click)="onClickPrev()" class="left carousel-control">‹</a>
-          <a data-slide="next" [routerLink]="['/']" (click)="onClickNext()" class="right carousel-control">›</a>
+          <span data-slide="prev" (click)="onClickPrevC2()" class="left carousel-control">‹</span>
+          <span data-slide="next" (click)="onClickNextC2()" class="right carousel-control">›</span>
         </div>
         <!--.Carousel-->
   
