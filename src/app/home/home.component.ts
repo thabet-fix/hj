@@ -6,7 +6,7 @@ import { Http, Response } from '@angular/http';
 import { EmploiService } from '../emploi/emploi.service';
 import { UtilisateurService } from '../utilisateur/utilisateur.service';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, Subject } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import { Emploi } from '../emploi/emploi.model';
@@ -49,9 +49,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   
   meta: Observable<any>;
-  profileUrl: Observable<string | null>;
-  imgPartenaire: Observable<string | null>[];
-
+  //profileUrl: Observable<string | null>;
+  imgPartenaire: string[] = [];
+  imgTab: string[];
+  
   constructor(
     private emploiService: EmploiService, 
     private inscriptionService: InscriptionService, 
@@ -100,34 +101,29 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     this.utilisateurService.utilisateursChanged.subscribe(datas => {
-      console.log(datas)
-      this.imgPartenaire = this.utilisateurs.map(function(value, index, array){
-        const ref = this.storage.ref('utilisateurs/'+value.image);
-        return ref.getDownloadURL();
+      this.imgPartenaire = [];
+      this.imgTab = datas.map(function(value, index, array){ //Retourner les non null
+        if (value.image!==undefined) {
+          return value.image
+        }
       });
+      
+      this.imgTab.forEach(imageRetournee=>{
+        if(imageRetournee!==undefined){
+          const ref = this.storage.ref('utilisateurs/'+imageRetournee);
+          ref.getDownloadURL().subscribe(data =>{
+            console.log("bon bon")
+            console.log(data)
+            this.imgPartenaire.push(data)
+          });
+        }
+        else return "false";
+      })
+      console.log("obs image >> ");
+      console.log(this.imgPartenaire);
+
     });
     this.utilisateurService.getUtilisateurs();
-
-    /*this.utilisateurs.forEach(data=>{
-      const ref = this.storage.ref('utilisateurs/'+data.image);
-      this.profileUrl = ref.getDownloadURL();
-      this.imgPartenaire.push(this.profileUrl);
-    })
-
-    this.imgPartenaire = this.utilisateurs.map(function(value, index, array){
-      const ref = this.storage.ref('utilisateurs/'+value.image);
-      return ref.getDownloadURL();
-    });
-*/
-    console.log("images >> ");
-    console.log(this.imgPartenaire);
-    /*const nomImage = "foulen2.png";
-    const ref = this.storage.ref('utilisateurs/'+nomImage);
-    this.profileUrl = ref.getDownloadURL();
-    ref.getMetadata().subscribe(data =>{
-      console.log(data)
-    });
-    */
 
   }
 

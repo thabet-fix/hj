@@ -33,11 +33,6 @@ export class UtilisateurComponent implements OnInit {
     });
     
     this.utilisateurService.getUtilisateur();
-<<<<<<< HEAD
-    this.inputResume = this.utilisateur.resume;
-=======
-    
->>>>>>> compte-area
   }
 
   onClickEnregistrerResume(form: NgForm){
