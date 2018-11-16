@@ -16,6 +16,7 @@ export class EmploiService{
     emploiChanged = new Subject<Emploi[]>();
     nbrEmploisChanged = new Subject<Emploi[]>();
     secteur$: BehaviorSubject<string|null>;
+    tmpSecteurObs=  new Subject<String>();
 
     tmpMotCle: String;
     tmpSecteur: String;
@@ -100,6 +101,10 @@ export class EmploiService{
         return this.tmpMotCle;
     }
     getTmpSecteur(){
+        return this.tmpSecteur;
+    }
+    getTmpSecteurObs(){
+        this.tmpSecteurObs.next(this.tmpSecteur);
         return this.tmpSecteur;
     }
     getTmpPays(){

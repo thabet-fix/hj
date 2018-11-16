@@ -103,7 +103,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.utilisateurService.utilisateursChanged.subscribe(datas => {
       this.imgPartenaire = [];
       this.imgTab = datas.map(function(value, index, array){ //Retourner les non null
-        if (value.image!==undefined) {
+        if (value.image!==undefined && value.type==="super partenaire") {
           return value.image
         }
       });

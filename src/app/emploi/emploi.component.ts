@@ -37,6 +37,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   reactifRenumeration = this.emploiService.getTmpRenumeration();
   reactifExperience    = this.emploiService.getTmpExperience();
 
+  /******** Pagination */
   pageEvent: PageEvent;
   length = 100;
   pageIndex = 0;
@@ -46,21 +47,23 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   nextPageLabel     = 'Page suivante';
   previousPageLabel = 'Page précédente';
 
-  visible = true;
-  selectable = true;
-  removable = true;
- 
-  filters = [];
-   
-   remove(item){
-     this.filters.splice(item, 1);
-   }
-
   public getPaginationData(event?:PageEvent){
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     return event;
   }
+
+  /******* Chips Filter */
+  visible = true;
+  selectable = true;
+  removable = true;
+  chipsFilter = [];
+   
+  remove(item){
+    this.chipsFilter.splice(item, 1);
+  }
+
+  
   
   ngOnInit() {
     this.emploiSubscription = this.emploiService.emploisChanged
@@ -83,8 +86,47 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
           }), 'experience'));
         });
     this.emploiService.getEmplois();
-    //this.chipElement = this.reactifSecteur
-    this.filters.push(this.reactifSecteur, this.reactifPays)
+
+    this.emploiService.tmpSecteurObs.subscribe(tmpSecteur => {
+      this.reactifSecteur = tmpSecteur;
+    });
+    /*this.emploiService.tmpSecteurObs.subscribe(tmpSecteur => {
+      this.reactifSecteur = tmpSecteur;
+    });
+    this.emploiService.tmpSecteurObs.subscribe(tmpSecteur => {
+      this.reactifSecteur = tmpSecteur;
+    });*/
+    
+  }
+
+  addChipsFilter(critere:any, type: string){
+    if (critere!==undefined){
+      this.chipsFilter.map(item =>{
+        console.log(item.type+">>"+type)
+        if(item.type.indexOf(type) === 0){
+          this.remove(item);
+          console.log("entree2")
+        }
+      })
+      console.log(this.chipsFilter)
+      this.chipsFilter.push({"critere" : critere, "type" : type})
+      
+      console.log(this.chipsFilter)
+    }
+    
+  }
+
+  onChangeSelecteur(form: NgForm){
+    this.emploiService.setTmpMotCle(form.value.tmpMotCleInput?form.value.tmpMotCleInput:undefined);
+    
+    this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:undefined);
+    this.addChipsFilter(this.reactifSecteur, "reactifSecteur");
+    this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:undefined);
+    this.addChipsFilter(this.reactifPays, "reactifPays");
+    this.emploiService.setTmpContrat(form.value.tmpTypeEmploiInput?form.value.tmpTypeEmploiInput:undefined);
+    this.addChipsFilter(this.reactifContrat, "reactifContrat");
+    this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:undefined);
+    this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:undefined);
   }
   
   onClickAfficherPlus(idEmploi: number, titreEmploi: string){
