@@ -222,20 +222,32 @@ export class PopUpInscription {
   ngOnInit() {
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
+      this.onNoClick();
       if(this.isAuthenticated){
-        this.snackBar.openFromComponent(NotificationComponent, {
-          duration: 3000,
+        this.snackBar.open("Inscription réussite", "", {
+          duration: 5000,
+        });
+      }
+      else{
+        this.snackBar.open("Inscription non réussite !", "", {
+          duration: 5000,
         });
       }
     });
   }
 
   onSubmitInscription(form: NgForm) {
-    this.inscriptionService.inscriptionUtilisateur(
+    const resulIscription = this.inscriptionService.inscriptionUtilisateur(
       form.value.nom_utilisateur,
       form.value.email,
       form.value.password
     );
+    console.log(resulIscription)
+    if(resulIscription==="auth/email-already-in-use"){
+      this.snackBar.open("Email dèja utilisé !", "", {
+        duration: 5000,
+      });
+    }
   }
 
 
@@ -267,8 +279,12 @@ export class PopUpConnexion {
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
       if(this.isAuthenticated){
-        this.snackBar.openFromComponent(NotificationComponent, {
-          duration: 3000,
+        this.onNoClick();
+        this.snackBar.open("Vous êtes connecté", "", {
+          duration: 5000,
+        });
+        this.snackBar.open("Vous êtes pas connecté !", "", {
+          duration: 5000,
         });
       }
     });

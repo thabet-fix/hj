@@ -31,13 +31,16 @@ export class InscriptionService{
                 this.isAuthenticated = true;
                 this.authChange.next(true);
                 this.utilisateurService.creerUtilisateur(nom_utilisateur, email, result.user.uid)
+                return "Inscription réussite";
             }
         )
         .catch(
             error =>{
                 console.log(error);
+                return error.code;
             }
         );
+        return "Inscription non réussite";
     }
 
     connexionUtilisateur(email: any, password: any){
