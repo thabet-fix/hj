@@ -101,17 +101,14 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
 
   addChipsFilter(critere:any, type: string){
     if (critere!==undefined){
-      this.chipsFilter.map(item =>{
+      this.chipsFilter.map(function(item, index, array){
         console.log(item.type+">>"+type)
         if(item.type.indexOf(type) === 0){
-          this.remove(item);
-          console.log("entree2")
+          array.splice(index, 1);
+          //this.remove(index)
         }
       })
-      console.log(this.chipsFilter)
       this.chipsFilter.push({"critere" : critere, "type" : type})
-      
-      console.log(this.chipsFilter)
     }
     
   }
@@ -127,6 +124,29 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
     this.addChipsFilter(this.reactifContrat, "reactifContrat");
     this.emploiService.setTmpRenumeration(form.value.tmpRenumerationInput?form.value.tmpRenumerationInput:undefined);
     this.emploiService.setTmpExperience(form.value.tmpExperienceInput?form.value.tmpExperienceInput:undefined);
+  }
+  onChangeSelect(form: NgForm, type:string){
+     switch(type){
+      case 'reactifSecteur': { 
+          this.emploiService.setTmpSecteur(form.value.tmpSecteurInput?form.value.tmpSecteurInput:undefined);
+          this.addChipsFilter(this.reactifSecteur, "reactifSecteur");
+          break; 
+      } 
+      case 'reactifPays': { 
+          this.emploiService.setTmpPays(form.value.tmpPaysInput?form.value.tmpPaysInput:undefined);
+          this.addChipsFilter(this.reactifPays, "reactifPays");
+          break; 
+      } 
+      case 'reactifContrat': { 
+          this.emploiService.setTmpContrat(form.value.tmpTypeEmploiInput?form.value.tmpTypeEmploiInput:undefined);
+          this.addChipsFilter(this.reactifContrat, "reactifContrat");
+          break; 
+      } 
+      default: { 
+          //statements; 
+          break; 
+      } 
+     }
   }
   
   onClickAfficherPlus(idEmploi: number, titreEmploi: string){

@@ -32,20 +32,20 @@
                     <input matInput placeholder="Mots-clé ..." name="tmpMotCleInput" [(ngModel)]="reactifMotCle">
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select name="tmpSecteurInput" placeholder="Secteur .." [(ngModel)]="reactifSecteur" (ngModelChange)="onChangeSelecteur(formFiltreEmploi)">
+                    <mat-select name="tmpSecteurInput" placeholder="Secteur .." [(ngModel)]="reactifSecteur" (selectionChange)="onChangeSelect(formFiltreEmploi,'reactifSecteur')">
                       <mat-option [value]="undefined" selected>-- Tous les secteurs --</mat-option>
                       <mat-option [value]="secteur[0].secteur" *ngFor="let secteur of secteurs"
                       >{{ secteur[0].secteur }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select name="tmpTypeEmploiInput" placeholder="Contrat de type .." [(ngModel)]="reactifContrat" (ngModelChange)="onChangeSelecteur(formFiltreEmploi)">
+                    <mat-select name="tmpTypeEmploiInput" placeholder="Contrat de type .." [(ngModel)]="reactifContrat" (selectionChange)="onChangeSelect(formFiltreEmploi,'reactifContrat')">
                       <mat-option [value]="undefined" selected>-- Tous les types --</mat-option>
                       <mat-option [value]="typeEmploi[0].type_contrat" *ngFor="let typeEmploi of typeEmplois">{{ typeEmploi[0].type_contrat }}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field>
-                    <mat-select name="tmpPaysInput" placeholder="Emplacement .." [(ngModel)]="reactifPays" (ngModelChange)="onChangeSelecteur(formFiltreEmploi)">
+                    <mat-select name="tmpPaysInput" placeholder="Emplacement .." [(ngModel)]="reactifPays" (selectionChange)="onChangeSelect(formFiltreEmploi,'reactifPays')">
                         <mat-option [value]="undefined" selected>-- Tous les pays --</mat-option>
                         <mat-option [value]="lieu[0].lieu" *ngFor="let lieu of lieux">{{ lieu[0].lieu }}</mat-option>
                     </mat-select>
