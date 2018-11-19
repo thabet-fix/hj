@@ -18,6 +18,7 @@ import { UtilisateurService } from '../utilisateur/utilisateur.service'
 export class InscriptionService{
     isAuthenticated = false;
     authChange = new Subject<boolean>();
+    errorChange = new Subject<string>();
 
     constructor(private afAuth: AngularFireAuth, private utilisateurService:UtilisateurService) {
     }
@@ -31,16 +32,15 @@ export class InscriptionService{
                 this.isAuthenticated = true;
                 this.authChange.next(true);
                 this.utilisateurService.creerUtilisateur(nom_utilisateur, email, result.user.uid)
-                return "Inscription réussite";
+                
             }
         )
         .catch(
             error =>{
                 console.log(error);
-                return error.code;
+                this.errorChange.next(error.code);
             }
         );
-        return "Inscription non réussite";
     }
 
     connexionUtilisateur(email: any, password: any){

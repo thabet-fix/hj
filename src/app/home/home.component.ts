@@ -208,6 +208,8 @@ export class PopUpInscription {
 
   isAuthenticated = false;
   authSubscription: Subscription;
+  errorStatus : string;
+
   constructor(
     public dialogRef: MatDialogRef<PopUpInscription>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, 
@@ -222,32 +224,44 @@ export class PopUpInscription {
   ngOnInit() {
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
+      console.log(authStatus)
       this.onNoClick();
       if(this.isAuthenticated){
         this.snackBar.open("Inscription réussite", "", {
           duration: 5000,
         });
       }
-      else{
-        this.snackBar.open("Inscription non réussite !", "", {
+    });
+    this.inscriptionService.errorChange.subscribe(errorStatus => {
+      this.errorStatus = errorStatus;
+      
+        this.snackBar.open(this.translateMessage(this.errorStatus), "", {
           duration: 5000,
         });
-      }
+      
     });
   }
-
+  
+  translateMessage(message: string){
+    switch (message){
+        case 'auth/email-already-in-use': { 
+            return "Email déja utilisé";
+            break; 
+        } 
+        default: { 
+            //statements; 
+            break; 
+      } 
+    }
+  
+  }
   onSubmitInscription(form: NgForm) {
-    const resulIscription = this.inscriptionService.inscriptionUtilisateur(
+    this.inscriptionService.inscriptionUtilisateur(
       form.value.nom_utilisateur,
       form.value.email,
       form.value.password
     );
-    console.log(resulIscription)
-    if(resulIscription==="auth/email-already-in-use"){
-      this.snackBar.open("Email dèja utilisé !", "", {
-        duration: 5000,
-      });
-    }
+    
   }
 
 
@@ -283,10 +297,12 @@ export class PopUpConnexion {
         this.snackBar.open("Vous êtes connecté", "", {
           duration: 5000,
         });
+      }else{
         this.snackBar.open("Vous êtes pas connecté !", "", {
           duration: 5000,
         });
       }
+      
     });
   }
 
