@@ -80,6 +80,8 @@
                   <!-- /.titre-option-profil -->
                   <div class="input-group container-editable">
                       <span class="edit-champ"><i class="material-icons">create</i></span>
+                      <textarea ngModel name="resume3" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences." value="{{utilisateur?.resume}}"></textarea>
+
                       <textarea ngModel name="resume" id="textarea1" class="champ-input materialize-textarea" placeholder="Présentez-vous avec un court résumé et captez l'attention des employeurs en mettant en évidence vos meilleures caractéristiques et compétences." value="{{utilisateur?.resume}}"></textarea>
                       <div class="row">
                           <div class="col-sm-4">
@@ -92,6 +94,7 @@
                       <!-- /.row -->
                   </div>
                   <!-- /.input-group -->
+                  
               </div>
               <!-- /.col-sm-6 -->
           </div>
@@ -474,17 +477,17 @@
           <!-- /.row -->
           <div class="row">
               <div class="col-sm-4">
-                  <div class="input-group">
-                      <select>
-                          <option value="" disabled selected>Palier rémunération</option>
-                          <option>choix 1</option>
-                          <option>choix 2</option>
-                          <option>choix 3</option>
-                      </select><br>
-                      <label class="label-input">Axe de motivation</label>
-                      <textarea class="champ-input materialize-textarea" ngModel name="axeMotivation" value="{{utilisateur?.axe_motivation}}"></textarea>
-                  </div>
-                  <!-- /.input-group -->
+                    <div class="input-group">
+                            <select>
+                                <option value="" disabled selected>Palier rémunération</option>
+                                <option>choix 1</option>
+                                <option>choix 2</option>
+                                <option>choix 3</option>
+                            </select><br>   
+                            <label class="label-input">Axe de motivation</label>
+                            <textarea class="champ-input materialize-textarea" ngModel name="axeMotivation" value="{{utilisateur?.axe_motivation}}"></textarea>
+                        </div>
+                        <!-- /.input-group -->
               </div>
               <!-- /.col-sm-4 -->
               <div class="col-sm-6 col-sm-push-2">
