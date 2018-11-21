@@ -13,56 +13,29 @@ export class UtilisateurComponent implements OnInit {
 
   constructor(private utilisateurService: UtilisateurService) { }
 
-  @ViewChild(NgForm) formProfil: NgForm;
+  @ViewChild('formProfil') formProfil: NgForm;
   typeContrat: string;
-  prenom: string;
   utilisateurs: Utilisateur[];
   utilisateur: Utilisateur;
-  originUtilisateur: Utilisateur;
-  inputResume: string;
+  resumeAF: string;
+  axeAF: string;
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
       console.log(datas)
       this.utilisateurs = datas;
-      this.originUtilisateur = this.utilisateurs[0];
-      this.typeContrat = this.originUtilisateur.type_contrat;
-      this.utilisateurService.setDocUtilisateurId(this.originUtilisateur.$key);
-      console.log("utl init >> ")
-      console.log(this.originUtilisateur)
-      this.utilisateur = this.originUtilisateur;
-      //this.initUtilisateur()
+      this.utilisateur = this.utilisateurs[0];
+      this.typeContrat = this.utilisateur.type_contrat;
+      this.utilisateurService.setDocUtilisateurId(this.utilisateur.$key);
+      this.resumeAF = this.utilisateur.resume;
+      this.axeAF = this.utilisateur.axe_motivation;
     });
-    
     this.utilisateurService.getUtilisateur();
-    //this.utilisateur = this.originUtilisateur;
   }
 
-  initUtilisateur(){
-
-    console.log("Object >> ")
-    console.log(this.formProfil)
-    console.log("Motivation 0 >> ")
-    console.log(this.formProfil.value.axeMotivation)
-    //this.utilisateur['resume'] = this.formProfil.value.resume;
-    console.log("Motivation 1 >> ")
-    console.log(this.formProfil.value.resume)
-    //this.utilisateur['axe_motivation'] = this.formProfil.value.axeMotivation;
-    console.log("Motivation 2 >> ")
-    console.log(this.formProfil.value.resume3)
-  }
-  changeValeur( desc, value ) {
-    for (var i in this.utilisateur) {
-      if (this.utilisateur[i].value == value) {
-        this.utilisateur[i].desc = desc;
-         break; //Stop this loop, we found it!
-      }
-    }
- }
   onClickEnregistrerResume(form: NgForm){
-    this.initUtilisateur()
+    /******** TODO axe-motivation */
     this.utilisateur.resume = form.value.resume;
-    console.log("Motivation >> "+this.utilisateur.axe_motivation);
     this.utilisateurService.modifierUtilisateur(this.utilisateur);
   }
 
@@ -73,12 +46,7 @@ export class UtilisateurComponent implements OnInit {
   }
 
   onClickTypeContrat(typeContrat: string){
-    console.log("utl before clk >> ")
-    console.log(this.utilisateur)
-    console.log("utl after clk >> ")
     this.utilisateur.type_contrat = typeContrat;
-    console.log(this.utilisateur)
-
     this.utilisateurService.modifierUtilisateur(this.utilisateur)
   }
 
