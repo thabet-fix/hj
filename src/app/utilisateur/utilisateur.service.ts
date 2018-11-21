@@ -73,8 +73,21 @@ export class UtilisateurService{
         this.tmpIdUtilisateur = id; // On retourne l'id utilisée par l'autentification pour l'utiliser après pour getUtilisateur()
     }
 
-    modifierUtilisateur(utilisateur: Utilisateur){
-        this.afs.collection('utilisateurs').doc(this.getDocUtilisateurId()).update(utilisateur)
+    modifierUtilisateur(utilisateur: Utilisateur) :boolean{
+        let etat: boolean;
+        this.afs.collection('utilisateurs').doc('54545').update(utilisateur).then(
+            result => {
+                console.log("Sauvegardé");
+                etat = true;
+            }
+        )
+        .catch(
+            error =>{
+                console.log("Non sauvegardé");
+                etat = false;
+            }
+        );
+        return etat;
     }
 
 }

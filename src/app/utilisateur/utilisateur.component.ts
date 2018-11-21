@@ -3,6 +3,7 @@ import { UtilisateurService } from './utilisateur.service';
 import { Utilisateur } from '../shared/utilisateur.model';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material';
 
 @Component({
   selector: 'app-utilisateur',
@@ -11,7 +12,7 @@ import { NgForm } from '@angular/forms';
 })
 export class UtilisateurComponent implements OnInit {
 
-  constructor(private utilisateurService: UtilisateurService) { }
+  constructor(private utilisateurService: UtilisateurService, public snackBar: MatSnackBar) { }
 
   @ViewChild('formProfil') formProfil: NgForm;
   typeContrat: string;
@@ -19,6 +20,8 @@ export class UtilisateurComponent implements OnInit {
   utilisateur: Utilisateur;
   resumeAF: string;
   axeAF: string;
+  
+  config = new MatSnackBarConfig();
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
@@ -31,23 +34,40 @@ export class UtilisateurComponent implements OnInit {
       this.axeAF = this.utilisateur.axe_motivation;
     });
     this.utilisateurService.getUtilisateur();
+    
+    this.config.panelClass = ['background-verte'];
+    this.config.duration = 5000;
+    
   }
 
+  afficherNotification(){
+    this.snackBar.open("Sauvegardé", undefined, this.config);
+  }
+  afficherNotificationNon(){
+    this.snackBar.open("Non sauvegardé", undefined, this.config);
+  }
   onClickEnregistrerResume(form: NgForm){
-    /******** TODO axe-motivation */
     this.utilisateur.resume = form.value.resume;
     this.utilisateurService.modifierUtilisateur(this.utilisateur);
+    this.afficherNotification();
   }
 
   onClickMettreAJour(){
     this.utilisateur.resume = this.formProfil.value.resume;
     this.utilisateur.axe_motivation = this.formProfil.value.axeMotivation;
-    this.utilisateurService.modifierUtilisateur(this.utilisateur);
+    let etat:boolean = this.utilisateurService.modifierUtilisateur(this.utilisateur);
+    if(etat){
+      this.afficherNotification();
+    }else{
+      this.afficherNotificationNon();
+    }
+    
   }
 
-  onClickTypeContrat(typeContrat: string){
-    this.utilisateur.type_contrat = typeContrat;
+  onClickTypeContrat(typeContratPassed: string){
+    this.utilisateur.type_contrat = typeContratPassed;
     this.utilisateurService.modifierUtilisateur(this.utilisateur)
+    this.afficherNotification();
   }
 
 }
