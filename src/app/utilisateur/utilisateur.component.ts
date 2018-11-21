@@ -34,40 +34,41 @@ export class UtilisateurComponent implements OnInit {
       this.axeAF = this.utilisateur.axe_motivation;
     });
     this.utilisateurService.getUtilisateur();
-    
-    this.config.panelClass = ['background-verte'];
-    this.config.duration = 5000;
-    
+    this.config.duration = 5000;    
   }
 
-  afficherNotification(){
-    this.snackBar.open("Sauvegardé", undefined, this.config);
+  afficherNotification(message: string, couleur: string){
+    this.config.panelClass = [couleur];
+    this.snackBar.open(message, undefined, this.config);
   }
-  afficherNotificationNon(){
-    this.snackBar.open("Non sauvegardé", undefined, this.config);
+  
+  modifierUtilisateur(){
+    this.utilisateurService.modifierUtilisateur(this.utilisateur).then(
+        result => {
+            this.afficherNotification('Sauvegardé', 'background-verte');
+        }
+    )
+    .catch(
+        error =>{
+            this.afficherNotification('Sauvegarde non réussi', 'background-rouge');
+        }
+    );
   }
+
   onClickEnregistrerResume(form: NgForm){
     this.utilisateur.resume = form.value.resume;
-    this.utilisateurService.modifierUtilisateur(this.utilisateur);
-    this.afficherNotification();
+    this.modifierUtilisateur();
   }
 
   onClickMettreAJour(){
     this.utilisateur.resume = this.formProfil.value.resume;
     this.utilisateur.axe_motivation = this.formProfil.value.axeMotivation;
-    let etat:boolean = this.utilisateurService.modifierUtilisateur(this.utilisateur);
-    if(etat){
-      this.afficherNotification();
-    }else{
-      this.afficherNotificationNon();
-    }
-    
+    this.modifierUtilisateur();
   }
 
   onClickTypeContrat(typeContratPassed: string){
     this.utilisateur.type_contrat = typeContratPassed;
-    this.utilisateurService.modifierUtilisateur(this.utilisateur)
-    this.afficherNotification();
+    this.modifierUtilisateur();
   }
 
 }
