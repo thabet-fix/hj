@@ -100,82 +100,11 @@
           <!-- /.row -->
       </div>
       <!-- /.bloc-option-profil -->
-
-      <div class="bloc-option-profil">
-          <div class="titre-option-profil souligne">
-              &Eacute;ducation <span class="txt-rouge">(Champs obligatoires)</span>
-          </div>
-          <!-- /.titre-option-profil -->
-          <div class="row">
-              <div class="col-sm-6">
-                  <div class="txt-infos-profil">
-                      Ajoutez vos qualifications acquises, y compris les certificats ou les diplômes que vous pourriez avoir.
-                  </div>
-                  <!-- /.txt-infos-profil -->
-              </div>
-              <!-- /.col-sm-6 -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-sm-4">
-                  <div class="input-group">
-                      <label class="label-input">Titre</label>
-                      <input type="text" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-4 -->
-              <div class="col-sm-4">
-                  <div class="input-group">
-                      <label class="label-input">Nom de l’école</label>
-                      <input type="text" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-4 -->
-              <div class="col-sm-2">
-                  <div class="input-group">
-                      <label class="label-input">Date début</label>
-                      <input type="text" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-2 -->
-              <div class="col-sm-2">
-                  <div class="input-group">
-                      <label class="label-input">Date fin</label>
-                      <input type="text" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-2 -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-sm-12">
-                  <div class="input-group">
-                      <label class="label-input">Description</label>
-                      <textarea class="champ-input materialize-textarea"></textarea>
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-12 -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-xs-6 col-sm-2">
-                  <button class="waves-effect waves-light btn large">ajouter</button>
-              </div>
-              <!-- /.col-xs-6 col-sm-2 -->
-              <div class="col-xs-6 col-sm-2">
-                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
-              </div>
-              <!-- /.col-xs-6 col-sm-2 -->
-          </div>
-          <!-- /.row -->
-      </div>
-      <!-- /.bloc-option-profil -->
-
+      
+        <app-education [group]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-education>
+      
+      
+      
       <div class="bloc-option-profil">
           <div class="titre-option-profil souligne">
               <div class="row">

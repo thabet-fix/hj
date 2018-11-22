@@ -10,7 +10,7 @@ import { Observable, Subscription, Subject } from 'rxjs';
 
 import 'rxjs/add/operator/map';
 import { Emploi } from '../emploi/emploi.model';
-import { Utilisateur } from '../shared/utilisateur.model';
+import { Utilisateur } from '../utilisateur/utilisateur.model';
 import { switchMap } from 'rxjs/operators';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';

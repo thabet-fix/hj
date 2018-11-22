@@ -2,7 +2,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
-import { Utilisateur } from '../shared/utilisateur.model';
+import { Utilisateur } from './utilisateur.model';
 
 
 @Injectable()
@@ -39,6 +39,25 @@ export class UtilisateurService{
     getUtilisateur(){
         console.log('appel fn')
         return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur))
+        .snapshotChanges()
+            .map(actions => {
+                return actions.map(action => ({ 
+                    $key: action.payload.doc.id, 
+                    ...action.payload.doc.data() 
+                }));
+            })
+            .subscribe(
+                (response: Utilisateur[]) => {
+                    this.utilisateurLocalTmp = response;
+                    this.utilisateurChanged.next([...this.utilisateurLocalTmp]);
+                }
+            );
+            
+    }
+
+    getUtilisateurDev(){
+        console.log('appel fn')
+        return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', 'QR7DZXIF8hR1x6vwc8MlmOtfAt22'))
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({ 

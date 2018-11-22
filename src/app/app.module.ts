@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import * as $ from 'jquery';
+import * as $ from 'jquery'; 
 
-
+ 
 /************** Import des components ************/
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,6 +33,7 @@ import { DataExchangeService } from './shared/data-exchange.service';
 import { EmploiService } from './emploi/emploi.service';
 import { InscriptionService } from './inscription/inscription.service';
 import { UtilisateurService } from './utilisateur/utilisateur.service';
+import { EducationService } from './utilisateur/education/education.service';
 
 import { Routes, RouterModule } from "@angular/router";
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
@@ -40,6 +41,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { FiltrePipe } from './emploi/filtre.pipe';
 import { EmploiDetailComponent } from './emploi/emploi-detail/emploi-detail.component';
+import { EducationComponent } from './utilisateur/education/education.component';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -73,7 +75,8 @@ export const firebaseConfig = {
     ConnexionComponent,
     InscriptionComponent,
     FiltrePipe,
-    EmploiDetailComponent
+    EmploiDetailComponent,
+    EducationComponent
   ],
   imports: [
     BrowserModule,
@@ -99,6 +102,7 @@ export const firebaseConfig = {
     EmploiService,
     InscriptionService,
     UtilisateurService,
+    EducationService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],

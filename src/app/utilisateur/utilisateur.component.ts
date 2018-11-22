@@ -1,6 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { UtilisateurService } from './utilisateur.service';
-import { Utilisateur } from '../shared/utilisateur.model';
+import { Utilisateur } from './utilisateur.model';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material';
@@ -20,6 +20,7 @@ export class UtilisateurComponent implements OnInit {
   utilisateur: Utilisateur;
   resumeAF: string;
   axeAF: string;
+  utilisateurCourant: any;
   
   config = new MatSnackBarConfig();
 
@@ -33,7 +34,7 @@ export class UtilisateurComponent implements OnInit {
       this.resumeAF = this.utilisateur.resume;
       this.axeAF = this.utilisateur.axe_motivation;
     });
-    this.utilisateurService.getUtilisateur();
+    this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
   }
 
@@ -71,4 +72,4 @@ export class UtilisateurComponent implements OnInit {
     this.modifierUtilisateur();
   }
 
-}
+} 

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-import { Utilisateur } from '../shared/utilisateur.model';
+import { Utilisateur } from '../utilisateur/utilisateur.model';
 import { UtilisateurService } from '../utilisateur/utilisateur.service'
 
 
