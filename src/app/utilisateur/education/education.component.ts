@@ -2,8 +2,8 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { EducationService } from './education.service'
 import { Education } from './education.model';
 import { ControlContainer, NgForm, FormGroup } from '@angular/forms';
-import { MatDatepickerIntl, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS } from '@angular/material';
-
+import { MatDatepickerIntl, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-education',
@@ -23,7 +23,9 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   educations: Education[];
   tmpEducation: Education = new Education("", "", "", undefined, undefined, "");
   etatModif: boolean = false;
-  constructor(private educationService: EducationService, private adapter: DateAdapter<any>) { 
+  config = new MatSnackBarConfig();
+  
+  constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar) { 
     super();
   }
 
@@ -34,11 +36,31 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
       this.educations = datas;      
     })    
     this.educationService.getEducations(this.keyUtilisateur);
-    
+    this.config.duration = 5000;
   }
 
   onChangeInput(event){
     this.etatModif = true;
+  }
+
+  afficherNotification(message: string, couleur: string){
+    this.config.panelClass = [couleur];
+    this.snackBar.open(message, undefined, this.config);
+  }
+
+  AjouterEducation(){
+    this.educationService.ajouterEducation(this.keyUtilisateur, this.tmpEducation).then(
+        result => {
+            this.afficherNotification('Sauvegardé', 'background-verte');
+            this.etatModif = false;
+            this.formEducation.reset();
+        }
+    )
+    .catch(
+        error =>{
+            this.afficherNotification('Sauvegarde non réussi', 'background-rouge');
+        }
+    );
   }
 
   onClickEnregistrerEducation(){
@@ -47,7 +69,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.tmpEducation.date_debut = new Date(this.formEducation.controls['date_debut'].value);
     this.tmpEducation.date_fin =   new Date(this.formEducation.controls['date_fin'].value);
     this.tmpEducation.description = this.formEducation.controls['description'].value;
-    this.educationService.ajouterEducation(this.keyUtilisateur, JSON.parse(JSON.stringify(this.tmpEducation)));
+    this.AjouterEducation();
   }
 
 }

@@ -37,7 +37,8 @@ export class EducationService{
     }
     
     ajouterEducation(docUtilisateurId: any, education: Education){
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(education);
+        let educationJSON = JSON.parse(JSON.stringify(education))
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
     }
 
 }
