@@ -16,11 +16,12 @@ import { EmploiComponent } from './emploi/emploi.component';
 import { NotificationComponent } from './notification/notification.component'; 
 
 /************** Import de Material ***************/
-import { MatIconModule, MatChipsModule, MatPaginatorIntl, PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher} from '@angular/material';
+import { MatIconModule, MatChipsModule, MatPaginatorIntl, PageEvent, MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule} from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -87,6 +88,8 @@ export const firebaseConfig = {
     MatDialogModule,
     MatInputModule,
     MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule,
     MatChipsModule,
     RouterModule.forRoot(appRoutes),
@@ -98,6 +101,7 @@ export const firebaseConfig = {
     MatSnackBarModule
   ],
   providers: [
+    MatDatepickerModule,
     DataExchangeService, 
     EmploiService,
     InscriptionService,

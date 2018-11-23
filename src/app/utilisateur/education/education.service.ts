@@ -22,12 +22,14 @@ export class EducationService{
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({ 
-                    $key: action.payload.doc.id, 
-                    ...action.payload.doc.data() 
+                    $key: action.payload.doc.id,
+                    date_debut: action.payload.doc.data().date_debut,
+                    date_fin:   action.payload.doc.data().date_fin,
+                    ...action.payload.doc.data()
                 }));
             })
             .subscribe(
-                (response: Education[]) => {
+                (response: any[]) => {
                     this.educationsLocalTmp = response;
                     this.educationsChanged.next([...this.educationsLocalTmp]); // spread operator to create a copy
                 }

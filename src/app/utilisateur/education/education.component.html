@@ -22,11 +22,11 @@
           <tr *ngFor="let education of educations">
             <td>{{education?.titre}}</td>
             <td>{{education?.nom_ecole}}</td>
-            <td>{{education?.date_debut.seconds* 1000 | date}}</td>
-            <td>{{education?.date_fin.seconds* 1000 | date}}</td>
+            <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_debut | date:'MM/dd/yyyy'}}</span><ng-template #aucuneDate>-</ng-template> </td>
+            <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_fin | date:'MM/dd/yyyy'}}  </span><ng-template #aucuneDate>-</ng-template> </td>
             <td>{{education?.description}}</td>
             <td class="action">
-              <i class="material-icons ">create</i>
+              <i class="material-icons ">create</i>                               
               <i class="material-icons ">rotate_right</i>
               <i class="material-icons ">delete</i>
             </td>
@@ -66,13 +66,17 @@
           <!-- /.col-sm-4 -->
           <div class="col-sm-2">
             <mat-form-field class="large">
-              <input ngModel matInput placeholder="Date début" name="date_debut" (keyup)="onChangeInput($event)">
+              <input matInput [matDatepicker]="picker" placeholder="Date début" name="date_debut" ngModel>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
           <!-- /.col-sm-2 -->
           <div class="col-sm-2">
             <mat-form-field class="large">
-              <input ngModel matInput placeholder="Date fin" name="date_fin" (keyup)="onChangeInput($event)">
+              <input matInput [matDatepicker]="picker2" placeholder="Date fin" name="date_fin" ngModel>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
           </div>
           <!-- /.col-sm-2 -->
