@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject } from 'rxjs';
 import { Education } from './education.model';
+import { Utilisateur } from '../utilisateur.model';
 
 
 @Injectable()
@@ -34,7 +35,7 @@ export class EducationService{
     }
     
     ajouterEducation(docUtilisateurId: any, education: Education){
-        return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('educations').add(education);
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(education);
     }
 
 }

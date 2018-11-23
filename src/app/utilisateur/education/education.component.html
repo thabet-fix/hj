@@ -38,7 +38,7 @@
   </div>
   <!-- /.row -->
   <br>
-  <div ngModelGroup="formEducation">
+  <div>
     <div class="row">
       <div class="col-sm-6">
         <div class="txt-infos-profil">
@@ -54,7 +54,7 @@
         <div class="row">
           <div class="col-sm-4">
             <mat-form-field class="large">
-              <input ngModel matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)">
+              <input matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)" [ngModel]="test" >
             </mat-form-field>
           </div>
           <!-- /.col-sm-4 -->
