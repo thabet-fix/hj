@@ -4,6 +4,7 @@ import { Education } from './education.model';
 import { ControlContainer, NgForm, FormGroup } from '@angular/forms';
 import { MatDatepickerIntl, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import * as $ from 'jquery';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-education',
@@ -21,7 +22,9 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   test: string = "titre de test"
   inputTitre: string;
   educations: Education[];
-  tmpEducation: Education = new Education("", "", "", undefined, undefined, "");
+  tmpEducation: Education = new Education("", "", undefined, undefined, "");
+  //educationAModifier: Observable<Education>;
+  educationAModifier: Education;
   etatModif: boolean = false;
   config = new MatSnackBarConfig();
   
@@ -66,10 +69,52 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   onClickEnregistrerEducation(){
     this.tmpEducation.titre = this.formEducation.controls['titre'].value;
     this.tmpEducation.nom_ecole = this.formEducation.controls['nom_ecole'].value;
-    this.tmpEducation.date_debut = new Date(this.formEducation.controls['date_debut'].value);
-    this.tmpEducation.date_fin =   new Date(this.formEducation.controls['date_fin'].value);
+    this.tmpEducation.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
+    this.tmpEducation.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
     this.tmpEducation.description = this.formEducation.controls['description'].value;
     this.AjouterEducation();
+  }
+
+  onClickSupprimerEducation(docEducationId: any){
+    this.educationService.supprimerEducation(this.keyUtilisateur, docEducationId).then(
+        result => {
+            this.afficherNotification('Supprimé', 'background-verte');
+            this.etatModif = false;
+            this.formEducation.reset();
+        }
+    )
+    .catch(
+        error =>{
+            this.afficherNotification('Suppression non réussite', 'background-rouge');
+        }
+    );
+  }
+
+  modifierEducation(docEducationId: any){
+    this.educationService.modifierEducation(this.keyUtilisateur, docEducationId, this.getEducationAModifier()).then(
+        result => {
+            this.afficherNotification('Modifié', 'background-verte');
+            this.etatModif = false;
+            this.formEducation.reset();
+        }
+    )
+    .catch(
+        error =>{
+            this.afficherNotification('Modification non réussite', 'background-rouge');
+        }
+    );
+  }
+
+  getEducationAModifier(){
+    return this.educationAModifier;
+  }
+
+  onClickModifierEducation(docEducationId: any){
+    
+    
+    // this.educationService.educationChanged
+    //this.educationAModifier = this.educationService.getEducation(this.keyUtilisateur, docEducationId);
+    //this.remplirChamps();
   }
 
 }

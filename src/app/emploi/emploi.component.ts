@@ -100,6 +100,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
     this.emploiSubscription = this.emploiService.emploisChanged
       .subscribe(emplois => {
           this.emplois = emplois; 
+          console.log(emplois)
           this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
             return data.secteur !== undefined 
           }), 'secteur')); //on filtre les enregistrement undefined avec la fonction .filter puis on applique le groupBy

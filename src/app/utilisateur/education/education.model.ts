@@ -1,5 +1,4 @@
 export class Education {
-    public $key: any;
     public titre: string;
     public nom_ecole: string;
     public date_debut: Date;
@@ -7,8 +6,7 @@ export class Education {
     public description: string;
   
     constructor(
-    $key: any, titre: string, nom_ecole: string, date_debut: Date, date_fin: Date, description: string) {
-    this.$key = $key;
+    titre: string, nom_ecole: string, date_debut: Date, date_fin: Date, description: string) {
     this.titre = titre;
     this.nom_ecole = nom_ecole;
     this.date_debut = date_debut;

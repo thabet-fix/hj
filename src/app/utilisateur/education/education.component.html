@@ -19,16 +19,15 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let education of educations">
+          <tr *ngFor="let education of educations; let i = index">
             <td>{{education?.titre}}</td>
             <td>{{education?.nom_ecole}}</td>
             <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_debut | date:'dd/MM/yyyy'}}</span><ng-template #aucuneDate>-</ng-template> </td>
             <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_fin | date:'dd/MM/yyyy'}}  </span><ng-template #aucuneDate>-</ng-template> </td>
             <td>{{education?.description}}</td>
             <td class="action">
-              <i class="material-icons ">create</i>                               
-              <i class="material-icons ">rotate_right</i>
-              <i class="material-icons ">delete</i>
+              <i class="material-icons " (click)="onClickModifierEducation(education.$key)">create</i>            
+              <i class="material-icons " (click)="onClickSupprimerEducation(education.$key)">delete</i>
             </td>
           </tr>
         </tbody>
@@ -54,7 +53,7 @@
         <div class="row">
           <div class="col-sm-4">
             <mat-form-field class="large">
-              <input matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)" [ngModel]="test" >
+              <input matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)" ngModel required>
             </mat-form-field>
           </div>
           <!-- /.col-sm-4 -->

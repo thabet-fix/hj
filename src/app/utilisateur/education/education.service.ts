@@ -35,10 +35,22 @@ export class EducationService{
                 }
             );
     }
+
+    getEducation(docUtilisateurId: any, docEducationId: any){
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).valueChanges();
+    }
     
     ajouterEducation(docUtilisateurId: any, education: Education){
         let educationJSON = JSON.parse(JSON.stringify(education))
         return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
+    }
+
+    supprimerEducation(docUtilisateurId: any, docEducationId: any){
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).delete();
+    }
+
+    modifierEducation(docUtilisateurId: any, docEducationId: any, education: Education){
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).update(education);
     }
 
 }
