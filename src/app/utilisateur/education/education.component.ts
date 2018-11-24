@@ -23,10 +23,12 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   inputTitre: string;
   educations: Education[];
   tmpEducation: Education = new Education("", "", undefined, undefined, "");
-  //educationAModifier: Observable<Education>;
-  educationAModifier: Education;
-  etatModif: boolean = false;
+  educationAModifier: Observable<Education>;
+  tmpNouvelleEducationModifie: Education;
+  etatChange: boolean = false;
   config = new MatSnackBarConfig();
+  boutonModifier: boolean = false;
+  docEducationIdCourant: any;
   
   constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar) { 
     super();
@@ -43,7 +45,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   }
 
   onChangeInput(event){
-    this.etatModif = true;
+    this.etatChange = true;
   }
 
   afficherNotification(message: string, couleur: string){
@@ -55,7 +57,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.educationService.ajouterEducation(this.keyUtilisateur, this.tmpEducation).then(
         result => {
             this.afficherNotification('Sauvegardé', 'background-verte');
-            this.etatModif = false;
+            this.etatChange = false;
             this.formEducation.reset();
         }
     )
@@ -72,6 +74,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.tmpEducation.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
     this.tmpEducation.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
     this.tmpEducation.description = this.formEducation.controls['description'].value;
+    console.log(this.tmpEducation)
     this.AjouterEducation();
   }
 
@@ -79,7 +82,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.educationService.supprimerEducation(this.keyUtilisateur, docEducationId).then(
         result => {
             this.afficherNotification('Supprimé', 'background-verte');
-            this.etatModif = false;
+            this.etatChange = false;
             this.formEducation.reset();
         }
     )
@@ -90,11 +93,11 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     );
   }
 
-  modifierEducation(docEducationId: any){
-    this.educationService.modifierEducation(this.keyUtilisateur, docEducationId, this.getEducationAModifier()).then(
+ onClickEnregistrerModifEducation(){
+    this.educationService.modifierEducation(this.keyUtilisateur, this.docEducationIdCourant, this.getEducationAModifier()).then(
         result => {
             this.afficherNotification('Modifié', 'background-verte');
-            this.etatModif = false;
+            this.boutonModifier = false;
             this.formEducation.reset();
         }
     )
@@ -106,15 +109,25 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   }
 
   getEducationAModifier(){
-    return this.educationAModifier;
+    this.tmpNouvelleEducationModifie.titre = this.formEducation.controls['titre'].value;
+    this.tmpNouvelleEducationModifie.nom_ecole = this.formEducation.controls['nom_ecole'].value;
+    this.tmpNouvelleEducationModifie.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
+    this.tmpNouvelleEducationModifie.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
+    this.tmpNouvelleEducationModifie.description = this.formEducation.controls['description'].value;
+    console.log(this.tmpNouvelleEducationModifie)
+    return this.tmpNouvelleEducationModifie;
   }
 
   onClickModifierEducation(docEducationId: any){
-    
+    this.boutonModifier = true;
+    this.docEducationIdCourant = docEducationId;
     
     // this.educationService.educationChanged
-    //this.educationAModifier = this.educationService.getEducation(this.keyUtilisateur, docEducationId);
+    this.educationAModifier = this.educationService.getEducation(this.keyUtilisateur, docEducationId);
     //this.remplirChamps();
+    this.educationAModifier.subscribe(datas =>{
+      this.tmpNouvelleEducationModifie = datas;
+    })
   }
 
 }

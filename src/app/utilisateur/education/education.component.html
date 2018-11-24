@@ -26,7 +26,7 @@
             <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_fin | date:'dd/MM/yyyy'}}  </span><ng-template #aucuneDate>-</ng-template> </td>
             <td>{{education?.description}}</td>
             <td class="action">
-              <i class="material-icons " (click)="onClickModifierEducation(education.$key)">create</i>            
+              <i class="material-icons " (click)="onClickModifierEducation(education.$key)" data-toggle="collapse" aria-expanded="false" aria-controls="ajouterEducation" data-target="#ajouterEducation">create</i>            
               <i class="material-icons " (click)="onClickSupprimerEducation(education.$key)">delete</i>
             </td>
           </tr>
@@ -53,19 +53,19 @@
         <div class="row">
           <div class="col-sm-4">
             <mat-form-field class="large">
-              <input matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)" ngModel required>
+              <input matInput placeholder="Titre" name="titre" (keyup)="onChangeInput($event)" [ngModel]="(educationAModifier | async)?.titre" required>
             </mat-form-field>
           </div>
           <!-- /.col-sm-4 -->
           <div class="col-sm-4">
             <mat-form-field class="large">
-              <input ngModel matInput placeholder="Nom de l’école" name="nom_ecole" (keyup)="onChangeInput($event)" >
+              <input matInput placeholder="Nom de l’école" name="nom_ecole" (keyup)="onChangeInput($event)" [ngModel]="(educationAModifier | async)?.nom_ecole">
             </mat-form-field>
           </div>
           <!-- /.col-sm-4 -->
           <div class="col-sm-2">
             <mat-form-field class="large">
-              <input matInput [matDatepicker]="picker" placeholder="Date début" name="date_debut" ngModel>
+              <input matInput [matDatepicker]="picker" placeholder="Date début" name="date_debut" [ngModel]="(educationAModifier | async)?.date_debut">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -73,7 +73,7 @@
           <!-- /.col-sm-2 -->
           <div class="col-sm-2">
             <mat-form-field class="large">
-              <input matInput [matDatepicker]="picker2" placeholder="Date fin" name="date_fin" ngModel>
+              <input matInput [matDatepicker]="picker2" placeholder="Date fin" name="date_fin" [ngModel]="(educationAModifier | async)?.date_fin">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
@@ -84,7 +84,7 @@
         <div class="row">
           <div class="col-sm-12">
             <mat-form-field class="large">
-              <textarea ngModel matInput placeholder="Ajouter une petite description" name="description" (keyup)="onChangeInput($event)"></textarea>
+              <textarea matInput placeholder="Ajouter une petite description" name="description" (keyup)="onChangeInput($event)" [ngModel]="(educationAModifier | async)?.description"></textarea>
             </mat-form-field>
           </div>
           <!-- /.col-sm-12 -->
@@ -97,9 +97,13 @@
     <!-- /#ajouterEducation -->
     
     <div class="row">
-      <div class="col-xs-6 col-sm-2">
-        <button *ngIf="!etatModif" class="waves-effect waves-light btn large" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="ajouterEducation" data-target="#ajouterEducation">ajouter</button>
-        <button *ngIf="etatModif" class="waves-effect waves-light btn large" type="button" (click)="onClickEnregistrerEducation()">Enregistrer</button>
+      <div class="col-xs-6 col-sm-2" *ngIf="!boutonModifier">
+        <button *ngIf="!etatChange" class="waves-effect waves-light btn large" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="ajouterEducation" data-target="#ajouterEducation">ajouter</button>
+        <button *ngIf="etatChange" class="waves-effect waves-light btn large" type="button" (click)="onClickEnregistrerEducation()">Enregistrer</button>
+      </div>
+      <div class="col-xs-6 col-sm-2" *ngIf="boutonModifier">
+        <button *ngIf="!etatChange" class="waves-effect waves-light btn large" type="button" data-toggle="collapse" aria-expanded="false" aria-controls="ajouterEducation" data-target="#ajouterEducation">Modifier</button>
+        <button *ngIf="etatChange" class="waves-effect waves-light btn large" type="button" (click)="onClickEnregistrerModifEducation()">Enregistrer</button>
       </div>
       <!-- /.col-xs-6 col-sm-2 -->
     </div>

@@ -1,7 +1,7 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { Subject, BehaviorSubject, Observable } from 'rxjs';
 import { Education } from './education.model';
 import { Utilisateur } from '../utilisateur.model';
 
@@ -36,12 +36,14 @@ export class EducationService{
             );
     }
 
-    getEducation(docUtilisateurId: any, docEducationId: any){
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).valueChanges();
+    getEducation(docUtilisateurId: any, docEducationId: any) : Observable<Education>{
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc<Education>(docEducationId).valueChanges();
     }
     
     ajouterEducation(docUtilisateurId: any, education: Education){
         let educationJSON = JSON.parse(JSON.stringify(education))
+        console.log("JSON Ajout >> ")
+        console.log(educationJSON)
         return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
     }
 
@@ -50,7 +52,14 @@ export class EducationService{
     }
 
     modifierEducation(docUtilisateurId: any, docEducationId: any, education: Education){
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).update(education);
+        let educationJSON = JSON.parse(JSON.stringify(education))
+        console.log("utilisateur id >> ")
+        console.log(docUtilisateurId)
+        console.log("document id >> ")
+        console.log(docEducationId)
+        console.log("JSON Modif >> ")
+        console.log(educationJSON)
+        return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('educations').doc(docEducationId).update(educationJSON);
     }
 
 }
