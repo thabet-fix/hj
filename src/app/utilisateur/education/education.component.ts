@@ -26,6 +26,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   educationAModifier: Observable<Education>;
   tmpNouvelleEducationModifie: Education;
   etatChange: boolean = false;
+  etatOuvert: boolean = false;
   config = new MatSnackBarConfig();
   boutonModifier: boolean = false;
   docEducationIdCourant: any;
@@ -46,6 +47,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
 
   onChangeInput(event){
     this.etatChange = true;
+    this.etatOuvert = false;
   }
 
   afficherNotification(message: string, couleur: string){
@@ -56,14 +58,14 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   AjouterEducation(){
     this.educationService.ajouterEducation(this.keyUtilisateur, this.tmpEducation).then(
         result => {
-            this.afficherNotification('Sauvegardé', 'background-verte');
+            this.afficherNotification('Ajouté', 'background-verte');
             this.etatChange = false;
             this.formEducation.reset();
         }
     )
     .catch(
         error =>{
-            this.afficherNotification('Sauvegarde non réussi', 'background-rouge');
+            this.afficherNotification('Ajout non réussi', 'background-rouge');
         }
     );
   }
@@ -74,7 +76,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.tmpEducation.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
     this.tmpEducation.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
     this.tmpEducation.description = this.formEducation.controls['description'].value;
-    console.log(this.tmpEducation)
+    console.log(this.formEducation)
     this.AjouterEducation();
   }
 
@@ -98,8 +100,11 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
         result => {
             this.afficherNotification('Modifié', 'background-verte');
             this.boutonModifier = false;
+            this.etatChange = false;
             this.formEducation.reset();
-        }
+            console.log(this.boutonModifier)
+            console.log(this.etatChange)
+          }
     )
     .catch(
         error =>{
@@ -120,6 +125,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
 
   onClickModifierEducation(docEducationId: any){
     this.boutonModifier = true;
+    this.etatOuvert = true;
     this.docEducationIdCourant = docEducationId;
     
     // this.educationService.educationChanged
@@ -130,4 +136,20 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     })
   }
 
+  onClickAnnuler(){
+    this.boutonModifier = false;
+    this.etatChange = false;
+    this.formEducation.reset();
+  }
+
+  onClickFermer(){
+    this.etatOuvert = false;
+    this.boutonModifier = false;
+    this.etatChange = false;
+    this.formEducation.reset();
+  }
+
+  onClickAjouter(){
+    this.etatOuvert = true;
+  }
 }
