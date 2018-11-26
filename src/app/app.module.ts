@@ -35,6 +35,7 @@ import { EmploiService } from './emploi/emploi.service';
 import { InscriptionService } from './inscription/inscription.service';
 import { UtilisateurService } from './utilisateur/utilisateur.service';
 import { EducationService } from './utilisateur/education/education.service';
+import { ExperienceService } from './utilisateur/experience/experience.service';
 
 import { Routes, RouterModule } from "@angular/router";
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
@@ -43,6 +44,7 @@ import { InscriptionComponent } from './inscription/inscription.component';
 import { FiltrePipe } from './emploi/filtre.pipe';
 import { EmploiDetailComponent } from './emploi/emploi-detail/emploi-detail.component';
 import { EducationComponent } from './utilisateur/education/education.component';
+import { ExperienceComponent } from './utilisateur/experience/experience.component';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -77,7 +79,8 @@ export const firebaseConfig = {
     InscriptionComponent,
     FiltrePipe,
     EmploiDetailComponent,
-    EducationComponent
+    EducationComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +110,7 @@ export const firebaseConfig = {
     InscriptionService,
     UtilisateurService,
     EducationService,
+    ExperienceService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],
