@@ -5,6 +5,8 @@ import { ControlContainer, NgForm, FormGroup } from '@angular/forms';
 import { MatDatepickerIntl, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+
 
 @Component({
   selector: 'app-education',
@@ -31,7 +33,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   boutonModifier: boolean = false;
   docEducationIdCourant: any;
   
-  constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar) { 
+  constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar, public dialog: MatDialog) { 
     super();
   }
 
@@ -81,6 +83,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   }
 
   onClickSupprimerEducation(docEducationId: any){
+
     this.educationService.supprimerEducation(this.keyUtilisateur, docEducationId).then(
         result => {
             this.afficherNotification('Supprimé', 'background-verte');
@@ -153,3 +156,5 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.etatOuvert = true;
   }
 }
+
+
