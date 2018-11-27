@@ -32,6 +32,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   config = new MatSnackBarConfig();
   boutonModifier: boolean = false;
   docEducationIdCourant: any;
+  isCollapsed = false;
   
   constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar, public dialog: MatDialog) { 
     super();
@@ -78,7 +79,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.tmpEducation.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
     this.tmpEducation.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
     this.tmpEducation.description = this.formEducation.controls['description'].value;
-    console.log(this.formEducation)
+    this.isCollapsed = false;
     this.AjouterEducation();
   }
 
@@ -105,8 +106,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
             this.boutonModifier = false;
             this.etatChange = false;
             this.formEducation.reset();
-            console.log(this.boutonModifier)
-            console.log(this.etatChange)
+            this.isCollapsed = false;
           }
     )
     .catch(
@@ -130,7 +130,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.boutonModifier = true;
     this.etatOuvert = true;
     this.docEducationIdCourant = docEducationId;
-    
+    this.isCollapsed = true;
     // this.educationService.educationChanged
     this.educationAModifier = this.educationService.getEducation(this.keyUtilisateur, docEducationId);
     //this.remplirChamps();
@@ -140,9 +140,11 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   }
 
   onClickAnnuler(){
+    this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
     this.formEducation.reset();
+    this.isCollapsed = false;
   }
 
   onClickFermer(){
@@ -150,10 +152,17 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.boutonModifier = false;
     this.etatChange = false;
     this.formEducation.reset();
+    this.isCollapsed = false;
   }
 
   onClickAjouter(){
     this.etatOuvert = true;
+    this.isCollapsed = true
+  }
+  
+  onClickModifier(){
+    this.etatOuvert = true;
+    this.isCollapsed = true;
   }
 }
 

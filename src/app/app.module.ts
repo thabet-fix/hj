@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import * as $ from 'jquery'; 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
  
 /************** Import des components ************/
@@ -83,6 +84,7 @@ export const firebaseConfig = {
     ExperienceComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule, 
