@@ -131,9 +131,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.etatOuvert = true;
     this.docEducationIdCourant = docEducationId;
     this.isCollapsed = true;
-    // this.educationService.educationChanged
     this.educationAModifier = this.educationService.getEducation(this.keyUtilisateur, docEducationId);
-    //this.remplirChamps();
     this.educationAModifier.subscribe(datas =>{
       this.tmpNouvelleEducationModifie = datas;
     })

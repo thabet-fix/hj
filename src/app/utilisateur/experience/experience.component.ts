@@ -30,6 +30,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
   config = new MatSnackBarConfig();
   boutonModifier: boolean = false;
   docExperienceIdCourant: any;
+  isCollapsed = false;
   
   constructor(private experienceService: ExperienceService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar, public dialog: MatDialog) { 
     super();
@@ -75,6 +76,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
     this.nouvelleExperience.date_debut = this.formGroupExperience.controls['date_debutExperience'].value?new Date(this.formGroupExperience.controls['date_debutExperience'].value):undefined;
     this.nouvelleExperience.date_fin =   this.formGroupExperience.controls['date_finExperience'].value?new Date(this.formGroupExperience.controls['date_finExperience'].value):undefined;
     this.nouvelleExperience.description = this.formGroupExperience.controls['descriptionExperience'].value;
+    this.isCollapsed = false;
     this.AjouterExperience();
   }
 
@@ -101,8 +103,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
             this.boutonModifier = false;
             this.etatChange = false;
             this.formGroupExperience.reset();
-            console.log(this.boutonModifier)
-            console.log(this.etatChange)
+            this.isCollapsed = false;
           }
     )
     .catch(
@@ -125,6 +126,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
     this.boutonModifier = true;
     this.etatOuvert = true;
     this.docExperienceIdCourant = docExperienceId;
+    this.isCollapsed = true;
     this.experienceAModifier = this.experienceService.getExperience(this.keyUtilisateur, docExperienceId);
     this.experienceAModifier.subscribe(datas =>{
       this.tmpNouvelleExperienceModifie = datas;
@@ -135,6 +137,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
     this.boutonModifier = false;
     this.etatChange = false;
     this.formGroupExperience.reset();
+    this.isCollapsed = false;
   }
 
   onClickFermer(){
@@ -142,10 +145,12 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
     this.boutonModifier = false;
     this.etatChange = false;
     this.formGroupExperience.reset();
+    this.isCollapsed = false;
   }
 
   onClickAjouter(){
     this.etatOuvert = true;
+    this.isCollapsed = true;
   }
 }
 
