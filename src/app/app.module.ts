@@ -46,6 +46,7 @@ import { FiltrePipe } from './emploi/filtre.pipe';
 import { EmploiDetailComponent } from './emploi/emploi-detail/emploi-detail.component';
 import { EducationComponent } from './utilisateur/education/education.component';
 import { ExperienceComponent } from './utilisateur/experience/experience.component';
+import { LangueComponent } from './utilisateur/langue/langue.component';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -81,7 +82,8 @@ export const firebaseConfig = {
     FiltrePipe,
     EmploiDetailComponent,
     EducationComponent,
-    ExperienceComponent
+    ExperienceComponent,
+    LangueComponent
   ],
   imports: [
     NgbModule.forRoot(),
