@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import * as $ from 'jquery'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -47,6 +48,7 @@ import { EmploiDetailComponent } from './emploi/emploi-detail/emploi-detail.comp
 import { EducationComponent } from './utilisateur/education/education.component';
 import { ExperienceComponent } from './utilisateur/experience/experience.component';
 import { LangueComponent } from './utilisateur/langue/langue.component';
+import { LangueService } from './utilisateur/langue/langue.service';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -86,6 +88,7 @@ export const firebaseConfig = {
     LangueComponent
   ],
   imports: [
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
@@ -95,6 +98,7 @@ export const firebaseConfig = {
     MatDialogModule,
     MatInputModule,
     MatPaginatorModule,
+    MatAutocompleteModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
@@ -115,6 +119,7 @@ export const firebaseConfig = {
     UtilisateurService,
     EducationService,
     ExperienceService,
+    LangueService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],

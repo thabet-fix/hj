@@ -1,3 +1,56 @@
-<p>
-  langue works!
-</p>
+<div class="bloc-option-profil">
+  <div class="titre-option-profil souligne">
+      <div class="row">
+          <div class="col-sm-4">
+              Langues <span class="txt-rouge">(Champs obligatoires)</span>
+          </div>
+          <!-- /.col-sm-4 -->
+      </div>
+      <!-- /.row --> 
+  </div>
+  <!-- /.titre-option-profil -->
+  <div class="row">
+      <div class="col-sm-6">
+          <div class="txt-infos-profil">
+              Ajoutez toutes les langues que vous connaissez
+          </div>
+          <!-- /.txt-infos-profil -->
+      </div>
+      <!-- /.col-sm-6 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+      <div class="col-sm-12">
+        <mat-form-field class="example-chip-list">
+          <mat-chip-list #chipList>
+            <mat-chip
+              *ngFor="let langue of languesUtilisateur"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(langue)">
+              {{langue.titre_langue}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Ajouter une langue"
+              #langueInput
+              [formControl]="langueCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let langue of filteredLangues | async" [value]="langue">
+              {{langue}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        
+      </div>
+      <!-- /.col-sm-4 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.bloc-option-profil -->
