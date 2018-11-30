@@ -27,7 +27,7 @@
               *ngFor="let langue of languesUtilisateur"
               [selectable]="selectable"
               [removable]="removable"
-              (removed)="remove(langue)">
+              (removed)="remove(langue, langue.$key)">
               {{langue.titre_langue}}
               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
             </mat-chip>
@@ -43,7 +43,7 @@
           </mat-chip-list>
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
             <mat-option *ngFor="let langue of filteredLangues | async" [value]="langue">
-              {{langue}}
+              {{langue.titre_langue}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
