@@ -133,7 +133,6 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   addChipsFilter(critere:any, type: string){
     
       this.chipsFilter.map(function(item, index, array){
-        console.log(item.type+">>"+type)
         if(item.type.indexOf(type) === 0){
           array.splice(index, 1);
         }

@@ -37,7 +37,7 @@ export class LangueComponent implements OnInit {
   ngOnInit() {
     this.config.duration = 5000;
     this.langueService.languesChanged.subscribe( datas => {
-      this.languesUtilisateur = JSON.parse(JSON.stringify(datas));   
+      this.languesUtilisateur = JSON.parse(JSON.stringify(datas));  
     })    
     this.langueService.getLangues(this.keyUtilisateur);
 
@@ -60,6 +60,17 @@ export class LangueComponent implements OnInit {
       // Add our langue
       if ((value || '').trim()) {
         this.languesUtilisateur.push({'titre_langue': value.trim()});
+        this.langueService.ajouterLangue(this.keyUtilisateur, {'titre_langue': value.trim()}).then(
+            result => {
+                this.afficherNotification('Ajouté', 'background-verte');
+                
+              }
+        )
+        .catch(
+            error =>{
+                this.afficherNotification('Ajout non réussi', 'background-rouge');
+            }
+        );
       }
 
       // Reset the input value
@@ -90,21 +101,25 @@ export class LangueComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.languesUtilisateur.push({'titre_langue':event.option.viewValue});
-    this.langueService.ajouterLangue(this.keyUtilisateur, {'titre_langue': event.option.viewValue}).then(
-        result => {
-            this.afficherNotification('Ajouté', 'background-verte');
-            
+    let trouve = this.languesUtilisateur.map(a => a.titre_langue).includes(event.option.viewValue);
+    if(!trouve){
+      this.languesUtilisateur.push({'titre_langue':event.option.viewValue});
+      this.langueService.ajouterLangue(this.keyUtilisateur, {'titre_langue': event.option.viewValue}).then(
+          result => {
+              this.afficherNotification('Ajouté', 'background-verte');
+              
+            }
+      )
+      .catch(
+          error =>{
+              this.afficherNotification('Ajout non réussi', 'background-rouge');
           }
-    )
-    .catch(
-        error =>{
-            this.afficherNotification('Ajout non réussi', 'background-rouge');
-        }
-    );
-  
-    this.langueInput.nativeElement.value = '';
-    this.formControl.setValue(null);
+      );
+    
+      this.langueInput.nativeElement.value = '';
+      this.formControl.setValue(null);
+    }
+    
   }
 
   private _filter(value: string): string[] {
