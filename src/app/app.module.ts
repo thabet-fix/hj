@@ -24,6 +24,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatSliderModule } from '@angular/material/slider';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +50,7 @@ import { EducationComponent } from './utilisateur/education/education.component'
 import { ExperienceComponent } from './utilisateur/experience/experience.component';
 import { LangueComponent } from './utilisateur/langue/langue.component';
 import { LangueService } from './utilisateur/langue/langue.service';
+import { TechnologieComponent } from './utilisateur/technologie/technologie.component';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -85,9 +87,11 @@ export const firebaseConfig = {
     EmploiDetailComponent,
     EducationComponent,
     ExperienceComponent,
-    LangueComponent
+    LangueComponent,
+    TechnologieComponent
   ],
   imports: [
+    MatSliderModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
     BrowserModule,

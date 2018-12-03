@@ -101,82 +101,14 @@
       </div>
       <!-- /.bloc-option-profil -->
 
-      <app-education   [groupFormEducation]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-education>
-      <app-experience [groupFormExperience]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-experience>
-      <app-langue         [groupFormLangue]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-langue>
+      <app-education     [groupFormEducation]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-education>
+      <app-experience   [groupFormExperience]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-experience>
+      <app-langue           [groupFormLangue]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-langue>
+      <app-technologie [groupFormTechnologie]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-technologie>
 
       
       
-      <div class="bloc-option-profil">
-          <div class="titre-option-profil souligne">
-              <div class="row">
-                  <div class="col-sm-4">
-                      Compétences <span class="txt-rouge">(Champs obligatoires)</span>
-                  </div>
-                  <!-- /.col-sm-4 -->
-                  <div class="col-sm-2">
-                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas de compétences</button>
-                  </div>
-                  <!-- /.col-sm-2 -->
-              </div>
-              <!-- /.row --> 
-          </div>
-          <!-- /.titre-option-profil -->
-          <div class="row">
-              <div class="col-sm-6">
-                  <div class="txt-infos-profil">
-                      Ajoutez vos compétences en terme de pourcentage, un atout pour vos candidatures, ...
-                  </div>
-                  <!-- /.txt-infos-profil -->
-              </div>
-              <!-- /.col-sm-6 -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-sm-4">
-                  <div class="input-group">
-                      <label class="label-input">Titre</label>
-                      <input type="text" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-4 -->
-              <div class="col-sm-8">
-                  <div class="input-group">
-                      <label class="label-input">Pourcentage</label>
-                      <div class="range-field">
-                          <label class="espacement"></label>
-                          <input type="range" id="test5" min="10" max="100" />
-                          <div class="pull-left pourcentage">
-                              10
-                          </div>
-                          <!-- /.pull-left pourcentage -->
-                          <div class="pull-right pourcentage">
-                              100
-                          </div>
-                          <!-- /.pull-left pourcentage -->
-                          <div class="clearfix"></div>
-                          <!-- /.clearfix -->
-                        </div>
-                  </div>
-                  <!-- /.input-group -->
-              </div>
-              <!-- /.col-sm-8 -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-              <div class="col-xs-6 col-sm-2">
-                  <button class="waves-effect waves-light btn large">ajouter</button>
-              </div>
-              <!-- /.col-xs-6 col-sm-2 -->
-              <div class="col-xs-6 col-sm-2">
-                  <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
-              </div>
-              <!-- /.col-xs-6 col-sm-2 -->
-          </div>
-          <!-- /.row -->
-      </div>
-      <!-- /.bloc-option-profil -->
+      
 
       <div class="bloc-option-profil">
           <div class="titre-option-profil souligne">
