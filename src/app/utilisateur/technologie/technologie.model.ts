@@ -1,17 +1,11 @@
-export class Education {
+export class Technologie {
     public titre: string;
-    public nom_ecole: string;
-    public date_debut: Date;
-    public date_fin: Date;
-    public description: string;
+    public pourcentage: number;
   
     constructor(
-    titre: string, nom_ecole: string, date_debut: Date, date_fin: Date, description: string) {
+    titre: string, pourcentage: number) {
     this.titre = titre;
-    this.nom_ecole = nom_ecole;
-    this.date_debut = date_debut;
-    this.date_fin = date_fin;
-    this.description = description;
+    this.pourcentage = pourcentage;
     }
   } 
   

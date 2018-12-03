@@ -31,12 +31,12 @@
         </thead>
 
         <tbody>
-          <tr *ngFor="let education of educations; let i = index">
+          <tr *ngFor="let technologie of technologies; let i = index">
             <td>{{technologie?.titre}}</td>
-            <td>{{technologie?.pourcentage}}</td>
+            <td><mat-progress-bar class="margin-top5" mode="determinate" [value]="technologie.pourcentage"></mat-progress-bar> <span>{{technologie?.pourcentage}}%</span></td>
             <td class="action"> 
-              <i class="material-icons " [attr.aria-expanded]="!isCollapsed" (click)="onClickModifierEducation(education.$key)">create</i>            
-              <i class="material-icons " (click)="onClickSupprimerEducation(education.$key)">delete</i>
+              <i class="material-icons " [attr.aria-expanded]="!isCollapsed" (click)="onClickModifierTechnologie(technologie.$key)">create</i>            
+              <i class="material-icons " (click)="onClickSupprimerTechnologie(technologie.$key)">delete</i>
             </td>
           </tr>
         </tbody>
@@ -46,44 +46,70 @@
   </div>
   <!-- /.row -->
   <br>
-  <div class="row">
-      <div class="col-sm-4">
-        <mat-form-field class="full-width">
-          <input type="text" style="width: 100%"
-          placeholder="Ajouter une technologie" 
-          aria-label="Number" 
-          matInput 
-          [formControl]="myControl" 
-          [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+  <div id="ajouterTechnologie" class="collapse" [ngbCollapse]="!isCollapsed">
+    <div class="well">
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field class="full-width">
+            <input type="text" style="width: 100%"
+            placeholder="Ajouter une technologie" 
+            aria-label="Number" 
+            matInput 
+            [formControl]="myControl" 
+            [matAutocomplete]="auto"
+            >
+            <mat-autocomplete 
+            name="titre" 
+            #auto="matAutocomplete" 
+            (optionSelected)="onChangeInput($event)" 
+            [ngModel]="(technologieAModifier | async)?.titre"
+            [displayWith]="setSelectPourModif()"
+            [formControl]="inputTitrehtml"
+              >
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <!-- /.col-sm-4 -->
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+          <mat-slider style="width: 100%"
+          [ngModel]="(technologieAModifier | async)?.pourcentage"
+          (change)="onChangeInput($event)"
+          name="pourcentage"
+          thumbLabel
+          [displayWith]="formatLabel"
+          tickInterval="100"
+          min="1"
+          max="100"></mat-slider>
+        </div>
+        <!-- /.col-sm-8 -->
       </div>
-      <!-- /.col-sm-4 -->
-      <div class="col-sm-2"></div>
-      <div class="col-sm-6">
-        <mat-slider style="width: 100%"
-        thumbLabel
-        [displayWith]="formatLabel"
-        tickInterval="100"
-        min="1"
-        max="100"></mat-slider>
-      </div>
-      <!-- /.col-sm-8 -->
+      <!-- /.row -->
+    </div>
+    <!-- /.well -->
   </div>
-  <!-- /.row -->
+  <!-- /#ajouterTechnologie -->
   <div class="row">
-      <div class="col-xs-6 col-sm-2">
-          <button class="waves-effect waves-light btn large">ajouter</button>
-      </div>
-      <!-- /.col-xs-6 col-sm-2 -->
-      <div class="col-xs-6 col-sm-2">
-          <button class="waves-effect waves-light btn large btn-white">ajouter plus</button>
-      </div>
-      <!-- /.col-xs-6 col-sm-2 -->
+    <div class="col-xs-6 col-sm-2" *ngIf="!boutonModifier">
+      <button *ngIf="!etatChange" class="waves-effect waves-light btn large"     [attr.aria-expanded]="!isCollapsed" (click)="onClickAjouter()" type="button" >ajouter</button>
+      <button *ngIf="etatChange"  class="waves-effect waves-light btn large"     (click)="onClickEnregistrerTechnologie()" type="button" >Enregistrer</button>
+    </div>
+    <div class="col-xs-6 col-sm-2" *ngIf="boutonModifier">
+      <button *ngIf="!etatChange" class="waves-effect waves-light btn large"     type="button">Modifier</button>
+      <button *ngIf="etatChange"  class="waves-effect waves-light btn large"     (click)="onClickEnregistrerModifTechnologie()" type="button">Enregistrer</button>
+    </div>
+    <!-- /.col-xs-6 col-sm-2 -->
+    <div class="col-xs-6 col-sm-2" *ngIf="etatOuvert && etatchange">
+      <button class="waves-effect waves-light btn large btn-white" type="button" (click)="onClickFermer()" >Fermer</button>
+    </div>
+    <!-- /.col-xs-6 col-sm-2 -->
+    <div class="col-xs-6 col-sm-2" *ngIf="etatChange">
+      <button class="waves-effect waves-light btn large btn-white" type="button" (click)="onClickAnnuler()">Annuler</button>
+    </div>
+    <!-- /.col-xs-6 col-sm-2 -->
   </div>
   <!-- /.row -->
 </div>

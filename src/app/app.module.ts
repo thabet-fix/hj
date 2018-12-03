@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -51,6 +52,7 @@ import { ExperienceComponent } from './utilisateur/experience/experience.compone
 import { LangueComponent } from './utilisateur/langue/langue.component';
 import { LangueService } from './utilisateur/langue/langue.service';
 import { TechnologieComponent } from './utilisateur/technologie/technologie.component';
+import { TechnologieService } from './utilisateur/technologie/technologie.service';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -91,6 +93,7 @@ export const firebaseConfig = {
     TechnologieComponent
   ],
   imports: [
+    MatProgressBarModule,
     MatSliderModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
@@ -123,6 +126,7 @@ export const firebaseConfig = {
     UtilisateurService,
     EducationService,
     ExperienceService,
+    TechnologieService,
     LangueService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}

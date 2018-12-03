@@ -2,64 +2,54 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { Education } from './education.model';
+import { Technologie } from './technologie.model';
 import { Utilisateur } from '../utilisateur.model';
 
 
 @Injectable()
-export class EducationService{
+export class TechnologieService{
     
     constructor(private afs: AngularFirestore) {
     }
-    educationsLocalTmp : Education[];
-    educationsChanged = new Subject<Education[]>();
-    educationLocalTmp : Education[];
-    educationChanged = new Subject<Education[]>();
+    technologiesLocalTmp : Technologie[];
+    technologiesChanged = new Subject<Technologie[]>();
+    technologieLocalTmp : Technologie[];
+    technologieChanged = new Subject<Technologie[]>();
 
-    getEducations(docUtilisateurId: any){
+    getTechnologies(docUtilisateurId: any){
         //return this.afs.collection('emplois').valueChanges();
-        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('educations')
+        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('technologies')
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({ 
                     $key: action.payload.doc.id,
-                    date_debut: action.payload.doc.data().date_debut,
-                    date_fin:   action.payload.doc.data().date_fin,
                     ...action.payload.doc.data()
                 }));
             })
             .subscribe(
                 (response: any[]) => {
-                    this.educationsLocalTmp = response;
-                    this.educationsChanged.next([...this.educationsLocalTmp]); // spread operator to create a copy
+                    this.technologiesLocalTmp = response;
+                    this.technologiesChanged.next([...this.technologiesLocalTmp]); // spread operator to create a copy
                 }
             );
     }
 
-    getEducation(docUtilisateurId: any, docEducationId: any) : Observable<Education>{
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc<Education>(docEducationId).valueChanges();
+    getTechnologie(docUtilisateurId: any, docTechnologieId: any) : Observable<Technologie>{
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Technologie>('technologies').doc<Technologie>(docTechnologieId).valueChanges();
     }
     
-    ajouterEducation(docUtilisateurId: any, education: Education){
-        let educationJSON = JSON.parse(JSON.stringify(education))
-        console.log("JSON Ajout >> ")
-        console.log(educationJSON)
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
+    ajouterTechnologie(docUtilisateurId: any, technologie: Technologie){
+        let technologieJSON = JSON.parse(JSON.stringify(technologie))
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Technologie>('technologies').add(technologieJSON);
     }
 
-    supprimerEducation(docUtilisateurId: any, docEducationId: any){
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').doc(docEducationId).delete();
+    supprimerTechnologie(docUtilisateurId: any, docTechnologieId: any){
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Technologie>('technologies').doc(docTechnologieId).delete();
     }
 
-    modifierEducation(docUtilisateurId: any, docEducationId: any, education: Education){
-        let educationJSON = JSON.parse(JSON.stringify(education))
-        console.log("utilisateur id >> ")
-        console.log(docUtilisateurId)
-        console.log("document id >> ")
-        console.log(docEducationId)
-        console.log("JSON Modif >> ")
-        console.log(educationJSON)
-        return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('educations').doc(docEducationId).update(educationJSON);
+    modifierTechnologie(docUtilisateurId: any, docTechnologieId: any, technologie: Technologie){
+        let technologieJSON = JSON.parse(JSON.stringify(technologie))
+        return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('technologies').doc(docTechnologieId).update(technologieJSON);
     }
 
 }
