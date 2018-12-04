@@ -1,5 +1,6 @@
 import { Component, OnInit , ViewChild} from '@angular/core';
 import { UtilisateurService } from './utilisateur.service';
+import { InscriptionService } from '../inscription/inscription.service';
 import { Utilisateur } from './utilisateur.model';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
@@ -12,7 +13,7 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnack
 })
 export class UtilisateurComponent implements OnInit {
 
-  constructor(private utilisateurService: UtilisateurService, public snackBar: MatSnackBar) { }
+  constructor(private inscriptionService: InscriptionService, private utilisateurService: UtilisateurService, public snackBar: MatSnackBar) { }
 
   @ViewChild('formProfil') formProfil: NgForm;
   typeContrat: string;
@@ -38,9 +39,11 @@ export class UtilisateurComponent implements OnInit {
       this.axeAF = this.utilisateur.axe_motivation;
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
+      this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
+    
   }
 
   formatLabel(value: number | null) {
