@@ -15,6 +15,7 @@ export class TechnologieService{
     technologiesChanged = new Subject<Technologie[]>();
     technologieLocalTmp : Technologie[];
     technologieChanged = new Subject<Technologie[]>();
+    technologiesDisponibleChanged = new Subject<Technologie[]>();
 
     getTechnologies(docUtilisateurId: any){
         //return this.afs.collection('emplois').valueChanges();
@@ -50,6 +51,21 @@ export class TechnologieService{
     modifierTechnologie(docUtilisateurId: any, docTechnologieId: any, technologie: Technologie){
         let technologieJSON = JSON.parse(JSON.stringify(technologie))
         return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('technologies').doc(docTechnologieId).update(technologieJSON);
+    }
+
+    getTechnologiesDisponible(){ //From Administrator Database
+        return this.afs.collection<any>('technologies_disponibles')
+        .snapshotChanges()
+            .map(actions => {
+                return actions.map(action => ({
+                    ...action.payload.doc.data()
+                }));
+            })
+            .subscribe(
+                (response: any[]) => {
+                    this.technologiesDisponibleChanged.next([...response]); // spread operator to create a copy
+                }
+            );
     }
 
 }

@@ -9,16 +9,7 @@
       <!-- /.row --> 
   </div>
   <!-- /.titre-option-profil -->
-  <div class="row">
-      <div class="col-sm-6">
-          <div class="txt-infos-profil">
-              Ajoutez vos compétences en terme de pourcentage, un atout pour vos candidatures, ...
-          </div>
-          <!-- /.txt-infos-profil -->
-      </div>
-      <!-- /.col-sm-6 -->
-  </div>
-  <!-- /.row -->
+  
   <div class="row">
     <div class="col-sm-12">
       <table class="highlight">
@@ -46,28 +37,25 @@
   </div>
   <!-- /.row -->
   <br>
+  <div class="row">
+      <div class="col-sm-6">
+          <div class="txt-infos-profil">
+              Ajoutez vos compétences en terme de pourcentage, un atout pour vos candidatures, ...
+          </div>
+          <!-- /.txt-infos-profil -->
+      </div>
+      <!-- /.col-sm-6 -->
+  </div>
+  <!-- /.row -->
   <div id="ajouterTechnologie" class="collapse" [ngbCollapse]="!isCollapsed">
     <div class="well">
       <div class="row">
         <div class="col-sm-4">
           <mat-form-field class="full-width">
-            <input type="text" style="width: 100%"
-            placeholder="Ajouter une technologie" 
-            aria-label="Number" 
-            matInput 
-            [formControl]="myControl" 
-            [matAutocomplete]="auto"
-            >
-            <mat-autocomplete 
-            name="titre" 
-            #auto="matAutocomplete" 
-            (optionSelected)="onChangeInput($event)" 
-            [ngModel]="(technologieAModifier | async)?.titre"
-            [displayWith]="setSelectPourModif()"
-            [formControl]="inputTitrehtml"
-              >
-              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}
+            <input type="text" placeholder="Technologie" aria-label="Technologie" matInput [formControl]="inputTitreTechnologie" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeInput($event)" >
+              <mat-option *ngFor="let technologie of filteredTechnologies | async" [value]="technologie.titre">
+                {{technologie.titre}}
               </mat-option>
             </mat-autocomplete>
           </mat-form-field>
@@ -83,7 +71,8 @@
           [displayWith]="formatLabel"
           tickInterval="100"
           min="1"
-          max="100"></mat-slider>
+          max="100"
+          color="warn"></mat-slider>
         </div>
         <!-- /.col-sm-8 -->
       </div>

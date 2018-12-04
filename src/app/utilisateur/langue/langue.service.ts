@@ -53,7 +53,7 @@ export class LangueService{
         return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('langues').doc(docLangueId).update(langueJSON);
     }
 
-    getLanguesDisponible(){
+    getLanguesDisponible(){ //From Administrator Database
         return this.afs.collection<any>('langues_disponibles')
         .snapshotChanges()
             .map(actions => {
