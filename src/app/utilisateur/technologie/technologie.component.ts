@@ -20,7 +20,6 @@ export class TechnologieComponent implements OnInit {
   @Input() keyUtilisateur: any;
   @Input('groupFormTechnologie') formTechnologie: FormGroup;
 
-  test: string = "titre de test"
   inputTitre: string;
   technologies: Technologie[];
   tmpTechnologie: Technologie = new Technologie("", 10);
@@ -32,6 +31,7 @@ export class TechnologieComponent implements OnInit {
   boutonModifier: boolean = false;
   docTechnologieIdCourant: any;
   isCollapsed = false;
+  selectedTechnologie: string;
 
   technologiesDisponibles: Technologie[] = [
     {titre: 'css', pourcentage: 50},
@@ -39,14 +39,11 @@ export class TechnologieComponent implements OnInit {
     {titre: 'jQuery', pourcentage: 30}
   ];
   inputTitreTechnologie = new FormControl();
-  //technologiesDisponibles: string[] = ['One', 'Two', 'Three'];
   filteredTechnologies: Observable<Technologie[]>;
 
   constructor(private technologieService: TechnologieService, public snackBar: MatSnackBar, public dialog: MatDialog ) { }
   
   ngOnInit() {
-    
-      
 
     this.technologieService.technologiesChanged.subscribe( datas => {
       this.technologies = datas;      
@@ -57,9 +54,8 @@ export class TechnologieComponent implements OnInit {
       this.technologiesDisponibles = datas;      
       this.filteredTechnologies = this.inputTitreTechnologie.valueChanges
       .pipe(
-        startWith<string | Technologie>(''),
-        map(value => typeof value === 'string' ? value : value.titre),
-        map(titre => titre ? this._filter(titre) : this.technologiesDisponibles.slice())
+        startWith(null),
+        map((technologie: string | null) => technologie ? this._filter(technologie) : this.technologiesDisponibles.slice())
       );
     })    
     this.technologieService.getTechnologiesDisponible();
@@ -148,10 +144,6 @@ export class TechnologieComponent implements OnInit {
   }
 
   getTechnologieAModifier(){
-    console.log("enter")
-    console.log(this.tmpNouvelleTechnologieModifie.titre)
-    console.log(this.tmpNouvelleTechnologieModifie)
-    this.tmpNouvelleTechnologieModifie.titre = this.inputTitre;
     this.tmpNouvelleTechnologieModifie.pourcentage = this.formTechnologie.controls['pourcentage'].value;
     return this.tmpNouvelleTechnologieModifie;
   } 
@@ -160,10 +152,11 @@ export class TechnologieComponent implements OnInit {
     this.boutonModifier = true;
     this.etatOuvert = true;
     this.docTechnologieIdCourant = docTechnologieId;
-    console.log(docTechnologieId)
     this.isCollapsed = true;
-    this.technologieService.getTechnologie(this.keyUtilisateur, docTechnologieId).subscribe(datas =>{
-      this.tmpNouvelleTechnologieModifie = datas;
+    this.technologieAModifier = this.technologieService.getTechnologie(this.keyUtilisateur, docTechnologieId);
+    this.technologieAModifier.subscribe(datas =>{
+      this.tmpNouvelleTechnologieModifie = datas;  
+      this.inputTitreTechnologie.disable();
       this.inputTitreTechnologie.setValue(this.tmpNouvelleTechnologieModifie.titre)
     })
   }
@@ -182,11 +175,13 @@ export class TechnologieComponent implements OnInit {
     this.etatChange = false;
     this.formTechnologie.reset();
     this.isCollapsed = false;
-  }
+  }  
 
   onClickAjouter(){
     this.etatOuvert = true;
-    this.isCollapsed = true
+    this.isCollapsed = true;
+    this.inputTitreTechnologie.enable();
+    this.inputTitreTechnologie.setValue("")
   }
   
   onClickModifier(){

@@ -52,8 +52,14 @@
       <div class="row">
         <div class="col-sm-4">
           <mat-form-field class="full-width">
-            <input type="text" placeholder="Technologie" aria-label="Technologie" matInput [formControl]="inputTitreTechnologie" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeInput($event)" >
+            <input type="text" 
+            placeholder="Technologie" 
+            aria-label="Technologie" 
+            matInput 
+            [formControl]="inputTitreTechnologie" 
+            [matAutocomplete]="auto"
+            >
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeInput($event)">
               <mat-option *ngFor="let technologie of filteredTechnologies | async" [value]="technologie.titre">
                 {{technologie.titre}}
               </mat-option>
@@ -91,7 +97,7 @@
       <button *ngIf="etatChange"  class="waves-effect waves-light btn large"     (click)="onClickEnregistrerModifTechnologie()" type="button">Enregistrer</button>
     </div>
     <!-- /.col-xs-6 col-sm-2 -->
-    <div class="col-xs-6 col-sm-2" *ngIf="etatOuvert && etatchange">
+    <div class="col-xs-6 col-sm-2" *ngIf="etatOuvert && !etatchange">
       <button class="waves-effect waves-light btn large btn-white" type="button" (click)="onClickFermer()" >Fermer</button>
     </div>
     <!-- /.col-xs-6 col-sm-2 -->
