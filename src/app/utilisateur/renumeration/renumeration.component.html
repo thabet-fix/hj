@@ -1,0 +1,27 @@
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipListRenum>
+    <mat-chip
+      *ngFor="let renumeration of renumerationsUtilisateur"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(renumeration, renumeration.$key)">
+      {{renumeration.titre_renumeration}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Palier rémunération"
+      #renumerationInput
+      [formControl]="renumerationCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipListRenum"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let renumeration of filteredRenumerations | async" [value]="renumeration">
+      {{renumeration.titre}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+

@@ -136,21 +136,14 @@
           </div>
           <!-- /.row -->
           <div class="row">
-              <div class="col-sm-4">
-                <div class="input-group">
-                        <select>
-                            <option value="" disabled selected>Palier rémunération</option>
-                            <option>choix 1</option>
-                            <option>choix 2</option>
-                            <option>choix 3</option>
-                        </select><br>   
-                        <label class="label-input">Axe de motivation</label>
-                        <textarea class="champ-input materialize-textarea" [ngModel]="axeAF" name="axeMotivation"></textarea>
-                    </div>
-                    <!-- /.input-group -->
+              <div class="col-sm-5">
+                <app-renumeration [groupFormRenumeration]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-renumeration>
+                <br><label class="label-input">Axe de motivation</label><br>
+                <textarea class="champ-input materialize-textarea" [ngModel]="axeAF" name="axeMotivation"></textarea>
+                
               </div>
               <!-- /.col-sm-4 -->
-              <div class="col-sm-6 col-sm-push-2">
+              <div class="col-sm-6 col-sm-push-1">
                   <div class="input-group input-sivp">
                       <div class="row">
                           <div class="col-sm-4">

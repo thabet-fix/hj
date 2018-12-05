@@ -53,6 +53,8 @@ import { LangueComponent } from './utilisateur/langue/langue.component';
 import { LangueService } from './utilisateur/langue/langue.service';
 import { TechnologieComponent } from './utilisateur/technologie/technologie.component';
 import { TechnologieService } from './utilisateur/technologie/technologie.service';
+import { RenumerationComponent } from './utilisateur/renumeration/renumeration.component';
+import { RenumerationService } from './utilisateur/renumeration/renumeration.service';
 
 const appRoutes: Routes= [
   { path: '', redirectTo: '/', pathMatch: 'full' },
@@ -90,7 +92,8 @@ export const firebaseConfig = {
     EducationComponent,
     ExperienceComponent,
     LangueComponent,
-    TechnologieComponent
+    TechnologieComponent,
+    RenumerationComponent
   ],
   imports: [
     MatProgressBarModule,
@@ -128,6 +131,7 @@ export const firebaseConfig = {
     ExperienceService,
     TechnologieService,
     LangueService,
+    RenumerationService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
     {provide: MatPaginatorIntl, useClass: EmploiComponent}
   ],
