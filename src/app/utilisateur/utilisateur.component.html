@@ -114,13 +114,9 @@
           <div class="titre-option-profil souligne">
               <div class="row">
                   <div class="col-sm-4">
-                      Motivations <span class="txt-rouge">(Champs obligatoires)</span>
+                      Motivations
                   </div>
                   <!-- /.col-sm-4 -->
-                  <div class="col-sm-2">
-                      <button class="waves-effect waves-light btn btn-experience large (class.active disponible)">Pas de compétences</button>
-                  </div>
-                  <!-- /.col-sm-2 -->
               </div>
               <!-- /.row --> 
           </div>
@@ -139,7 +135,7 @@
               <div class="col-sm-5">
                 <app-renumeration [groupFormRenumeration]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-renumeration>
                 <br><label class="label-input">Axe de motivation</label><br>
-                <textarea class="champ-input materialize-textarea" [ngModel]="axeAF" name="axeMotivation"></textarea>
+                <textarea class="champ-input materialize-textarea" [ngModel]="axeAF" name="axeMotivation" style="width:100%; height:120px;"></textarea>
                 
               </div>
               <!-- /.col-sm-4 -->
@@ -147,26 +143,35 @@
                   <div class="input-group input-sivp">
                       <div class="row">
                           <div class="col-sm-4">
-                              <span class="txt-gris">Eligible au SIVP</span>
+                              
                           </div>
                           <!-- /.col-sm-3 -->
                           <div class="col-sm-5">
-                              <div class="switch">
-                                  <label>
-                                      Non
-                                      <input type="checkbox">
-                                      <span class="lever"></span>
-                                      Oui
-                                  </label>
-                              </div>
+                            <mat-slide-toggle 
+                            color="warn"
+                            (change)="onClickStatusSivp()"
+                            [checked]="dureeSivpStatus">
+                            Eligible au SIVP</mat-slide-toggle>
                           </div>
                           <!-- /.col-sm-3 -->
                       </div>
                       <!-- /.row -->
-                      <label class="label-input txt-sivp">Durée SIVP restante ( mois )</label>
+                      <label class="label-input txt-sivp">Durée SIVP restante ( <span *ngIf="dureeSivpAF!==undefined">{{dureeSivpAF}}</span> mois )</label>
                       <div class="range-field">
                           <label class="espacement"></label>
-                          <input type="range" id="test5" min="1" max="24" />
+                          <mat-slider style="width: 100%"
+                            name="dureeSivp"
+                            
+                            [disabled]="!dureeSivpStatus"
+                            [(ngModel)]="dureeSivpAF"
+                            (change)="onChangeSivp($event)"
+                            thumbLabel
+                            [displayWith]="formatLabel"
+                            tickInterval="24"
+                            min="1"
+                            max="24"
+                            color="warn">
+                          </mat-slider>
                           <div class="pull-left pourcentage">
                               1
                           </div>

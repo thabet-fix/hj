@@ -20,7 +20,10 @@ export class UtilisateurComponent implements OnInit {
   utilisateur: Utilisateur;
   resumeAF: string;
   axeAF: string;
+  dureeSivpAF: number = 10;
   utilisateurCourant: any;
+  dureeSivpStatus : boolean = true;
+  
   
   config = new MatSnackBarConfig();
 
@@ -33,9 +36,27 @@ export class UtilisateurComponent implements OnInit {
       this.utilisateurService.setDocUtilisateurId(this.utilisateur.$key);
       this.resumeAF = this.utilisateur.resume;
       this.axeAF = this.utilisateur.axe_motivation;
+      this.dureeSivpStatus = this.utilisateur.sivp;
+      this.dureeSivpAF = this.utilisateur.duree_sivp;
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
+  }
+
+  formatLabel(value: number | null) {
+    if (!value) {
+      return 0;
+    }
+    return value;
+  }
+
+  onChangeSivp(event){
+    
+  }
+
+  onClickStatusSivp(){
+    this.dureeSivpStatus=!this.dureeSivpStatus; 
+    if(!this.dureeSivpStatus){this.dureeSivpAF=0}
   }
 
   afficherNotification(message: string, couleur: string){
@@ -64,6 +85,8 @@ export class UtilisateurComponent implements OnInit {
   onClickMettreAJour(){
     this.utilisateur.resume = this.formProfil.value.resume;
     this.utilisateur.axe_motivation = this.formProfil.value.axeMotivation;
+    this.utilisateur.sivp = this.dureeSivpStatus;
+    this.utilisateur.duree_sivp = this.dureeSivpAF;
     this.modifierUtilisateur();
   }
 

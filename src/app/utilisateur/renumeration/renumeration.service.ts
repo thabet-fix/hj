@@ -54,7 +54,7 @@ export class RenumerationService{
     }
 
     getRenumerationsDisponible(){ //From Administrator Database
-        return this.afs.collection<any>('renumerations_disponibles')
+        return this.afs.collection<any>('renumerations_disponibles', ref => ref.orderBy("titre"))
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({
