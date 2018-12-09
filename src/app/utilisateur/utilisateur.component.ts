@@ -5,6 +5,8 @@ import { Utilisateur } from './utilisateur.model';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition,} from '@angular/material';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-utilisateur',
@@ -13,7 +15,7 @@ import { MatSnackBar, MatSnackBarConfig, MatSnackBarHorizontalPosition, MatSnack
 })
 export class UtilisateurComponent implements OnInit {
 
-  constructor(private inscriptionService: InscriptionService, private utilisateurService: UtilisateurService, public snackBar: MatSnackBar) { }
+  constructor(private inscriptionService: InscriptionService, private utilisateurService: UtilisateurService, public snackBar: MatSnackBar, private storage: AngularFireStorage) { }
 
   @ViewChild('formProfil') formProfil: NgForm;
   typeContrat: string;
@@ -25,8 +27,11 @@ export class UtilisateurComponent implements OnInit {
   utilisateurCourant: any;
   dureeSivpStatus : boolean = true;
   
-  
-  config = new MatSnackBarConfig();
+  uploadCvPercent: Observable<number>;
+  cvUtilisateurAF: Observable<string | null>;
+  downloadURL: Observable<string>;
+  config = new MatSnackBarConfig()
+  urlCv: string;;
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
@@ -40,12 +45,36 @@ export class UtilisateurComponent implements OnInit {
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
       this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
+      this.urlCv = this.utilisateur.cv;
+       /********** Get CV */
+      /*const refCv = this.storage.ref('users/davideast.jpg');
+      this.cvUtilisateurAF = refCv.getDownloadURL();*/
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
      
   }
-  /** */
+  
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'name-your-file-path-here';
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+     // observe percentage changes
+    this.uploadCvPercent = task.percentageChanges();
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+        finalize(() => 
+        this.downloadURL = fileRef.getDownloadURL()
+      )
+     )
+    .subscribe()
+    // datas =>{
+    //   this.utilisateur.cv = datas.downloadURL;
+    //   this.modifierUtilisateur();
+    // }
+  }
+
   formatLabel(value: number | null) {
     if (!value) {
       return 0;
