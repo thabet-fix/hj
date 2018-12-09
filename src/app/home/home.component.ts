@@ -97,7 +97,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     })
 
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
-      this.isAuthenticated = authStatus;
+      this.isAuthenticated = authStatus; 
     });
 
     this.utilisateurService.utilisateursChanged.subscribe(datas => {

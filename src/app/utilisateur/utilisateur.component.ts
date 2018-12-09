@@ -43,9 +43,9 @@ export class UtilisateurComponent implements OnInit {
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
-    
+     
   }
-
+  /** */
   formatLabel(value: number | null) {
     if (!value) {
       return 0;
