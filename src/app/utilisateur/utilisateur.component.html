@@ -71,7 +71,7 @@
                                 <tr>
                                 <td>
                                     <mat-progress-bar *ngIf="(uploadCvPercent | async) && (uploadCvPercent | async)!==100" mode="determinate" [value]="uploadCvPercent | async"></mat-progress-bar>
-                                    
+
                                     <a *ngIf="(uploadCvPercent | async)===100" [href]="downloadURL | async">Votre CV</a>
                                 </td>
                                 <td class="action"> 
