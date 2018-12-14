@@ -51,6 +51,57 @@
       </div>
       <!-- /.info-etape -->
       <div class="bloc-option-profil">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="titre-option-profil">
+                        Uploader votre CV
+                    </div>
+                    <!-- /.titre-option-profil -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="highlight">
+                            <thead>
+                                <tr>
+                                <th>CV</th>
+                                <th>Actions</th>
+                                </tr>
+                            </thead>
+                    
+                            <tbody>
+                                <tr>
+                                <td>
+                                    <mat-progress-bar *ngIf="(uploadCvPercent | async) && (uploadCvPercent | async)!==100" mode="determinate" [value]="uploadCvPercent | async"></mat-progress-bar>
+                                    
+                                    <a *ngIf="(uploadCvPercent | async)===100" [href]="downloadURL | async">Votre CV</a>
+                                </td>
+                                <td class="action"> 
+                                    <i *ngIf="(uploadCvPercent | async)===100" class="material-icons " (click)="onClickSupprimerCV(cv.$key)">delete</i>
+                                </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col-sm-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <button type="button" class="bg-rouge" mat-button color="warn" mat-flat-button (click)="fileInput.click()">
+                                Uploader <i class="fa fa-search"></i>
+                            </button>
+                            <input hidden type="file" #fileInput class="hidden" (change)="uploadFile($event)">
+                            
+                            
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.col-sm-6 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.bloc-option-profil -->
+      <div class="bloc-option-profil">
           <div class="row">
               <div class="col-sm-6">
                   <div class="titre-option-profil">
