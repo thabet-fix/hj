@@ -60,6 +60,27 @@ export class InscriptionService{
         );
     }
 
+    changerMotPasseUtilisateur(email: any, oldPassword: any, newPassword: any){
+        console.log("Acces changer")
+        
+            console.log("Acces changer2")
+            this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
+            .then(
+                result => {
+                    console.log("connected")
+                    console.log(result.user)
+                    result.user.updatePassword(newPassword)
+                    this.afAuth.auth.updateCurrentUser(result.user)
+                }
+            )
+            .catch(
+                error =>{
+                    console.log("disconnected")
+                    console.log(error);
+                }
+            );
+        
+    }
     isAuth() {
         return this.isAuthenticated;
     }
