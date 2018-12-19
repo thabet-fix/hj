@@ -31,7 +31,10 @@ export class UtilisateurComponent implements OnInit {
   cvUtilisateurAF: Observable<string | null>;
   downloadURL: Observable<string>;
   config = new MatSnackBarConfig()
-  urlCv: string;;
+  urlCv: string;
+  imgProfil: string;
+  imgTab: string[];
+  urlImgProfil: string;
 
   ngOnInit() {
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
@@ -46,9 +49,20 @@ export class UtilisateurComponent implements OnInit {
       this.dureeSivpAF = this.utilisateur.duree_sivp;
       this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
       this.urlCv = this.utilisateur.cv;
+      this.urlImgProfil = this.utilisateur.image;
        /********** Get CV */
       /*const refCv = this.storage.ref('users/davideast.jpg');
       this.cvUtilisateurAF = refCv.getDownloadURL();*/
+      
+        
+      const ref = this.storage.ref('utilisateurs/'+this.urlImgProfil);
+      ref.getDownloadURL().subscribe(data =>{
+        console.log("bon bon")
+        console.log(data)
+        this.imgProfil = data;
+      });
+        
+      console.log(this.imgProfil);
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
