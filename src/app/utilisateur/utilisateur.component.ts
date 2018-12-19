@@ -47,7 +47,8 @@ export class UtilisateurComponent implements OnInit {
       this.axeAF = this.utilisateur.axe_motivation;
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
-      this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
+      // TO DO Changer mot de passe
+      //this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
       this.urlCv = this.utilisateur.cv;
       this.urlImgProfil = this.utilisateur.image;
        /********** Get CV */
@@ -57,8 +58,6 @@ export class UtilisateurComponent implements OnInit {
         
       const ref = this.storage.ref('utilisateurs/'+this.urlImgProfil);
       ref.getDownloadURL().subscribe(data =>{
-        console.log("bon bon")
-        console.log(data)
         this.imgProfil = data;
       });
         
