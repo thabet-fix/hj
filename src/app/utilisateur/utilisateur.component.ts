@@ -29,7 +29,8 @@ export class UtilisateurComponent implements OnInit {
   
   uploadCvPercent: Observable<number>;
   cvUtilisateurAF: Observable<string | null>;
-  downloadURL: Observable<string>;
+  downloadURLChanged: Observable<string>;
+  downloadURLInitial: string;
   config = new MatSnackBarConfig()
   urlCv: string;
   imgProfil: string;
@@ -56,12 +57,19 @@ export class UtilisateurComponent implements OnInit {
       this.cvUtilisateurAF = refCv.getDownloadURL();*/
       
         
-      const ref = this.storage.ref('utilisateurs/'+this.urlImgProfil);
-      ref.getDownloadURL().subscribe(data =>{
+      const refProfil = this.storage.ref('utilisateurs/'+this.urlImgProfil);
+      refProfil.getDownloadURL().subscribe(data =>{
         this.imgProfil = data;
+        console.log(this.imgProfil);
       });
-        
-      console.log(this.imgProfil);
+
+      const refCv = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur);
+      refCv.getDownloadURL().subscribe(data =>{
+        this.downloadURLInitial = data;
+        console.log(this.downloadURLInitial);
+      });        
+      
+      
     });
     this.utilisateurService.getUtilisateurDev();
     this.config.duration = 5000;    
@@ -70,7 +78,7 @@ export class UtilisateurComponent implements OnInit {
   
   uploadFile(event) {
     const file = event.target.files[0];
-    const filePath = 'name-your-file-path-here';
+    const filePath = 'utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur;
     const fileRef = this.storage.ref(filePath);
     const task = this.storage.upload(filePath, file);
      // observe percentage changes
@@ -78,7 +86,7 @@ export class UtilisateurComponent implements OnInit {
     // get notified when the download URL is available
     task.snapshotChanges().pipe(
         finalize(() => 
-        this.downloadURL = fileRef.getDownloadURL()
+        this.downloadURLChanged = fileRef.getDownloadURL()
       )
      )
     .subscribe()
