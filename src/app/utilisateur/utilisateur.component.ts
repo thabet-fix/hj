@@ -29,15 +29,17 @@ export class UtilisateurComponent implements OnInit {
   
   uploadCvPercent: Observable<number>;
   cvUtilisateurAF: Observable<string | null>;
-  downloadURLChanged: Observable<string>;
-  downloadURLInitial: string;
+  downloadCvURLChanged: Observable<string>;
+  downloadCvURLInitial: string;
   config = new MatSnackBarConfig()
   urlCv: string;
   imgProfil: string;
   imgTab: string[];
   urlImgProfil: string;
+  afficheProgress: boolean = false;
 
   ngOnInit() {
+    //this.utilisateur.$key = undefined;
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
       console.log(datas)
       this.utilisateurs = datas;
@@ -60,13 +62,11 @@ export class UtilisateurComponent implements OnInit {
       const refProfil = this.storage.ref('utilisateurs/'+this.urlImgProfil);
       refProfil.getDownloadURL().subscribe(data =>{
         this.imgProfil = data;
-        console.log(this.imgProfil);
       });
 
       const refCv = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur);
       refCv.getDownloadURL().subscribe(data =>{
-        this.downloadURLInitial = data;
-        console.log(this.downloadURLInitial);
+        this.downloadCvURLInitial = data;
       });        
       
       
@@ -83,17 +83,19 @@ export class UtilisateurComponent implements OnInit {
     const task = this.storage.upload(filePath, file);
      // observe percentage changes
     this.uploadCvPercent = task.percentageChanges();
+
     // get notified when the download URL is available
     task.snapshotChanges().pipe(
-        finalize(() => 
-        this.downloadURLChanged = fileRef.getDownloadURL()
+        finalize(() => {
+        this.downloadCvURLChanged = fileRef.getDownloadURL();
+        this.afficheProgress = false;
+        }
       )
      )
-    .subscribe()
-    // datas =>{
-    //   this.utilisateur.cv = datas.downloadURL;
-    //   this.modifierUtilisateur();
-    // }
+    .subscribe(data =>{
+      this.downloadCvURLInitial = undefined;
+      this.afficheProgress = true;
+    })
   }
 
   formatLabel(value: number | null) {

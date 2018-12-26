@@ -58,7 +58,7 @@
                     </div>
                     <!-- /.titre-option-profil -->
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12"> 
                             <table class="highlight">
                             <thead>
                                 <tr>
@@ -70,10 +70,10 @@
                             <tbody>
                                 <tr>
                                 <td>
-                                    <mat-progress-bar *ngIf="(uploadCvPercent | async) && (uploadCvPercent | async)!==100" mode="determinate" [value]="uploadCvPercent | async"></mat-progress-bar>
-
-                                    <a *ngIf="downloadURLInitial" [href]="downloadURLInitial">Votre CV</a>
-                                    <a *ngIf="downloadURLChanged | async" [href]="downloadURLChanged | async">Votre CV</a>
+                                    <mat-progress-bar *ngIf="afficheProgress" mode="determinate" [value]="uploadCvPercent | async"></mat-progress-bar>
+                                    
+                                    <a *ngIf="downloadCvURLInitial" [href]="downloadCvURLInitial" target="_blank">Votre CV</a>
+                                    <a *ngIf="downloadCvURLChanged | async" [href]="downloadCvURLChanged | async" target="_blank">Votre nouveau CV</a>
                                 </td>
                                 <td class="action"> 
                                     <i *ngIf="(uploadCvPercent | async)===100" class="material-icons " (click)="onClickSupprimerCV(cv.$key)">delete</i>
@@ -87,6 +87,7 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-xs-4">
+                            <br>
                             <button type="button" class="bg-rouge" mat-button color="warn" mat-flat-button (click)="fileInput.click()">
                                 Uploader <i class="fa fa-search"></i>
                             </button>
@@ -153,11 +154,10 @@
       </div>
       <!-- /.bloc-option-profil -->
 
-      <app-education     [groupFormEducation]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-education>
-      <app-experience   [groupFormExperience]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-experience>
-      <app-langue           [groupFormLangue]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-langue>
-      <app-technologie [groupFormTechnologie]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-technologie>
-
+      <app-education   *ngIf="utilisateur"     [groupFormEducation]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-education>
+      <app-experience  *ngIf="utilisateur"    [groupFormExperience]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-experience>
+      <app-langue      *ngIf="utilisateur"        [groupFormLangue]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-langue>
+      <app-technologie *ngIf="utilisateur"   [groupFormTechnologie]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-technologie>
       
       
       
@@ -185,7 +185,7 @@
           <!-- /.row -->
           <div class="row">
               <div class="col-sm-5">
-                <app-renumeration [groupFormRenumeration]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-renumeration>
+                <app-renumeration *ngIf="utilisateur" [groupFormRenumeration]="formProfil" [keyUtilisateur]="utilisateur.$key"></app-renumeration>
                 <br><label class="label-input">Axe de motivation</label><br>
                 <textarea class="champ-input materialize-textarea" [ngModel]="axeAF" name="axeMotivation" style="width:100%; height:120px;"></textarea>
                 

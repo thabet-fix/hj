@@ -31,7 +31,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 /************** Import des services ****************/
@@ -135,7 +135,8 @@ export const firebaseConfig = {
     LangueService,
     RenumerationService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
-    {provide: MatPaginatorIntl, useClass: EmploiComponent}
+    {provide: MatPaginatorIntl, useClass: EmploiComponent},
+    {provide: StorageBucket, useValue: 'hellojob-2d944.appspot.com'}
   ],
   entryComponents: [
     PopUpInscription,
