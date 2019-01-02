@@ -1650,3 +1650,13 @@ background: #428bca;
 .hidden{
     display: none;/**/
 }
+
+.btn-modifier{
+    font-size: 10px !important;
+    color: #f51818 !important;
+}
+.btn-modifier:hover, .btn-modifier:focus{
+    font-size: 10px !important;
+    color: #fff !important;
+    background: none !important;
+}

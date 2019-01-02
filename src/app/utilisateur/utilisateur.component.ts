@@ -59,7 +59,7 @@ export class UtilisateurComponent implements OnInit {
       this.cvUtilisateurAF = refCv.getDownloadURL();*/
       
         
-      const refProfil = this.storage.ref('utilisateurs/'+this.urlImgProfil);
+      const refProfil = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/image-profil-'+this.utilisateur.nom_utilisateur);
       refProfil.getDownloadURL().subscribe(data =>{
         this.imgProfil = data;
       });
@@ -96,6 +96,25 @@ export class UtilisateurComponent implements OnInit {
       this.downloadCvURLInitial = undefined;
       this.afficheProgress = true;
     })
+  }
+  changeImageProfil(event) {
+    const file = event.target.files[0];
+    const filePath = 'utilisateurs/'+this.utilisateur.nom_utilisateur+'/image-profil-'+this.utilisateur.nom_utilisateur;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+     // observe percentage changes
+    this.uploadCvPercent = task.percentageChanges();
+
+    // get notified when the download URL is available
+    task.snapshotChanges().pipe(
+        finalize(() => {
+        fileRef.getDownloadURL().subscribe(data =>{
+          this.imgProfil = data;
+        });
+        }
+      )
+     )
+    .subscribe()
   }
 
   formatLabel(value: number | null) {

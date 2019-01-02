@@ -5,6 +5,8 @@
       <div class="container">
           <div class="avatar">
               <img [attr.src]="imgProfil"  class="img-circle shadow" alt="" width="80">
+              <div><button type="button" class="btn-modifier" mat-button (click)="imageProfilInput.click()">Modifier</button></div>
+              <input hidden type="file" #imageProfilInput class="hidden" (change)="changeImageProfil($event)">
           </div>
           <!-- /.avatar -->
           <div class="desc-profil">
