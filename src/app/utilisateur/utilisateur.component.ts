@@ -78,8 +78,21 @@ export class UtilisateurComponent implements OnInit {
     this.config.duration = 5000;    
      
   }
-  onClickModifierMotPasse(form: NgForm){
-    this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", form.value.ancienMotDePasse, form.value.newMotDePasse)
+  onClickModifierMotPasse(){
+    this.inscriptionService.changerMotPasseUtilisateur(this.utilisateur.email, this.formProfil.value.ancienMotDePasse, this.formProfil.value.newMotDePasse)
+    .then(
+        result => {
+            result.user.updatePassword(this.formProfil.value.newMotDePasse)
+            this.inscriptionService.updateUtilisateurCourant(result.user);
+            this.afficherNotification('Sauvegardé', 'background-verte');
+        }
+    )
+    .catch(
+        error =>{
+            console.log(error);
+            this.afficherNotification('Modification mot de passe non réussi', 'background-rouge');
+        }
+    );
   }
   onClickSupprimerCV(event){
     const filePath = 'utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur;

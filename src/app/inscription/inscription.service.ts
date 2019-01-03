@@ -60,26 +60,29 @@ export class InscriptionService{
         );
     }
 
-    changerMotPasseUtilisateur(email: any, oldPassword: string, newPassword: any){
-        console.log("Acces changer")
+    changerMotPasseUtilisateur(email: any, oldPassword: any, newPassword: any){
         
-            console.log("Acces changer2")
-            this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
-            .then(
-                result => {
-                    console.log("connected")
-                    console.log(result.user)
-                    result.user.updatePassword(newPassword)
-                    this.afAuth.auth.updateCurrentUser(result.user)
-                }
-            )
-            .catch(
-                error =>{
-                    console.log("disconnected")
-                    console.log(error);
-                }
-            );
-        
+        /*this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
+        .then(
+            result => {
+                console.log("connected")
+                console.log(result.user)
+                result.user.updatePassword(newPassword)
+                this.afAuth.auth.updateCurrentUser(result.user)
+            }
+        )
+        .catch(
+            error =>{
+                console.log("disconnected")
+                console.log(error);
+            }
+        );*/
+        return this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
+    
+    }
+
+    updateUtilisateurCourant(result){
+        this.afAuth.auth.updateCurrentUser(result)
     }
     isAuth() {
         return this.isAuthenticated;
