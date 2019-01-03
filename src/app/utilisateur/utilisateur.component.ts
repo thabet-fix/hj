@@ -62,6 +62,9 @@ export class UtilisateurComponent implements OnInit {
       const refProfil = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/image-profil-'+this.utilisateur.nom_utilisateur);
       refProfil.getDownloadURL().subscribe(data =>{
         this.imgProfil = data;
+      },
+      error=>{
+        this.imgProfil = "assets/images/avatar.png"
       });
 
       const refCv = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur);
@@ -75,7 +78,16 @@ export class UtilisateurComponent implements OnInit {
     this.config.duration = 5000;    
      
   }
-  
+  onClickModifierMotPasse(form: NgForm){
+    this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", form.value.ancienMotDePasse, form.value.newMotDePasse)
+  }
+  onClickSupprimerCV(event){
+    const filePath = 'utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur;
+    const fileRef = this.storage.ref(filePath).delete();
+    this.downloadCvURLInitial = undefined;
+    this.downloadCvURLChanged = undefined;
+
+  }
   uploadFile(event) {
     const file = event.target.files[0];
     const filePath = 'utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur;

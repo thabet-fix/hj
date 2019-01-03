@@ -60,7 +60,7 @@ export class InscriptionService{
         );
     }
 
-    changerMotPasseUtilisateur(email: any, oldPassword: any, newPassword: any){
+    changerMotPasseUtilisateur(email: any, oldPassword: string, newPassword: any){
         console.log("Acces changer")
         
             console.log("Acces changer2")

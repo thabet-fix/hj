@@ -59,7 +59,8 @@
                         Uploader votre CV
                     </div>
                     <!-- /.titre-option-profil -->
-                    <div class="row">
+
+                    <div class="row" *ngIf="downloadCvURLInitial || (downloadCvURLChanged | async) || afficheProgress">
                         <div class="col-sm-12"> 
                             <table class="highlight">
                             <thead>
@@ -78,7 +79,7 @@
                                     <a *ngIf="downloadCvURLChanged | async" [href]="downloadCvURLChanged | async" target="_blank">Votre nouveau CV</a>
                                 </td>
                                 <td class="action"> 
-                                    <i *ngIf="(uploadCvPercent | async)===100" class="material-icons " (click)="onClickSupprimerCV(cv.$key)">delete</i>
+                                    <i *ngIf="downloadCvURLInitial || (downloadCvURLChanged | async)" class="material-icons " (click)="onClickSupprimerCV($event)">delete</i>
                                 </td>
                                 </tr>
                             </tbody>
@@ -270,24 +271,20 @@
           <!-- /.titre-option-profil -->
           <div class="row">
               <div class="col-sm-4">
-                  <div class="input-group">
-                      <label class="label-input">Mot de passe actuel</label>
-                      <input type="password" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
+                  <mat-form-field class="large mp">
+                    <input name="ancienMotDePasse" matInput placeholder="Mot de passe actuel" type="password" name="motPasseActuelle" ngModel required>
+                  </mat-form-field>
               </div>
               <!-- /.col-sm-4 -->
               <div class="col-sm-4">
-                  <div class="input-group">
-                      <label class="label-input">Nouveau mot de passe</label>
-                      <input type="password" class="champ-input" placeholder="">
-                  </div>
-                  <!-- /.input-group -->
+                <mat-form-field class="large mp">
+                    <input name="newMotDePasse" matInput placeholder="Nouveau mot de passe" type="password" name="motPasseNouveau" ngModel required>
+                  </mat-form-field>
               </div>
               <!-- /.col-sm-4 -->
               <div class="col-sm-4">
                   <div class="input-group input-mp">
-                      <button class="waves-effect waves-light btn large">CHANGER LE MOT DE PASSE</button>
+                      <button class="waves-effect waves-light btn large" (click)="onClickModifierMotPasse(formProfil)">CHANGER LE MOT DE PASSE</button>
                   </div>
                   <!-- /.input-group -->
               </div>
