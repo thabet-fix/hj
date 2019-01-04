@@ -22,7 +22,7 @@ export class Utilisateur {
   public axe_motivation: string;
   public sivp : boolean;
   public duree_sivp: number;
-  public cv : string;
+  public cv : boolean;
   public status : boolean;
 
   constructor(
@@ -30,7 +30,7 @@ export class Utilisateur {
     sexe: string, date_naissance: Date, telephone: string, email: string,
     nationalite: string, pays: string, ville: string,
     poste: string, secteur: string, type_contrat: string, resume: string, 
-    axe_motivation: string, sivp: boolean, duree_sivp: number, cv: string, status: boolean
+    axe_motivation: string, sivp: boolean, duree_sivp: number, cv: boolean, status: boolean
     ) {
   this.$key = $key;
   this.nom_utilisateur = nom_utilisateur;

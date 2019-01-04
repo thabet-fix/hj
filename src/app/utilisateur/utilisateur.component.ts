@@ -32,7 +32,7 @@ export class UtilisateurComponent implements OnInit {
   downloadCvURLChanged: Observable<string>;
   downloadCvURLInitial: string;
   config = new MatSnackBarConfig()
-  urlCv: string;
+  statusCv: boolean = false;
   imgProfil: string;
   imgTab: string[];
   urlImgProfil: string;
@@ -55,7 +55,7 @@ export class UtilisateurComponent implements OnInit {
       this.axeAF = this.utilisateur.axe_motivation;
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
-      this.urlCv = this.utilisateur.cv;
+      this.statusCv = this.utilisateur.cv;
       this.urlImgProfil = this.utilisateur.image;
       this.statusCompte = this.utilisateur.status;      
         
@@ -67,10 +67,12 @@ export class UtilisateurComponent implements OnInit {
         this.imgProfil = "assets/images/avatar.png"
       });
 
-      const refCv = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur);
-      refCv.getDownloadURL().subscribe(data =>{
-        this.downloadCvURLInitial = data;
-      });        
+      if(this.statusCv){
+        const refCv = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/cv-'+this.utilisateur.nom_utilisateur);
+        refCv.getDownloadURL().subscribe(data =>{
+          this.downloadCvURLInitial = data;
+        });
+      }        
       
       
     });
@@ -112,7 +114,8 @@ export class UtilisateurComponent implements OnInit {
     const fileRef = this.storage.ref(filePath).delete();
     this.downloadCvURLInitial = undefined;
     this.downloadCvURLChanged = undefined;
-
+    this.utilisateur.cv = false;
+    this.modifierUtilisateur();
   }
   uploadFile(event) {
     const file = event.target.files[0];
@@ -126,7 +129,12 @@ export class UtilisateurComponent implements OnInit {
     task.snapshotChanges().pipe(
         finalize(() => {
         this.downloadCvURLChanged = fileRef.getDownloadURL();
+        console.log("votre cv")
+        console.log(this.downloadCvURLInitial)
+        this.downloadCvURLInitial = undefined;
         this.afficheProgress = false;
+        this.utilisateur.cv = true;
+        this.modifierUtilisateur();
         }
       )
      )
