@@ -61,24 +61,7 @@ export class InscriptionService{
     }
 
     changerMotPasseUtilisateur(email: any, oldPassword: any, newPassword: any){
-        
-        /*this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
-        .then(
-            result => {
-                console.log("connected")
-                console.log(result.user)
-                result.user.updatePassword(newPassword)
-                this.afAuth.auth.updateCurrentUser(result.user)
-            }
-        )
-        .catch(
-            error =>{
-                console.log("disconnected")
-                console.log(error);
-            }
-        );*/
         return this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
-    
     }
 
     updateUtilisateurCourant(result){

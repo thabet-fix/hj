@@ -52,7 +52,8 @@
           Compléter votre profil : 4 étapes restantes
       </div>
       <!-- /.info-etape -->
-      <div class="bloc-option-profil">
+      <div *ngIf="statusCompte">
+        <div class="bloc-option-profil">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="titre-option-profil">
@@ -284,7 +285,7 @@
               <!-- /.col-sm-4 -->
               <div class="col-sm-4">
                   <div class="input-group input-mp">
-                      <button class="waves-effect waves-light btn large" (click)="onClickModifierMotPasse()">CHANGER LE MOT DE PASSE</button>
+                      <button type="button" class="waves-effect waves-light btn large" (click)="onClickModifierMotPasse()">CHANGER LE MOT DE PASSE</button>
                   </div>
                   <!-- /.input-group -->
               </div>
@@ -293,17 +294,17 @@
           <!-- /.row -->
       </div>
       <!-- /.bloc-option-profil -->
-
-      <div class="bloc-option-profil">
-          <div class="row">
-              <div class="col-sm-4">
-                  <button class="waves-effect waves-light btn btn-type-contrat large">supprimer mon compte</button>
-              </div>
-              <!-- /.col-sm-4 -->
-          </div>
-          <!-- /.row -->
-      </div>
-      <!-- /.bloc-option-profil -->
+    </div>
+    <div class="bloc-option-profil">
+        <div class="row">
+            <div class="col-sm-4">
+                <button type="button" class="waves-effect waves-light btn btn-type-contrat large" (click)="onClickSupprimerCompte()"><span *ngIf="statusCompte, else activer">Désactiver </span><ng-template #activer>Activer </ng-template> mon compte</button>
+            </div>
+            <!-- /.col-sm-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.bloc-option-profil -->
     </form>  
   </div>
   <!-- /.container -->

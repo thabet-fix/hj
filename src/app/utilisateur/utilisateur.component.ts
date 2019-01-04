@@ -37,27 +37,27 @@ export class UtilisateurComponent implements OnInit {
   imgTab: string[];
   urlImgProfil: string;
   afficheProgress: boolean = false;
+  statusCompte: boolean = false;
 
   ngOnInit() {
-    //this.utilisateur.$key = undefined;
+
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
+      console.log("datas")
       console.log(datas)
       this.utilisateurs = datas;
       this.utilisateur = this.utilisateurs[0];
+      console.log("resumé associé")
+      console.log(this.utilisateur.resume)
       this.typeContrat = this.utilisateur.type_contrat;
       this.utilisateurService.setDocUtilisateurId(this.utilisateur.$key);
       this.resumeAF = this.utilisateur.resume;
+      // this.formProfil.controls['resume'].setValue(this.utilisateur.resume)
       this.axeAF = this.utilisateur.axe_motivation;
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
-      // TO DO Changer mot de passe
-      //this.inscriptionService.changerMotPasseUtilisateur("thabet_jmal@yahoo.fr", "thabet", "azerty")
       this.urlCv = this.utilisateur.cv;
       this.urlImgProfil = this.utilisateur.image;
-       /********** Get CV */
-      /*const refCv = this.storage.ref('users/davideast.jpg');
-      this.cvUtilisateurAF = refCv.getDownloadURL();*/
-      
+      this.statusCompte = this.utilisateur.status;      
         
       const refProfil = this.storage.ref('utilisateurs/'+this.utilisateur.nom_utilisateur+'/image-profil-'+this.utilisateur.nom_utilisateur);
       refProfil.getDownloadURL().subscribe(data =>{
@@ -78,19 +78,32 @@ export class UtilisateurComponent implements OnInit {
     this.config.duration = 5000;    
      
   }
+  onClickSupprimerCompte(){
+    this.statusCompte =!this.statusCompte;
+    this.utilisateur.status = this.statusCompte;
+    this.modifierUtilisateur();
+  }
+
   onClickModifierMotPasse(){
     this.inscriptionService.changerMotPasseUtilisateur(this.utilisateur.email, this.formProfil.value.ancienMotDePasse, this.formProfil.value.newMotDePasse)
     .then(
-        result => {
-            result.user.updatePassword(this.formProfil.value.newMotDePasse)
-            this.inscriptionService.updateUtilisateurCourant(result.user);
-            this.afficherNotification('Sauvegardé', 'background-verte');
+        result1 => {
+            result1.user.updatePassword(this.formProfil.value.newMotDePasse).then(result =>{
+                this.inscriptionService.updateUtilisateurCourant(result1.user);
+                this.afficherNotification('Mot de passe Modifié', 'background-verte');
+                this.formProfil.controls['ancienMotDePasse'].setValue('');
+                this.formProfil.controls['newMotDePasse'].setValue('');
+              }
+            )
+            .catch(error=>{
+                this.afficherNotification('Entrer un nouveau mot de passe valide', 'background-rouge');
+            })
+            
         }
     )
     .catch(
         error =>{
-            console.log(error);
-            this.afficherNotification('Modification mot de passe non réussi', 'background-rouge');
+            this.afficherNotification('Ancien mot de passe invalide', 'background-rouge');
         }
     );
   }
