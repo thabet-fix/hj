@@ -74,12 +74,16 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   }
 
   onClickEnregistrerEducation(){
+    
     this.tmpEducation.titre = this.formEducation.controls['titre'].value;
     this.tmpEducation.nom_ecole = this.formEducation.controls['nom_ecole'].value;
     this.tmpEducation.date_debut = this.formEducation.controls['date_debut'].value?new Date(this.formEducation.controls['date_debut'].value):undefined;
     this.tmpEducation.date_fin =   this.formEducation.controls['date_fin'].value?new Date(this.formEducation.controls['date_fin'].value):undefined;
     this.tmpEducation.description = this.formEducation.controls['description'].value;
     this.isCollapsed = false;
+    
+    console.log("formEducation")
+    console.log(this.formEducation)
     this.AjouterEducation();
   }
 
