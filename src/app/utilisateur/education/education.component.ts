@@ -90,9 +90,14 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.tmpEducation.description = this.formEducation.controls['description'].value;
     this.isCollapsed = false;
     
-    console.log("formEducation")
-    console.log(this.formEducation)
-    this.AjouterEducation();
+    if(this.tmpEducation.date_debut < this.tmpEducation.date_fin){
+      this.AjouterEducation();
+    }
+    else{
+      this.afficherNotification('La date de fin doit être suppérieure à la date de début', 'background-rouge');
+      this.onClickAnnuler();
+    }
+    
   }
 
   onClickSupprimerEducation(docEducationId: any){
@@ -111,21 +116,27 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     );
   }
 
- onClickEnregistrerModifEducation(){
-    this.educationService.modifierEducation(this.keyUtilisateur, this.docEducationIdCourant, this.getEducationAModifier()).then(
+  onClickEnregistrerModifEducation() {
+    if (new Date(this.formEducation.controls['date_debut'].value) < new Date(this.formEducation.controls['date_fin'].value)) {
+      this.educationService.modifierEducation(this.keyUtilisateur, this.docEducationIdCourant, this.getEducationAModifier()).then(
         result => {
-            this.afficherNotification('Modifié', 'background-verte');
-            this.boutonModifier = false;
-            this.etatChange = false;
-            this.isCollapsed = false;
-            this.resetForms();
-          }
-    )
-    .catch(
-        error =>{
-            this.afficherNotification('Modification non réussite', 'background-rouge');
+          this.afficherNotification('Modifié', 'background-verte');
+          this.boutonModifier = false;
+          this.etatChange = false;
+          this.isCollapsed = false;
+          this.resetForms();
         }
-    );
+      )
+        .catch(
+          error => {
+            this.afficherNotification('Modification non réussite', 'background-rouge');
+          }
+        );
+    } else {
+      this.afficherNotification('La date de fin doit être suppérieure à la date de début', 'background-rouge');
+      this.onClickAnnuler();
+    }
+
   }
 
   getEducationAModifier(){

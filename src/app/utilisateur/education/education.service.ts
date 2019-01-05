@@ -41,9 +41,8 @@ export class EducationService{
     
     ajouterEducation(docUtilisateurId: any, education: Education){
         let educationJSON = JSON.parse(JSON.stringify(education))
-        if(educationJSON.date_debut < educationJSON.date_fin){
-            return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
-        }
+        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
+        
     }
 
     supprimerEducation(docUtilisateurId: any, docEducationId: any){
