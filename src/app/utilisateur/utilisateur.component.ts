@@ -42,16 +42,11 @@ export class UtilisateurComponent implements OnInit {
   ngOnInit() {
 
     this.utilisateurService.utilisateurChanged.subscribe(datas => {
-      console.log("datas")
-      console.log(datas)
       this.utilisateurs = datas;
       this.utilisateur = this.utilisateurs[0];
-      console.log("resumé associé")
-      console.log(this.utilisateur.resume)
       this.typeContrat = this.utilisateur.type_contrat;
       this.utilisateurService.setDocUtilisateurId(this.utilisateur.$key);
       this.resumeAF = this.utilisateur.resume;
-      // this.formProfil.controls['resume'].setValue(this.utilisateur.resume)
       this.axeAF = this.utilisateur.axe_motivation;
       this.dureeSivpStatus = this.utilisateur.sivp;
       this.dureeSivpAF = this.utilisateur.duree_sivp;
@@ -76,7 +71,8 @@ export class UtilisateurComponent implements OnInit {
       
       
     });
-    this.utilisateurService.getUtilisateurDev();
+    //this.utilisateurService.getUtilisateurDev();
+    this.utilisateurService.getUtilisateur();
     this.config.duration = 5000;    
      
   }

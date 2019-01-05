@@ -1,10 +1,9 @@
 <div class="bloc-option-profil">
   <div class="titre-option-profil souligne">
     Expérience
-    <span class="txt-rouge">(* Champs obligatoires)</span>
   </div>
   <!-- /.titre-option-profil -->
-  <div class="row">
+  <div class="row" *ngIf="experiences.length > 0">
     <div class="col-sm-12">
       <table class="highlight">
         <thead>
