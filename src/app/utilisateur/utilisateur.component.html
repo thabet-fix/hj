@@ -76,7 +76,7 @@
                                 <td>
                                     <mat-progress-bar *ngIf="afficheProgress" mode="determinate" [value]="uploadCvPercent | async"></mat-progress-bar>
                                     
-                                    <a *ngIf="downloadCvURLInitial" [href]="downloadCvURLInitial" target="_blank">Votre CV</a>
+                                    <a *ngIf="downloadCvURLInitial && !(downloadCvURLChanged | async)" [href]="downloadCvURLInitial" target="_blank">Votre CV</a>
                                     <a *ngIf="downloadCvURLChanged | async" [href]="downloadCvURLChanged | async" target="_blank">Votre nouveau CV</a>
                                 </td>
                                 <td class="action"> 
