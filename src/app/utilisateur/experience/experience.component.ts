@@ -45,6 +45,14 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
     this.config.duration = 5000;
   }
 
+  resetForms(){
+    this.formGroupExperience.controls['titreExperience'].setValue(null)
+    this.formGroupExperience.controls['nom_societeExperience'].setValue(null)
+    this.formGroupExperience.controls['date_debutExperience'].setValue(null)
+    this.formGroupExperience.controls['date_finExperience'].setValue(null)
+    this.formGroupExperience.controls['descriptionExperience'].setValue(null)
+  }
+
   onChangeInput(event){
     this.etatChange = true;
     this.etatOuvert = false;
@@ -60,7 +68,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
         result => {
             this.afficherNotification('Ajouté', 'background-verte');
             this.etatChange = false;
-            this.formGroupExperience.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -86,7 +94,7 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
         result => {
             this.afficherNotification('Supprimé', 'background-verte');
             this.etatChange = false;
-            this.formGroupExperience.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -102,8 +110,8 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
             this.afficherNotification('Modifié', 'background-verte');
             this.boutonModifier = false;
             this.etatChange = false;
-            this.formGroupExperience.reset();
             this.isCollapsed = false;
+            this.resetForms();
           }
     )
     .catch(
@@ -136,16 +144,16 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
   onClickAnnuler(){
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formGroupExperience.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }
 
   onClickFermer(){
     this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formGroupExperience.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }
 
   onClickAjouter(){

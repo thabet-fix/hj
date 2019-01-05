@@ -63,6 +63,10 @@ export class TechnologieComponent implements OnInit {
     this.config.duration = 5000;
   }
 
+  resetForms(){
+    this.formTechnologie.controls['pourcentage'].setValue(null)
+  }
+
   formatLabel(value: number | null) {
     if (!value) {
       return 0;
@@ -92,7 +96,7 @@ export class TechnologieComponent implements OnInit {
         result => {
             this.afficherNotification('Ajouté', 'background-verte');
             this.etatChange = false;
-            this.formTechnologie.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -115,7 +119,7 @@ export class TechnologieComponent implements OnInit {
         result => {
             this.afficherNotification('Supprimé', 'background-verte');
             this.etatChange = false;
-            this.formTechnologie.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -131,9 +135,9 @@ export class TechnologieComponent implements OnInit {
             this.afficherNotification('Modifié', 'background-verte');
             this.boutonModifier = false;
             this.etatChange = false;
-            this.formTechnologie.reset();
             this.inputTitreTechnologie.setValue(undefined)
             this.isCollapsed = false;
+            this.resetForms();
           }
     )
     .catch(
@@ -165,16 +169,16 @@ export class TechnologieComponent implements OnInit {
     this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formTechnologie.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }
 
   onClickFermer(){
     this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formTechnologie.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }  
 
   onClickAjouter(){

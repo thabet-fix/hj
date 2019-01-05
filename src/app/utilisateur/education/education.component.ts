@@ -48,6 +48,14 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.config.duration = 5000;
   }
 
+  resetForms(){
+    this.formEducation.controls['titre'].setValue(null)
+    this.formEducation.controls['nom_ecole'].setValue(null)
+    this.formEducation.controls['date_debut'].setValue(null)
+    this.formEducation.controls['date_fin'].setValue(null)
+    this.formEducation.controls['description'].setValue(null)
+  }
+
   onChangeInput(event){
     this.etatChange = true;
     this.etatOuvert = false;
@@ -63,7 +71,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
         result => {
             this.afficherNotification('Ajouté', 'background-verte');
             this.etatChange = false;
-            this.formEducation.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -93,7 +101,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
         result => {
             this.afficherNotification('Supprimé', 'background-verte');
             this.etatChange = false;
-            this.formEducation.reset();
+            this.resetForms();
         }
     )
     .catch(
@@ -109,8 +117,8 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
             this.afficherNotification('Modifié', 'background-verte');
             this.boutonModifier = false;
             this.etatChange = false;
-            this.formEducation.reset();
             this.isCollapsed = false;
+            this.resetForms();
           }
     )
     .catch(
@@ -145,16 +153,16 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formEducation.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }
 
   onClickFermer(){
     this.etatOuvert = false;
     this.boutonModifier = false;
     this.etatChange = false;
-    this.formEducation.reset();
     this.isCollapsed = false;
+    this.resetForms();
   }
 
   onClickAjouter(){
