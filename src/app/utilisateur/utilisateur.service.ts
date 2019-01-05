@@ -37,7 +37,6 @@ export class UtilisateurService{
     }
 
     getUtilisateur(){
-        console.log('appel fn')
         return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', this.tmpIdUtilisateur))
         .snapshotChanges()
             .map(actions => {
@@ -56,7 +55,6 @@ export class UtilisateurService{
     }
 
     getUtilisateurDev(){
-        console.log('appel fn')
         return this.afs.collection<any>('utilisateurs', ref => ref.where('id', '==', 'QR7DZXIF8hR1x6vwc8MlmOtfAt22'))
         .snapshotChanges()
             .map(actions => {

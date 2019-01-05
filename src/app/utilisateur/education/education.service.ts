@@ -17,7 +17,6 @@ export class EducationService{
     educationChanged = new Subject<Education[]>();
 
     getEducations(docUtilisateurId: any){
-        //return this.afs.collection('emplois').valueChanges();
         return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('educations')
         .snapshotChanges()
             .map(actions => {
@@ -42,9 +41,9 @@ export class EducationService{
     
     ajouterEducation(docUtilisateurId: any, education: Education){
         let educationJSON = JSON.parse(JSON.stringify(education))
-        console.log("JSON Ajout >> ")
-        console.log(educationJSON)
-        return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
+        if(educationJSON.date_debut < educationJSON.date_fin){
+            return this.afs.collection<Utilisateur>('utilisateurs').doc(docUtilisateurId).collection<Education>('educations').add(educationJSON);
+        }
     }
 
     supprimerEducation(docUtilisateurId: any, docEducationId: any){
@@ -53,12 +52,6 @@ export class EducationService{
 
     modifierEducation(docUtilisateurId: any, docEducationId: any, education: Education){
         let educationJSON = JSON.parse(JSON.stringify(education))
-        console.log("utilisateur id >> ")
-        console.log(docUtilisateurId)
-        console.log("document id >> ")
-        console.log(docEducationId)
-        console.log("JSON Modif >> ")
-        console.log(educationJSON)
         return this.afs.collection('utilisateurs').doc(docUtilisateurId).collection('educations').doc(docEducationId).update(educationJSON);
     }
 
