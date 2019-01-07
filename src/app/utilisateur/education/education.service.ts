@@ -17,7 +17,7 @@ export class EducationService{
     educationChanged = new Subject<Education[]>();
 
     getEducations(docUtilisateurId: any){
-        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('educations')
+        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('educations', ref => ref.orderBy('date_fin'))
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({ 

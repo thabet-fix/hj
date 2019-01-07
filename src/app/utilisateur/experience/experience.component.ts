@@ -39,7 +39,8 @@ export class ExperienceComponent extends MatDatepickerIntl implements OnInit {
   ngOnInit() {
     this.adapter.setLocale('fr');
     this.experienceService.experiencesChanged.subscribe( datas => {
-      this.experiences = datas;      
+      this.experiences = datas; 
+      this.experiences.reverse();     
     })    
     this.experienceService.getExperiences(this.keyUtilisateur);
     this.config.duration = 5000;

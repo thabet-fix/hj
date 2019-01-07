@@ -24,6 +24,7 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   test: string = "titre de test"
   inputTitre: string;
   educations: Education[];
+  educations2: Education[];
   tmpEducation: Education = new Education("", "", undefined, undefined, "");
   educationAModifier: Observable<Education>;
   tmpNouvelleEducationModifie: Education;
@@ -41,8 +42,8 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   ngOnInit() {
     this.adapter.setLocale('fr');
     this.educationService.educationsChanged.subscribe( datas => {
-      console.log(datas)
-      this.educations = datas;      
+      this.educations = datas;
+      this.educations.reverse();
     })    
     this.educationService.getEducations(this.keyUtilisateur);
     this.config.duration = 5000;
