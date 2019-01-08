@@ -40,6 +40,7 @@ export class TechnologieComponent implements OnInit {
   ];
   inputTitreTechnologie = new FormControl();
   filteredTechnologies: Observable<Technologie[]>;
+  question = 'Voulez vous ajouter ';
 
   constructor(private technologieService: TechnologieService, public snackBar: MatSnackBar, public dialog: MatDialog ) { }
   
@@ -76,14 +77,30 @@ export class TechnologieComponent implements OnInit {
 
   private _filter(name: string): Technologie[] {
     const filterValue = name.toLowerCase();
+    let results = this.technologiesDisponibles.filter(option => option.titre.toLowerCase().indexOf(filterValue) === 0);
+    if (results.length < 1) {
+      results = [{titre: this.question + name + '?', pourcentage: 0}];
+      // results = [this.question + JSON.stringify(name) + '?'];
+    }
 
-    return this.technologiesDisponibles.filter(option => option.titre.toLowerCase().indexOf(filterValue) === 0);
+    
+
+    return results;
   }
 
   onChangeInput(event){
     this.etatChange = true;
     this.etatOuvert = false;
-    if(event.option){this.inputTitre = event.option.value}
+    
+    if(event.option){
+      if (event.value.indexOf(this.question) === 0) {
+        let newState = event.value.substring(this.question.length).split('?')[0];
+        //this.states.push(newState);
+        this.inputTitre = newState;
+      }else{
+        this.inputTitre = event.option.value
+      }
+    }
   }
 
   afficherNotification(message: string, couleur: string){
@@ -96,7 +113,7 @@ export class TechnologieComponent implements OnInit {
         result => {
             this.afficherNotification('Ajouté', 'background-verte');
             this.etatChange = false;
-            this.resetForms();
+            //this.resetForms();
         }
     )
     .catch(
@@ -108,6 +125,10 @@ export class TechnologieComponent implements OnInit {
 
   onClickEnregistrerTechnologie(){
     this.tmpTechnologie.titre = this.inputTitre;
+    console.log("inputTitre");
+    console.log(this.inputTitre);
+    console.log("inputValue");
+    console.log(this.formTechnologie.controls['titreTechnologie'].value);
     this.tmpTechnologie.pourcentage = this.formTechnologie.controls['pourcentage'].value;
     this.isCollapsed = false;
     this.AjouterTechnologie();

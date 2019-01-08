@@ -71,8 +71,8 @@ export class UtilisateurComponent implements OnInit {
       
       
     });
-    //this.utilisateurService.getUtilisateurDev();
-    this.utilisateurService.getUtilisateur();
+    this.utilisateurService.getUtilisateurDev();
+    //this.utilisateurService.getUtilisateur();
     this.config.duration = 5000;    
      
   }
