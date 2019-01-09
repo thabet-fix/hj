@@ -59,7 +59,7 @@
             [formControl]="inputTitreTechnologie" 
             [matAutocomplete]="auto"
             >
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeInput($event)">
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeInput($event.option)">
               <mat-option *ngFor="let technologie of filteredTechnologies | async" [value]="technologie.titre">
                 {{technologie.titre}}
               </mat-option>

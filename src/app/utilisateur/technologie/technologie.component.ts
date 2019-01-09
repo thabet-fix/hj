@@ -53,6 +53,7 @@ export class TechnologieComponent implements OnInit {
 
     this.technologieService.technologiesDisponibleChanged.subscribe( datas => {
       this.technologiesDisponibles = datas;      
+      console.log(this.technologiesDisponibles)
       this.filteredTechnologies = this.inputTitreTechnologie.valueChanges
       .pipe(
         startWith(null),
@@ -88,19 +89,20 @@ export class TechnologieComponent implements OnInit {
     return results;
   }
 
-  onChangeInput(event){
+  onChangeInput(option){
     this.etatChange = true;
     this.etatOuvert = false;
     
-    if(event.option){
-      if (event.value.indexOf(this.question) === 0) {
-        let newState = event.value.substring(this.question.length).split('?')[0];
+      if (option.value.indexOf(this.question) === 0) {
+        let newState = option.value.substring(this.question.length).split('?')[0];
+        console.log(newState)
         //this.states.push(newState);
+        //this.filteredTechnologies.push({titre:"", pourcentage: 5})
         this.inputTitre = newState;
       }else{
-        this.inputTitre = event.option.value
+        this.inputTitre = option.value
       }
-    }
+    
   }
 
   afficherNotification(message: string, couleur: string){
