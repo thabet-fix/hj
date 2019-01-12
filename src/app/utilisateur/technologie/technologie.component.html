@@ -71,7 +71,7 @@
         <div class="col-sm-6">
           <mat-slider style="width: 100%"
           [ngModel]="(technologieAModifier | async)?.pourcentage"
-          (change)="onChangeInput($event)"
+          (change)="onChangePourcentage($event)"
           name="pourcentage"
           thumbLabel
           [displayWith]="formatLabel"

@@ -19,7 +19,7 @@ export class TechnologieService{
 
     getTechnologies(docUtilisateurId: any){
         //return this.afs.collection('emplois').valueChanges();
-        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('technologies')
+        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('technologies', ref => ref.orderBy('pourcentage'))
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({ 
@@ -66,6 +66,10 @@ export class TechnologieService{
                     this.technologiesDisponibleChanged.next([...response]); // spread operator to create a copy
                 }
             );
+    }
+
+    ajouterTechnologieDisponible(technologieDisponible: string){
+        return this.afs.collection('technologies_disponibles').add({'titre': technologieDisponible});
     }
 
 }

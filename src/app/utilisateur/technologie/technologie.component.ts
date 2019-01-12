@@ -47,13 +47,12 @@ export class TechnologieComponent implements OnInit {
   ngOnInit() {
 
     this.technologieService.technologiesChanged.subscribe( datas => {
-      this.technologies = datas;      
+      this.technologies = datas.reverse();      
     })    
     this.technologieService.getTechnologies(this.keyUtilisateur);
 
     this.technologieService.technologiesDisponibleChanged.subscribe( datas => {
-      this.technologiesDisponibles = datas;      
-      console.log(this.technologiesDisponibles)
+      this.technologiesDisponibles = datas;  
       this.filteredTechnologies = this.inputTitreTechnologie.valueChanges
       .pipe(
         startWith(null),
@@ -94,15 +93,21 @@ export class TechnologieComponent implements OnInit {
     this.etatOuvert = false;
     
       if (option.value.indexOf(this.question) === 0) {
-        let newState = option.value.substring(this.question.length).split('?')[0];
-        console.log(newState)
-        //this.states.push(newState);
-        //this.filteredTechnologies.push({titre:"", pourcentage: 5})
-        this.inputTitre = newState;
+        let nouvelleTechnologie = option.value.substring(this.question.length).split('?')[0];
+        console.log(nouvelleTechnologie)
+        this.technologieService.ajouterTechnologieDisponible(nouvelleTechnologie);
+        this.inputTitre = nouvelleTechnologie;
+        this.inputTitreTechnologie.setValue(this.inputTitre)
       }else{
         this.inputTitre = option.value
       }
     
+  }
+
+  onChangePourcentage(event){
+    this.etatChange = true;
+    this.etatOuvert = false;
+    if(event.option){this.inputTitre = event.option.value}
   }
 
   afficherNotification(message: string, couleur: string){
@@ -127,10 +132,6 @@ export class TechnologieComponent implements OnInit {
 
   onClickEnregistrerTechnologie(){
     this.tmpTechnologie.titre = this.inputTitre;
-    console.log("inputTitre");
-    console.log(this.inputTitre);
-    console.log("inputValue");
-    console.log(this.formTechnologie.controls['titreTechnologie'].value);
     this.tmpTechnologie.pourcentage = this.formTechnologie.controls['pourcentage'].value;
     this.isCollapsed = false;
     this.AjouterTechnologie();
