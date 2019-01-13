@@ -71,11 +71,16 @@ export class UtilisateurComponent implements OnInit {
       
       
     });
-    this.utilisateurService.getUtilisateurDev();
-    //this.utilisateurService.getUtilisateur();
+    //this.utilisateurService.getUtilisateurDev();
+    this.utilisateurService.getUtilisateur();
     this.config.duration = 5000;    
      
   }
+
+  onClickDeconnexion(){
+    this.inscriptionService.deconnexionUtilisateur();
+  }
+
   onClickSupprimerCompte(){
     this.statusCompte =!this.statusCompte;
     this.utilisateur.status = this.statusCompte;
