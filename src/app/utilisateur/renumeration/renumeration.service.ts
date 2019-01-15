@@ -17,7 +17,7 @@ export class RenumerationService{
     renumerationChanged = new Subject<Renumeration[]>();
 
     getRenumerations(docUtilisateurId: any){
-        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('renumerations')
+        return this.afs.collection<any>('utilisateurs').doc(docUtilisateurId).collection('renumerations', ref => ref.orderBy('titre_renumeration'))
         .snapshotChanges()
             .map(actions => {
                 return actions.map(action => ({
