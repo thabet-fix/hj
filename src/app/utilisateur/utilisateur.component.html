@@ -9,18 +9,26 @@
               <input hidden type="file" #imageProfilInput class="hidden" (change)="changeImageProfil($event)">
           </div>
           <!-- /.avatar -->
-          <div class="desc-profil">
-              <div class="nom-membre">
-                {{utilisateur?.nom_utilisateur}}
-              </div>
-              <!-- /.nom-membre -->
-              <div class="nom-profil">
-                {{utilisateur?.nom}}
-              </div>
-              <!-- /.nom-membre -->
-              <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-sm-6">
+                <div class="desc-profil">
+                    <div class="nom-membre">
+                        {{utilisateur?.nom_utilisateur}}
+                    </div>
+                    <!-- /.nom-membre -->
+                    <div class="nom-profil">
+                        {{utilisateur?.nom}}
+                    </div>
+                    <!-- /.nom-membre -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /.desc-profil -->
+            </div>
+            <div class="col-sm-6 text-right">
+                <button type="button" mat-button color="warn" (click)="onClickDeconnexion()">Déconnexion</button>
+            </div>
           </div>
-          <!-- /.desc-profil -->
+          
       </div>
       <!-- /.container -->
   </div>

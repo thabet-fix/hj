@@ -60,6 +60,21 @@ export class InscriptionService{
         );
     }
 
+    deconnexionUtilisateur(){
+        this.afAuth.auth.signOut().then(
+            result =>{
+                console.log("deconnexion");
+                this.isAuthenticated = false;
+                this.authChange.next(false);
+            }
+        )
+        .catch(
+            error =>{
+                console.log(error);
+            }
+        );
+    }
+
     changerMotPasseUtilisateur(email: any, oldPassword: any, newPassword: any){
         return this.afAuth.auth.signInWithEmailAndPassword(email, oldPassword)
     }
