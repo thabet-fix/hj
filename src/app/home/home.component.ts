@@ -95,7 +95,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     jQuery('#Carousel2').carousel({
         interval: 5000
     })
-
+    
+    /*initialisation du status de connexion*/
+    this.isAuthenticated = this.inscriptionService.isAuth();
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus; 
     });
