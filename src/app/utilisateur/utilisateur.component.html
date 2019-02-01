@@ -3,14 +3,17 @@
 
   <div class="bloc-profil">
       <div class="container">
-          <div class="avatar">
-              <img [attr.src]="imgProfil"  class="img-circle shadow" alt="" width="80">
-              <div><button type="button" class="btn-modifier" mat-button (click)="imageProfilInput.click()">Modifier</button></div>
-              <input hidden type="file" #imageProfilInput class="hidden" (change)="changeImageProfil($event)">
-          </div>
-          <!-- /.avatar -->
-          <div class="row">
-            <div class="col-sm-6">
+        <div class="row">
+            <div class="col-sm-1">
+                <div class="avatar">
+                    <img [attr.src]="imgProfil"  class="img-circle shadow" alt="" width="80">
+                    <div><button type="button" class="btn-modifier" mat-button (click)="imageProfilInput.click()">Modifier</button></div>
+                    <input hidden type="file" #imageProfilInput class="hidden" (change)="changeImageProfil($event)">
+                </div>
+                <!-- /.avatar -->
+            </div>
+            <!-- /.col-sm-1 -->          
+            <div class="col-sm-5">
                 <div class="desc-profil">
                     <div class="nom-membre">
                         {{utilisateur?.nom_utilisateur}}
@@ -24,10 +27,10 @@
                 </div>
                 <!-- /.desc-profil -->
             </div>
-            <div class="col-sm-6 text-right">
+            <div class="col-sm-6 text-right btn-deconnexion">
                 <button type="button" mat-button color="warn" (click)="onClickDeconnexion()">Déconnexion</button>
             </div>
-          </div>
+        </div>
           
       </div>
       <!-- /.container -->

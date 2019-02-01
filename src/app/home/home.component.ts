@@ -95,9 +95,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     jQuery('#Carousel2').carousel({
         interval: 5000
     })
-
+    
+    /*initialisation du status de connexion*/
+    this.isAuthenticated = this.inscriptionService.isAuth();
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus; 
+      console.log("Bien connecté ! 3")
     });
 
     this.utilisateurService.utilisateursChanged.subscribe(datas => {
@@ -292,6 +295,7 @@ export class PopUpConnexion {
   ngOnInit() {
     this.authSubscription = this.inscriptionService.authChange.subscribe(authStatus => {
       this.isAuthenticated = authStatus;
+      console.log("Bien connecté ! 2")
       if(this.isAuthenticated){
         this.onNoClick();
         this.snackBar.open("Vous êtes connecté", "", {

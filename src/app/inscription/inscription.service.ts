@@ -50,6 +50,7 @@ export class InscriptionService{
                 console.log(result.user.uid);
                 this.isAuthenticated = true;
                 this.authChange.next(true);
+                console.log("Bien connecté !")
                 this.utilisateurService.connecterUtilisateur(result.user.uid)
             }
         )
