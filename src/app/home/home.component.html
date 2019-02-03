@@ -125,7 +125,8 @@
           <span class="download-txt">Téléchargez votre CV pour postuler facilement aux offres d'emploi</span>
         </div>
         <div class="col-md-2 col-xs-6">
-          <button class="add-cv waves-effect waves-light">Ajouter votre CV</button>
+          <button *ngIf="!isAuthenticated" (click)="openDialog()" class="add-cv waves-effect waves-light">Ajouter votre CV</button>
+          <button *ngIf="isAuthenticated" [routerLink]="['/compte']" class="add-cv waves-effect waves-light">Ajouter votre CV</button>
         </div>
         <div class="col-md-2 col-xs-6">
           <span class="hello-txt">hello</span>
