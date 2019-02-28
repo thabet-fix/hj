@@ -41,7 +41,7 @@ export class InscriptionService{
                 this.errorChange.next(error.code);
             }
         );
-    }
+    }/*test*/
 
     connexionUtilisateur(email: any, password: any){
         this.afAuth.auth.signInWithEmailAndPassword(email, password)
