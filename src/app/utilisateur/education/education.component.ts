@@ -5,7 +5,7 @@ import { ControlContainer, NgForm, FormGroup } from '@angular/forms';
 import { MatDatepickerIntl, MAT_DATE_LOCALE, DateAdapter, MAT_DATE_FORMATS, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 import * as $ from 'jquery';
 import { Observable } from 'rxjs';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, Sort } from '@angular/material';
 
 
 @Component({
@@ -34,7 +34,9 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
   boutonModifier: boolean = false;
   docEducationIdCourant: any;
   isCollapsed = false;
+  sortedEducations: Education[];
   
+
   constructor(private educationService: EducationService, private adapter: DateAdapter<any>, public snackBar: MatSnackBar, public dialog: MatDialog) { 
     super();
   }
@@ -43,10 +45,37 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     this.adapter.setLocale('fr');
     this.educationService.educationsChanged.subscribe( datas => {
       this.educations = datas;
-      this.educations.reverse();
+      //this.educations.reverse();
+      console.log(this.educations);
+      this.sortedEducations = this.educations.slice();
     })    
     this.educationService.getEducations(this.keyUtilisateur);
     this.config.duration = 5000;
+  }
+
+  sortData(sort: Sort) {
+    const data = this.educations.slice();
+    if (!sort.active || sort.direction === '') {
+      this.sortedEducations = data;
+      return;
+    }
+
+    this.sortedEducations = data.sort((a, b) => {
+      const isAsc = sort.direction === 'desc';
+      switch (sort.active) {
+        case 'titre': return this.compare(a.titre, b.titre, isAsc);
+        case 'nom_ecole': return this.compare(a.nom_ecole, b.nom_ecole, isAsc);
+        case 'description': return this.compare(a.description, b.description, isAsc);
+        /*case 'date_debut': return this.compare(a.date_debut, b.date_debut, isAsc);
+        case 'date_fin': return this.compare(a.date_fin, b.date_fin, isAsc);*/
+        default: return 0;
+      }
+    });
+    console.log(this.sortedEducations);
+  }
+
+  compare(a: number | string , b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
   resetForms(){

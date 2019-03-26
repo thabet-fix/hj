@@ -5,20 +5,20 @@
   <!-- /.titre-option-profil -->
   <div class="row" *ngIf="educations?.length > 0">
     <div class="col-sm-12">
-      <table class="highlight">
+      <table class="highlight" matSort (matSortChange)="sortData($event)">
         <thead>
           <tr>
-            <th>Titre</th>
-            <th>Nom de l'école</th>
+            <th mat-sort-header="titre">Titre</th>
+            <th mat-sort-header="nom_ecole">Nom de l'école</th>
             <th>Date début</th>
             <th>Date fin</th>
-            <th>Description</th>
+            <th mat-sort-header="description">Description</th>
             <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let education of educations; let i = index">
+          <tr *ngFor="let education of sortedEducations; let i = index">
             <td>{{education?.titre}}</td>
             <td>{{education?.nom_ecole}}</td>
             <td><span *ngIf="education.date_debut, else aucuneDate;">{{education?.date_debut | date:'dd/MM/yyyy'}}</span><ng-template #aucuneDate>-</ng-template> </td>

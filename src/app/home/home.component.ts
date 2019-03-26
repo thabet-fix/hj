@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit, OnDestroy {
          this.emplois = emplois; 
          this.nbr_emploi = emplois.length;
          console.log(this.emplois);
+         console.log(this.nbr_emploi);
          this.emploisGroupedBySecteur = Object.values(this.groupBy(this.emplois, 'secteur'));
          this.secteurs = Object.values(this.groupBy(this.emplois.filter(data => {
             return data.secteur !== undefined 

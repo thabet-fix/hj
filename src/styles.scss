@@ -1673,3 +1673,9 @@ background: #428bca;
     color: #444;
     text-decoration: none;
 }
+.mat-sort-header-container {
+    display: inline-flex !important;
+}
+.mat-sort-header-button:focus{
+    background: none;
+}

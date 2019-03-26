@@ -27,6 +27,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSortModule } from '@angular/material/sort';
 
 /************** Import de Firebase/Firestore *******/
 import { AngularFireModule } from '@angular/fire';
@@ -97,6 +98,7 @@ export const firebaseConfig = {
     RenumerationComponent
   ],
   imports: [
+    MatSortModule,
     MatSlideToggleModule,
     MatProgressBarModule,
     MatSliderModule,
