@@ -61,21 +61,21 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
     }
 
     this.sortedEducations = data.sort((a, b) => {
-      const isAsc = sort.direction === 'desc';
+      const isDesc = sort.direction === 'desc';
       switch (sort.active) {
-        case 'titre': return this.compare(a.titre, b.titre, isAsc);
-        case 'nom_ecole': return this.compare(a.nom_ecole, b.nom_ecole, isAsc);
-        case 'description': return this.compare(a.description, b.description, isAsc);
-        /*case 'date_debut': return this.compare(a.date_debut, b.date_debut, isAsc);
-        case 'date_fin': return this.compare(a.date_fin, b.date_fin, isAsc);*/
+        case 'titre': return this.compare(a.titre, b.titre, isDesc);
+        case 'nom_ecole': return this.compare(a.nom_ecole, b.nom_ecole, isDesc);
+        case 'description': return this.compare(a.description, b.description, isDesc);
+        /*case 'date_debut': return this.compare(a.date_debut, b.date_debut, isDesc);
+        case 'date_fin': return this.compare(a.date_fin, b.date_fin, isDesc);*/
         default: return 0;
       }
     });
     console.log(this.sortedEducations);
   }
 
-  compare(a: number | string , b: number | string, isAsc: boolean) {
-    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  compare(a: number | string , b: number | string, isDesc: boolean) {
+    return (a < b ? -1 : 1) * (isDesc ? 1 : -1);
   }
 
   resetForms(){
