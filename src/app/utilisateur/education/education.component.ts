@@ -66,15 +66,15 @@ export class EducationComponent extends MatDatepickerIntl implements OnInit {
         case 'titre': return this.compare(a.titre, b.titre, isAsc);
         case 'nom_ecole': return this.compare(a.nom_ecole, b.nom_ecole, isAsc);
         case 'description': return this.compare(a.description, b.description, isAsc);
-        /*case 'date_debut': return this.compare(a.date_debut, b.date_debut, isAsc);
-        case 'date_fin': return this.compare(a.date_fin, b.date_fin, isAsc);*/
+        case 'date_debut': return this.compare(a.date_debut, b.date_debut, isAsc);
+        case 'date_fin': return this.compare(a.date_fin, b.date_fin, isAsc);
         default: return 0;
       }
     });
     console.log(this.sortedEducations);
   }
 
-  compare(a: number | string , b: number | string, isAsc: boolean) {
+  compare(a: number | Date | string, b: number | string | Date, isAsc: boolean) {
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
