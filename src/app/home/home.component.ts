@@ -34,6 +34,15 @@ export interface DialogData {
 
 export class HomeComponent implements OnInit, OnDestroy {
 
+  /*added to resolve build bugs*/
+  reactifMotCle  = this.emploiService.getTmpMotCle();  
+  reactifSecteur = this.emploiService.getTmpSecteur();  
+  reactifPays    = this.emploiService.getTmpPays();
+  reactifContrat  = this.emploiService.getTmpContrat();
+  reactifRenumeration = this.emploiService.getTmpRenumeration();
+  reactifExperience    = this.emploiService.getTmpExperience();
+  /*added to resolve build bugs*/
+  
   emploiSubscription: Subscription;
   emplois: Emploi[];
   secteurs: Emploi[];
