@@ -27,6 +27,7 @@ export class RenumerationComponent implements OnInit {
   renumerationsUtilisateur: Renumeration[];
   allRenumerations: string[];
   config = new MatSnackBarConfig();
+  renumerationCtrl: String;
 
   @ViewChild('renumerationInput') renumerationInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;

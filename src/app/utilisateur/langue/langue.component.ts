@@ -27,6 +27,7 @@ export class LangueComponent implements OnInit {
   languesUtilisateur: Langue[];
   allLangues: string[];
   config = new MatSnackBarConfig();
+  langueCtrl: String;
 
   @ViewChild('langueInput') langueInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;

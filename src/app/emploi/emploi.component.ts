@@ -29,6 +29,7 @@ export class EmploiComponent extends MatPaginatorIntl implements OnInit {
   typeEmplois: Emploi[];
   renumerations: Emploi[];
   experiences: Emploi[];
+  loading: String;
   
   reactifMotCle  = this.emploiService.getTmpMotCle();  
   reactifSecteur = this.emploiService.getTmpSecteur();  

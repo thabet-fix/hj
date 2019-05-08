@@ -19,6 +19,10 @@ export class EmploiDetailComponent implements OnInit {
   secteur: string;
   reactifMotCle: string;
   emploiSubscription: Subscription;
+
+  reactifPays    = this.emploiService.getTmpPays();
+  reactifContrat  = this.emploiService.getTmpContrat();
+  reactifRenumeration = this.emploiService.getTmpRenumeration();
   
 
   ngOnInit() {
